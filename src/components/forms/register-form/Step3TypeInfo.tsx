@@ -1,0 +1,157 @@
+'use client';
+
+import FormInput from "@/components/forms-fields/FormInput";
+import FormRadioCards from "@/components/forms-fields/FormRadioCards";
+import { registerSchemaType } from "@/schemas/authSchema";
+import { useFormContext } from "react-hook-form";
+import { MapPin, Tag, Building, Users, Briefcase, Star, Target, Globe } from "lucide-react";
+import { motion } from "motion/react";
+
+export function Step3TypeInfo() {
+    const { control, watch, } = useFormContext<registerSchemaType>();
+    const accountType = watch("accountType");
+    const selectedCategories = watch("categories") || [];
+
+    // Service categories for suppliers
+
+
+
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { y: 0, opacity: 1 }
+    };
+
+    return (
+        <motion.div
+            className="flex flex-col items-center justify-center h-full space-y-8 px-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
+            <motion.div className="text-center space-y-4" variants={itemVariants}>
+                <div className="w-16 h-16 mx-auto bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4">
+                    {accountType === "Suppliers" ?
+                        <Tag className="w-8 h-8 text-white" /> :
+                        <Target className="w-8 h-8 text-white" />
+                    }
+                </div>
+                <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+                    {accountType === "Suppliers" ? "خدماتك وموقعك" : "احتياجاتك التجارية"}
+                </h2>
+                <p className="text-gray-600 text-lg max-w-md mx-auto">
+                    {accountType === "Suppliers"
+                        ? "حدد خدماتك وموقع عملك لنساعدك في الوصول للعملاء المناسبين"
+                        : "أخبرنا عن نوع شركتك واحتياجاتك لنوفر لك أفضل الموردين"
+                    }
+                </p>
+            </motion.div>
+
+            <div className="w-full max-w-4xl space-y-8">
+                {/* Location Input */}
+                <motion.div variants={itemVariants}>
+                    <FormInput<registerSchemaType>
+                        control={control}
+                        name="location"
+                        label="الموقع"
+                        placeholder={accountType === "Suppliers" ? "أدخل موقع عملك" : "أدخل موقع شركتك"}
+                        Icon={<MapPin className="w-5 h-5 text-gray-500" />}
+                    />
+                </motion.div>
+
+                {/* Categories/Business Type Section */}
+                <motion.div className="space-y-6" variants={itemVariants}>
+                    {accountType === "Suppliers" ? (
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+                                <Tag className="w-5 h-5 text-indigo-600" />
+                                ما هي خدماتك؟
+                            </h3>
+                            <p className="text-gray-600 mb-6">اختر الخدمات التي تقدمها (يمكنك اختيار أكثر من خدمة)</p>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            </div>
+
+                            {selectedCategories.length === 0 && (
+                                <motion.p
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="text-red-500 text-sm mt-2"
+                                >
+                                    يرجى اختيار خدمة واحدة على الأقل
+                                </motion.p>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="space-y-6">
+
+
+                        </div>
+                    )}
+                </motion.div>
+
+                {/* Benefits Section */}
+                <motion.div
+                    className="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-2xl border border-indigo-200"
+                    variants={itemVariants}
+                >
+                    <h3 className="font-bold text-indigo-900 text-xl mb-4 flex items-center gap-2">
+                        <Star className="w-6 h-6 text-indigo-600" />
+                        {accountType === "Suppliers" ? "مميزات الموردين:" : "مميزات العملاء:"}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {accountType === "Suppliers" ? (
+                            <>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <span className="text-indigo-800">عرض خدماتك لعملاء محتملين</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <span className="text-indigo-800">إدارة طلبات العملاء بكفاءة</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <span className="text-indigo-800">بناء سمعة مهنية قوية</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <span className="text-indigo-800">أدوات تسويق متقدمة</span>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <span className="text-indigo-800">الوصول إلى موردين معتمدين</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <span className="text-indigo-800">مقارنة الأسعار والخدمات</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <span className="text-indigo-800">نظام تقييم شفاف</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                    <span className="text-indigo-800">دعم فني متخصص</span>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </motion.div>
+            </div>
+        </motion.div>
+    );
+}

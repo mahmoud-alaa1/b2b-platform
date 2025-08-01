@@ -20,7 +20,7 @@ export default function page() {
             <p className='text-center text-gray-500 mb-4 font-semibold'>
                 <span>لست عضوا حتى الان؟</span>&nbsp;
 
-                <Link href="/auth/register" className='text-indigo-500 hover:underline'>
+                <Link href="/register" className='text-indigo-500 hover:underline'>
                     انضم الآن
                 </Link>
             </p>
