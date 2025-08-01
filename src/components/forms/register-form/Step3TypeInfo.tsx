@@ -1,11 +1,26 @@
 'use client';
 
 import FormInput from "@/components/forms-fields/FormInput";
-import FormRadioCards from "@/components/forms-fields/FormRadioCards";
 import { registerSchemaType } from "@/schemas/authSchema";
 import { useFormContext } from "react-hook-form";
-import { MapPin, Tag, Building, Users, Briefcase, Star, Target, Globe } from "lucide-react";
+import { MapPin, Tag, Star, Target, } from "lucide-react";
 import { motion } from "motion/react";
+import FormDropzone from "@/components/forms-fields/form-dropzone/FormDropzone";
+
+
+const SUPPLIER_BENFITS = [
+    "عرض خدماتك لعملاء محتملين",
+    "إدارة طلبات العملاء بكفاءة",
+    "بناء سمعة مهنية قوية",
+    "أدوات تسويق متقدمة"
+];
+
+const CLIENT_BENEFITS = [
+    "الوصول إلى موردين معتمدين",
+    "مقارنة الأسعار والخدمات",
+    "نظام تقييم شفاف",
+    "دعم فني متخصص"
+]
 
 export function Step3TypeInfo() {
     const { control, watch, } = useFormContext<registerSchemaType>();
@@ -40,11 +55,12 @@ export function Step3TypeInfo() {
             animate="visible"
         >
             <motion.div className="text-center space-y-4" variants={itemVariants}>
-                <div className="w-16 h-16 mx-auto bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4">
-                    {accountType === "Suppliers" ?
-                        <Tag className="w-8 h-8 text-white" /> :
+                <div className="w-16 h-16 mx-auto  bg-indigo-500 rounded-2xl flex items-center justify-center mb-4">
+                    {accountType === "Suppliers" ? (
+                        <Tag className="w-8 h-8 text-white" />
+                    ) : (
                         <Target className="w-8 h-8 text-white" />
-                    }
+                    )}
                 </div>
                 <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
                     {accountType === "Suppliers" ? "خدماتك وموقعك" : "احتياجاتك التجارية"}
@@ -58,16 +74,23 @@ export function Step3TypeInfo() {
             </motion.div>
 
             <div className="w-full max-w-4xl space-y-8">
+
+                <FormDropzone<registerSchemaType>
+                    control={control}
+                    name="documents"
+                    label="المستندات"
+                    description="قم بتحميل المستندات الداعمة مثل السجل التجاري، الهوية، وغيرها."
+                    accept={{ 'application/pdf': ['.pdf'], 'image/*': ['.png', '.jpg', '.jpeg'] }}
+                />
+
                 {/* Location Input */}
-                <motion.div variants={itemVariants}>
-                    <FormInput<registerSchemaType>
-                        control={control}
-                        name="location"
-                        label="الموقع"
-                        placeholder={accountType === "Suppliers" ? "أدخل موقع عملك" : "أدخل موقع شركتك"}
-                        Icon={<MapPin className="w-5 h-5 text-gray-500" />}
-                    />
-                </motion.div>
+                <FormInput<registerSchemaType>
+                    control={control}
+                    name="location"
+                    label="الموقع"
+                    placeholder={accountType === "Suppliers" ? "أدخل موقع عملك" : "أدخل موقع شركتك"}
+                    Icon={<MapPin className="w-5 h-5 text-gray-500" />}
+                />
 
                 {/* Categories/Business Type Section */}
                 <motion.div className="space-y-6" variants={itemVariants}>
@@ -95,7 +118,7 @@ export function Step3TypeInfo() {
                     ) : (
                         <div className="space-y-6">
 
-
+                            {/* Categories here */}
                         </div>
                     )}
                 </motion.div>
@@ -112,46 +135,26 @@ export function Step3TypeInfo() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {accountType === "Suppliers" ? (
                             <>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                    <span className="text-indigo-800">عرض خدماتك لعملاء محتملين</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                    <span className="text-indigo-800">إدارة طلبات العملاء بكفاءة</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                    <span className="text-indigo-800">بناء سمعة مهنية قوية</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                    <span className="text-indigo-800">أدوات تسويق متقدمة</span>
-                                </div>
+                                {SUPPLIER_BENFITS.map((benefit, index) => (
+                                    <div key={index + 'SUPPLIER_BENFITS'} className="flex items-center gap-3">
+                                        <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                        <span className="text-indigo-800">{benefit}</span>
+                                    </div>
+                                ))}
                             </>
                         ) : (
                             <>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                    <span className="text-indigo-800">الوصول إلى موردين معتمدين</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                    <span className="text-indigo-800">مقارنة الأسعار والخدمات</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                    <span className="text-indigo-800">نظام تقييم شفاف</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                    <span className="text-indigo-800">دعم فني متخصص</span>
-                                </div>
+                                {CLIENT_BENEFITS.map((benefit, index) => (
+                                    <div key={index + 'CLIENT_BENEFITS'} className="flex items-center gap-3">
+                                        <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+                                        <span className="text-indigo-800">{benefit}</span>
+                                    </div>
+                                ))}
                             </>
                         )}
                     </div>
                 </motion.div>
-            </div>
-        </motion.div>
+            </div >
+        </motion.div >
     );
 }

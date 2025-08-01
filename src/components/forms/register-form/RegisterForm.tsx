@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "motion/react";
@@ -41,8 +41,8 @@ const slideVariants = {
 
 
 export function MultiStepForm() {
-  const [step, setStep] = useState(0);
-  const [direction, setDirection] = useState<"next" | "back">("next");
+  const [step, setStep] = useState<number>(0);
+  const directionRef = useRef<"next" | "back">("next");
 
   const totalSteps = stepSchemas.length;
   const isLastStep = step === totalSteps - 1;
@@ -59,21 +59,23 @@ export function MultiStepForm() {
       phoneNumber: '',
       location: '',
       categories: [],
+      documents: [],
     },
   });
 
-  const currentStepFields = Object.keys(stepSchemas[step].shape) as (keyof registerSchemaType)[];
 
   async function handleNext() {
+    const currentStepFields = Object.keys(stepSchemas[step].shape) as (keyof registerSchemaType)[];
+
     const isStepValid = await form.trigger(currentStepFields);
     if (isStepValid) {
-      setDirection("next");
+      directionRef.current = "next";
       setStep((prev) => prev + 1);
     }
   }
 
   function handleBack() {
-    setDirection("back");
+    directionRef.current = "back";
     setStep((prev) => Math.max(prev - 1, 0));
   }
 
@@ -81,6 +83,8 @@ export function MultiStepForm() {
     console.log("Submitted values:", values);
 
   }
+
+  console.log(form.watch())
 
 
 
@@ -98,16 +102,14 @@ export function MultiStepForm() {
             className="bg-white rounded-2xl shadow-2xl "
             layout
           >
-            {/* Progress Bar */}
             <RegistersSteps step={step} />
 
 
-            {/* Step Content */}
             <div className="relative w-[clamp(350px,95vw,600px)] min-h-[500px] overflow-hidden ">
-              <AnimatePresence custom={direction} mode="wait">
+              <AnimatePresence custom={directionRef.current} mode="wait">
                 <motion.div
                   key={step}
-                  custom={direction}
+                  custom={directionRef.current}
                   variants={slideVariants}
                   initial="enter"
                   animate="center"
