@@ -1,0 +1,11 @@
+import Image from 'next/image'
+import LogoImage from '../../public/Logo.png'
+import Link from 'next/link'
+
+export default function Logo({ size = 50 }: { size?: number }) {
+    return (
+        <Link href="/" className="flex items-center">
+            <Image  sizes="(max-width: 768px) 100vw, 50vw" src={LogoImage} alt="شعار المنصة" width={size} height={size} />
+        </Link>
+    )
+}
