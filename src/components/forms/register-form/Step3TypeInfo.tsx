@@ -22,30 +22,28 @@ const CLIENT_BENEFITS = [
     "دعم فني متخصص"
 ]
 
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
+};
+
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
+
+
+
 export function Step3TypeInfo() {
     const { control, watch, } = useFormContext<registerSchemaType>();
     const accountType = watch("accountType");
-    const selectedCategories = watch("categories") || [];
 
-    // Service categories for suppliers
-
-
-
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1 }
-    };
 
     return (
         <motion.div
@@ -105,15 +103,7 @@ export function Step3TypeInfo() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             </div>
 
-                            {selectedCategories.length === 0 && (
-                                <motion.p
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    className="text-red-500 text-sm mt-2"
-                                >
-                                    يرجى اختيار خدمة واحدة على الأقل
-                                </motion.p>
-                            )}
+
                         </div>
                     ) : (
                         <div className="space-y-6">

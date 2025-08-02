@@ -48,17 +48,12 @@ const step3Schema = z.object({
     }).max(100, {
         message: "من فضلك أدخل الموقع",
     }),
-    documents: z.array(z.string()).min(1, {
+    documents: z.array(z.any()).min(1, {
         message: "من فضلك قم بتحميل مستند واحد على الأقل",
     }),
-    categories: z.union([
-        z.array(z.string()).min(1, {
-            message: "من فضلك اختر فئة واحدة على الأقل",
-        }),
-        z.string().min(1, {
-            message: "من فضلك اختر نوع الشركة",
-        })
-    ]),
+    categories: z.array(z.string()).min(1, {
+        message: "من فضلك اختر فئة واحدة على الأقل",
+    }),
 });
 
 export const fullRegisterSchema = step1Schema

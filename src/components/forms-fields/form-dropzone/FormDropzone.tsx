@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import {
     FormControl,
@@ -20,11 +20,6 @@ interface FileWithPreview extends File {
     preview?: string;
 }
 
-// Utility functions
-
-
-
-// FileItem Component
 interface FileItemProps {
     file: FileWithPreview;
     index: number;
@@ -33,16 +28,12 @@ interface FileItemProps {
 
 const FileItem: React.FC<FileItemProps> = ({ file, index, onRemove }) => {
     return (
-        <div className="flex  items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow duration-200">
-            <div className="flex items-center space-x-3 space-x-reverse flex-1 min-w-0">
-                {/* File Icon */}
-                <div className="flex-shrink-0">
-                    {getFileIcon(file)}
-                </div>
+        <div className="flex items-center justify-between p-4  border border-gray-200 rounded-lg hover:shadow-md transition ">
+            <div className="flex items-center  gap-2">
+                {getFileIcon(file)}
 
-                {/* File Info */}
-                <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate w-30 ">
+                <div >
+                    <p className="text-sm font-medium text-gray-900 truncate w-40 ">
                         {file.name}
                     </p>
                     <p className="text-xs text-gray-500">
@@ -53,13 +44,12 @@ const FileItem: React.FC<FileItemProps> = ({ file, index, onRemove }) => {
                 {/* Image Preview */}
                 {file.preview && (
                     <div className="flex-shrink-0">
-                        <div className="relative w-12 h-12">
+                        <div className="relative size-16">
                             <Image
                                 fill
                                 src={file.preview}
                                 alt={file.name}
-                                className="w-12 h-12 object-cover rounded-lg border"
-                                onLoad={() => URL.revokeObjectURL(file.preview!)}
+                                className="object-contain rounded-lg border"
                             />
                         </div>
                     </div>
@@ -69,10 +59,10 @@ const FileItem: React.FC<FileItemProps> = ({ file, index, onRemove }) => {
             {/* Remove Button */}
             <Button
                 type="button"
-                variant="ghost"
                 size="sm"
+                variant="destructive"
                 onClick={() => onRemove(index)}
-                className="text-gray-400 hover:text-red-500 hover:bg-red-50 mx-2"
+                className="mx-4"
             >
                 <X className="w-4 h-4" />
             </Button>
@@ -80,7 +70,6 @@ const FileItem: React.FC<FileItemProps> = ({ file, index, onRemove }) => {
     );
 };
 
-// FileList Component
 interface FileListProps {
     files: FileWithPreview[];
     onRemoveFile: (index: number) => void;
@@ -165,7 +154,6 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
 
     return (
         <div className="space-y-4">
-            {/* Dropzone */}
             <div
                 {...getRootProps()}
                 className={cn(
@@ -243,7 +231,7 @@ export default function FormDropzone<TFormValues extends FieldValues>({
     placeholder = "اسحب وأفلت الملفات هنا أو انقر للاختيار",
     accept,
     maxFiles = 5,
-    maxSize = 5 * 1024 * 1024, // 5MB
+    maxSize = 5 * 1024 * 1024,
     multiple = true,
     disabled = false,
     className,
@@ -266,9 +254,14 @@ export default function FormDropzone<TFormValues extends FieldValues>({
                 return (
                     <FormItem className={className}>
                         {label && (
-                            <FormLabel className="text-base font-semibold text-gray-900">
+                            <FormLabel className="text-base font-semibold ">
                                 {label}
                             </FormLabel>
+                        )}
+                        {description && (
+                            <FormDescription className="text-gray-600">
+                                {description}
+                            </FormDescription>
                         )}
                         <FormControl>
                             <FileDropzone
@@ -282,11 +275,7 @@ export default function FormDropzone<TFormValues extends FieldValues>({
                                 placeholder={placeholder}
                             />
                         </FormControl>
-                        {description && (
-                            <FormDescription className="text-gray-600">
-                                {description}
-                            </FormDescription>
-                        )}
+
                         <FormMessage />
                     </FormItem>
                 );

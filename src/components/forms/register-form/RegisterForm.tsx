@@ -50,7 +50,8 @@ export function MultiStepForm() {
 
   const form = useForm<registerSchemaType>({
     resolver: zodResolver(fullRegisterSchema),
-    mode: "onChange",
+    mode: "onSubmit",
+    reValidateMode: "onChange", 
     defaultValues: {
       accountType: "Clients",
       fullName: '',
@@ -83,9 +84,6 @@ export function MultiStepForm() {
     console.log("Submitted values:", values);
 
   }
-
-  console.log(form.watch())
-
 
 
   return (
@@ -130,16 +128,14 @@ export function MultiStepForm() {
               </AnimatePresence>
             </div>
 
-            {/* Navigation */}
             <div className="bg-gray-50 px-8 py-6 border-t">
               <div className="flex justify-between items-center">
-                {/* Back Button */}
                 <Button
                   type="button"
                   variant="outline"
                   onClick={handleBack}
                   disabled={isFirstStep}
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-md disabled:opacity-50"
+                  className="transition  hover:shadow-md disabled:opacity-50"
                 >
                   <ChevronRight className="w-4 h-4" />
                   السابق
@@ -152,7 +148,7 @@ export function MultiStepForm() {
                   <Button
                     type="submit"
                     disabled={false}
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-200 hover:shadow-lg"
+                    className=" bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition hover:shadow-lg"
                   >
                     {false ? (
                       <>
