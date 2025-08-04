@@ -1,46 +1,13 @@
-import CategoriesSection from "@/components/HomePage/CategoriesSection";
+import CategoriesSection from "@/components/HomePage/cartegory-section/CategoriesSection";
+import HeroSection from "@/components/HomePage/HeroSection";
 import { UsersRound } from "lucide-react";
 import Image from "next/image";
-
+import Link from "next/link";
 export default function Home() {
   return (
-    <main className="container mx-auto px-6">
-      <section className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6 py-16">
-        <div className="flex flex-col justify-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
-            نمِّ أعمالك عبر
-            <span className="text-primary"> منصتنا</span>
-          </h1>
-          <p className="text-xl mt-4 font-semibold text-gray-800">
-            تواصل، تعاون، تفاوض!
-          </p>
-          <p className="text-sm md:text-base leading-loose text-gray-600 mt-4">
-            أربط شركتك بالموردين والمستوردين في عالم الضيافة والمطاعم . ابدأ
-            بالتواصل، ووسّع شبكتك، وانطلق نحو شراكات ناجحة وفرص نمو حقيقية!
-          </p>
+    <main className="max-w-7xl mx-auto px-6">
+      <HeroSection />
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <a
-              href="/suppliers"
-              className="bg-primary text-white px-6 py-3 rounded-full font-medium text-sm hover:bg-primary-foreground transition"
-            >
-              انضم الآن
-            </a>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-center">
-          <Image
-            src="/Herosection.png"
-            alt="Illustration of B2B workflow"
-            className="w-full max-w-md"
-            loading="lazy"
-            decoding="async"
-            width={500}
-            height={500}
-          />
-        </div>
-      </section>
       {/* suppliers section */}
       <h2 className="text-3xl mt-32 text-center font-bold text-gray-900 leading-tight">
         اجعل المشترين المناسبين يعثرون عليك
@@ -69,12 +36,12 @@ export default function Home() {
           </div>
 
           <div className="mt-6 flex flex-col  sm:flex-row gap-4 justify-center md:justify-start">
-            <a
+            <Link
               href="/#"
               className="bg-primary text-white px-6 py-3 rounded-full font-medium text-sm hover:bg-primary-foreground transition"
             >
               سجل شركتك الآن
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -127,18 +94,18 @@ export default function Home() {
           </ul>
 
           <div className="mt-6 flex flex-col  sm:flex-row gap-4 justify-center md:justify-start">
-            <a
+            <Link
               href="/#"
               className="bg-primary text-white px-6 py-3 rounded-full font-medium text-sm hover:bg-primary-foreground transition"
             >
               سجل شركتك الآن
-            </a>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* categories section */}
-      <h2 className="text-3xl mt-32 text-center font-bold text-gray-900 leading-tight">
+      <h2 className="text-3xl mt-32 mb-16 text-center font-bold text-gray-900 leading-tight">
         تعرف على الفئات التي تحتاجها
       </h2>
       <CategoriesSection />

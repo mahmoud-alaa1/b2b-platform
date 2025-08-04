@@ -5,7 +5,7 @@ import { LogIn, UserPlus } from "lucide-react";
 const HEADER_LINKS = [
     { href: "/", label: "الرئيسية" },
     { href: "/services", label: "الخدمات" },
-    { href: "/about", label: "حولنا" },
+    { href: "/about", label: "من نحن" },
     { href: "/contact", label: "اتصل بنا" },
 ];
 export default function MainHeaderNav() {
@@ -36,7 +36,7 @@ export default function MainHeaderNav() {
                     </Link>
                 </Button>
                 <Button
-                    className="  font-medium px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform "
+                    className="  font-medium px-6 py-2 rounded-xl shadow-lg hover:shadow-xl text-white transition-all duration-200 transform "
                     asChild
                 >
                     <Link href="/register" className="flex items-center gap-2">
