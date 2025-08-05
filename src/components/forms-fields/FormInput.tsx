@@ -19,9 +19,7 @@ interface FormInputProps<TFormValues extends FieldValues>
   description?: string;
   Icon?: React.ReactNode;
   labelClassName?: string;
-  defaultValue?: string;
-  isEditing?: boolean;
-  renderView?: (value: string) => React.ReactNode;
+  defaultValue?: string | number | readonly string[];
 }
 
 export default function FormInput<TFormValues extends FieldValues>({
@@ -32,7 +30,6 @@ export default function FormInput<TFormValues extends FieldValues>({
   description,
   className,
   labelClassName,
-  isEditing = true,
   ...inputProps
 }: FormInputProps<TFormValues>) {
   return (
@@ -41,32 +38,32 @@ export default function FormInput<TFormValues extends FieldValues>({
       name={name}
       render={({ field }) => (
         <FormItem>
-          {label && isEditing && (
-            <FormLabel htmlFor={name.toString()} className={cn(labelClassName)}>
+          {label && (
+            <FormLabel htmlFor={name} className={cn("mb-1", labelClassName)}>
               {label}
             </FormLabel>
           )}
-
           <FormControl>
             <div className="relative h-fit">
               {Icon && (
-                <div className="absolute start-3 top-1/2 transform -translate-y-1/2">
+                <div className="absolute inset-y-0 end-2.5 flex items-center justify-center">
                   {Icon}
                 </div>
               )}
               <Input
-                onDoubleClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
-                id={name.toString()}
+                id={name}
                 {...field}
                 {...inputProps}
-                className={cn("py-3 pr-4", Icon && "ps-10", className)}
+                className={cn("py-3!", Icon && "pl-8", className)}
+                // ⬅️ تم إضافة هذا التعديل لضمان عدم ظهور "NaN"
+                value={
+                  inputProps.type === "number" && isNaN(field.value as number)
+                    ? ""
+                    : field.value
+                }
               />
             </div>
           </FormControl>
-
           {description && <FormDescription>{description}</FormDescription>}
           <FormMessage />
         </FormItem>

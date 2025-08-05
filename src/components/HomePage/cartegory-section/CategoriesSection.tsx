@@ -3,7 +3,6 @@
 import useInfinite from "@/hooks/useInfinite";
 import { getCategories } from "@/services/categoriesServices";
 import CategoryCardSkeleton from "./CategoryCardSkeleton";
-import Spinner from "../../Spinnner";
 import CategoryCard from "./CategoryCard";
 
 import {
@@ -13,6 +12,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
+import Spinner from "@/components/ui/spinner";
 
 export default function CategoriesSection() {
   const {
