@@ -1,11 +1,11 @@
 import FormRadioCards from "@/components/forms-fields/FormRadioCards";
-import { registerSchemaType } from "@/schemas/authSchema";
 import { useFormContext } from "react-hook-form";
 import { Users, Building2, CheckCircle, Star } from "lucide-react";
 import { motion } from "motion/react";
+import {  conditionalRegisterSchemaType } from "@/schemas/authSchema";
 
 export function Step1Type() {
-    const { control } = useFormContext<registerSchemaType>();
+    const { control } = useFormContext<conditionalRegisterSchemaType>();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -28,7 +28,6 @@ export function Step1Type() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            layout
         >
             <motion.div className="text-center space-y-4" variants={itemVariants}>
                 <div className="w-16 h-16 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4">
@@ -43,7 +42,7 @@ export function Step1Type() {
             </motion.div>
 
             <motion.div className="w-full max-w-2xl" variants={itemVariants}>
-                <FormRadioCards<registerSchemaType>
+                <FormRadioCards<conditionalRegisterSchemaType>
                     control={control}
                     name="accountType"
                     options={[

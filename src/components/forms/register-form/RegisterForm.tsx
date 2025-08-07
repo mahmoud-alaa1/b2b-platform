@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "motion/react";
@@ -9,9 +9,12 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
 import {
-  registerSchemaType,
-  fullRegisterSchema,
-  stepSchemas,
+
+  conditionalRegisterSchema,
+  conditionalRegisterSchemaType,
+  step1Schema,
+  step2Schema,
+  step3Schema,
 } from "@/schemas/authSchema";
 
 import RegistersSteps from "./RegistersSteps";
@@ -20,6 +23,7 @@ import Step2BasicInfo from "./Step2BasicInfo";
 import { Step3TypeInfo } from "./Step3TypeInfo";
 import { ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
 import Spinner from "@/components/ui/spinner";
+import useRegister from "@/hooks/auth/useRegister";
 const slideVariants = {
   enter: (dir: "next" | "back") => ({
     x: dir === "next" ? 400 : -400,
@@ -43,30 +47,38 @@ const slideVariants = {
 export function MultiStepForm() {
   const [step, setStep] = useState<number>(0);
   const directionRef = useRef<"next" | "back">("next");
+  const { mutate, isPending } = useRegister();
 
-  const totalSteps = stepSchemas.length;
-  const isLastStep = step === totalSteps - 1;
-  const isFirstStep = step === 0;
 
-  const form = useForm<registerSchemaType>({
-    resolver: zodResolver(fullRegisterSchema),
+  const form = useForm<conditionalRegisterSchemaType>({
+    resolver: zodResolver(conditionalRegisterSchema),
     mode: "onSubmit",
-    reValidateMode: "onChange", 
+    reValidateMode: "onChange",
     defaultValues: {
       accountType: "Clients",
-      fullName: '',
+      UserName: '',
       email: '',
       password: '',
       phoneNumber: '',
       location: '',
-      categories: [],
-      documents: [],
+
     },
   });
 
+  const accountType = form.watch("accountType");
+  const stepSchemas = useMemo(() => {
+    return [
+      step1Schema,
+      step2Schema,
+      ...(accountType === "Suppliers" ? [step3Schema] : []),
+    ];
+  }, [accountType]);
+  const totalSteps = stepSchemas.length;
+  const isLastStep = step === totalSteps - 1;
+  const isFirstStep = step === 0;
 
   async function handleNext() {
-    const currentStepFields = Object.keys(stepSchemas[step].shape) as (keyof registerSchemaType)[];
+    const currentStepFields = Object.keys(stepSchemas[step].shape) as (keyof conditionalRegisterSchemaType)[];
 
     const isStepValid = await form.trigger(currentStepFields);
     if (isStepValid) {
@@ -80,10 +92,27 @@ export function MultiStepForm() {
     setStep((prev) => Math.max(prev - 1, 0));
   }
 
-  async function onSubmit(values: registerSchemaType) {
+  async function onSubmit(values: conditionalRegisterSchemaType) {
     console.log("Submitted values:", values);
+    const formData = new FormData();
+    formData.append("accountType", values.accountType);
+    formData.append("UserName", values.UserName);
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+    formData.append("phoneNumber", values.phoneNumber);
 
+    if (values.accountType === "Suppliers") {
+      values.categories?.forEach(id => {
+        formData.append("categoriesId", id);
+      });
+      values.documents?.forEach(loc => {
+        formData.append("documents", loc);
+      });
+    }
+
+    mutate(formData);
   }
+
 
 
   return (
@@ -98,9 +127,8 @@ export function MultiStepForm() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-white rounded-2xl shadow-2xl "
-            layout
           >
-            <RegistersSteps step={step} />
+            <RegistersSteps totalSteps={totalSteps} step={step} />
 
 
             <div className="relative w-[clamp(350px,95vw,600px)] min-h-[500px] overflow-hidden ">
@@ -119,7 +147,6 @@ export function MultiStepForm() {
                     damping: 30
                   }}
                   className=" inset-0 p-8"
-                  layout
                 >
                   {step === 0 && <Step1Type />}
                   {step === 1 && <Step2BasicInfo />}
@@ -147,10 +174,10 @@ export function MultiStepForm() {
                 {isLastStep ? (
                   <Button
                     type="submit"
-                    disabled={false}
+                    disabled={isPending}
                     className=" bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition hover:shadow-lg"
                   >
-                    {false ? (
+                    {isPending ? (
                       <>
                         <Spinner />
                         جاري الإنشاء...

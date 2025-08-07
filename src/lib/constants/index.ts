@@ -15,3 +15,5 @@ export const REGISTRATION_STEPS = [
         description: "الموقع والاهتمامات",
     },
 ]
+
+export const CATEGORIES_PAGE_SIZE = 5

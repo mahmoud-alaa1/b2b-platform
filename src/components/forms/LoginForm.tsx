@@ -9,7 +9,7 @@ import { Mail } from 'lucide-react'
 import FormPassword from '../forms-fields/FormPassword'
 import Link from 'next/link'
 import { loginSchema } from '@/schemas/authSchema'
-import useLogin from '@/hooks/useLogin'
+import useLogin from '@/hooks/auth/useLogin'
 import Spinner from '../ui/spinner'
 
 
