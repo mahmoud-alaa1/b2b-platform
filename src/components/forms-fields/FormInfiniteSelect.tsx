@@ -78,23 +78,24 @@ export default function FormInfiniteSelect<
           <FormControl>
             <Select
               key={field.value}
-              onValueChange={field.onChange}
-              defaultValue={field.value?.toString()}
-              value={field.value?.toString()}
-              disabled={disabled}
+              onValueChange={(value) => {
+                const numericValue = Number(value);
+                field.onChange(isNaN(numericValue) ? value : numericValue);
+              }}
+              value={field.value !== undefined ? String(field.value) : undefined}
+              disabled={disabled || isFetching}
               required={required}
-              {...props}>
-              <SelectTrigger
-                id={name}
-                dir="rtl"
-                className={cn("w-full", className)}>
+              {...props}
+            >
+              <SelectTrigger id={name} dir="rtl" className={cn("w-full", className)}>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
               <SelectContent id={name} className="max-h-56" dir="rtl">
                 {options.map((item) => (
                   <SelectItem
                     key={getOptionValue(item).toString()}
-                    value={getOptionValue(item).toString()}>
+                    value={getOptionValue(item).toString()}
+                  >
                     {getOptionLabel(item)}
                   </SelectItem>
                 ))}

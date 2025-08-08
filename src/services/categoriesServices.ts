@@ -1,3 +1,4 @@
+
 import api from '@/lib/axios'
 import { CATEGORIES_PAGE_SIZE } from '@/lib/constants'
 import { isAxiosError } from 'axios'
@@ -18,4 +19,3 @@ export async function getCategories(params: ICategoryFilters) {
         throw new Error('فشل في تحميل الفئات بسبب خطأ غير متوقع')
     }
 }
-

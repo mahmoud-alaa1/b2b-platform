@@ -11,6 +11,7 @@ interface IPaginatedResponse<T> {
   meta: IPaginationMeta;
 }
 
+
 interface IApiResponse<T> {
   data: T;
 }
@@ -21,5 +22,3 @@ interface IErrorResponse {
     details?: Record<string, string>[];
   };
 }
-
-

@@ -17,6 +17,7 @@ export async function loginService(data: {
     }
 }
 
+
 export async function registerService(data: FormData) {
     try {
         const res = await api.post('/register', data)
