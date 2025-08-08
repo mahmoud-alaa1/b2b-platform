@@ -25,7 +25,7 @@ export default function CategoriesSection() {
     ref,
   } = useInfinite<ICategory>({
     queryKey: ["categories-infinite"],
-    fetchFn: getCategories,
+    fetchFn: (page) => getCategories({ page }),
     enabled: true,
   });
 
@@ -81,7 +81,7 @@ export default function CategoriesSection() {
   return (
     <div className="relative w-full overflow-hidden pb-20 px-4">
       <div className="relative">
-        
+
         <Carousel
           opts={{
             align: "start",

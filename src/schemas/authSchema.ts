@@ -67,7 +67,6 @@ export const conditionalRegisterSchema = step1Schema
 
         if (data.accountType !== "Suppliers") return;
 
-        console.log('user select suppliers')
         if (!data.location || data.location.length < 2) {
             ctx.addIssue({
                 path: ["location"],

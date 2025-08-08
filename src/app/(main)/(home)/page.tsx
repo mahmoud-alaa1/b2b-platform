@@ -3,7 +3,14 @@ import HeroSection from "@/components/HomePage/HeroSection";
 import { UsersRound } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-export default function Home() {
+
+
+
+
+
+export default async function Home() {
+
+
   return (
     <main className="max-w-7xl mx-auto px-6">
       <HeroSection />

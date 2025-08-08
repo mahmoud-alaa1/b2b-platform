@@ -116,9 +116,6 @@ export function MultiStepForm() {
     mutate(formData);
   }
 
-  console.log(form.formState.errors);
-
-
 
   return (
     <div className="max-w-4xl  p-6" dir="rtl">

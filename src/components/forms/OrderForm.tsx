@@ -80,7 +80,9 @@ export default function OrderForm() {
             control={form.control}
             name="categoryId"
             queryKey={["categories"]}
-            fetchFn={(page) => getCategories(page)}
+            fetchFn={(page) => getCategories({
+              page,
+            })}
             getOptionLabel={(item) => item.categoryName}
             getOptionValue={(item) => String(item.categoryId)}
             label=" الفئة المطلوبة"

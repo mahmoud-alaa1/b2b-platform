@@ -3,6 +3,8 @@ import api from '@/lib/axios'
 import { CATEGORIES_PAGE_SIZE } from '@/lib/constants'
 import { isAxiosError } from 'axios'
 
+
+
 export async function getCategories(params: ICategoryFilters) {
     try {
         const response = await api.get<IPaginatedResponse<ICategory>>('/categories', {
