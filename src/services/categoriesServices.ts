@@ -1,20 +1,21 @@
-import api from "@/lib/axios";
-import { isAxiosError } from "axios";
 
-export async function getCategories(
-  page: number = 1
-): Promise<IPaginatedResponse<ICategory>> {
-  try {
-    const res = await api.get<IPaginatedResponse<ICategory>>(
-      `/categories?page=${page}`
-    );
-    return res.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      throw new Error(
-        error.response?.data.message || "Failed to fetch categories"
-      );
+import api from '@/lib/axios'
+import { CATEGORIES_PAGE_SIZE } from '@/lib/constants'
+import { isAxiosError } from 'axios'
+
+export async function getCategories(params: ICategoryFilters) {
+    try {
+        const response = await api.get<IPaginatedResponse<ICategory>>('/categories', {
+            params: {
+                ...params,
+                pageSize: CATEGORIES_PAGE_SIZE,
+            }
+        })
+        return response.data
+    } catch (error) {
+        if (isAxiosError(error)) {
+            throw new Error(error.response?.data?.data?.message || 'فشل في تحميل الفئات')
+        }
+        throw new Error('فشل في تحميل الفئات بسبب خطأ غير متوقع')
     }
-    throw error;
-  }
 }

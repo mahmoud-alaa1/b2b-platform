@@ -1,12 +1,12 @@
-import { registerSchemaType } from "@/schemas/authSchema";
 import { useFormContext } from "react-hook-form";
 import FormInput from "@/components/forms-fields/FormInput";
 import FormPassword from "@/components/forms-fields/FormPassword";
 import { User, Mail, Phone, Shield } from "lucide-react";
 import { motion } from "motion/react";
+import { conditionalRegisterSchemaType } from "@/schemas/authSchema";
 
 export default function Step2BasicInfo() {
-    const { control } = useFormContext<registerSchemaType>();
+    const { control } = useFormContext<conditionalRegisterSchemaType>();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -45,9 +45,9 @@ export default function Step2BasicInfo() {
             <motion.div className="w-full max-w-2xl" variants={itemVariants}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <motion.div variants={itemVariants}>
-                        <FormInput<registerSchemaType>
+                        <FormInput<conditionalRegisterSchemaType>
                             control={control}
-                            name="fullName"
+                            name="UserName"
                             label="الاسم الكامل"
                             placeholder="أدخل اسمك الكامل"
                             Icon={<User className="w-5 h-5 text-gray-500" />}
@@ -55,7 +55,7 @@ export default function Step2BasicInfo() {
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
-                        <FormInput<registerSchemaType>
+                        <FormInput<conditionalRegisterSchemaType>
                             control={control}
                             name="email"
                             type="email"
@@ -66,7 +66,7 @@ export default function Step2BasicInfo() {
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
-                        <FormInput<registerSchemaType>
+                        <FormInput<conditionalRegisterSchemaType>
                             control={control}
                             name="phoneNumber"
                             label="رقم الهاتف"
@@ -76,7 +76,7 @@ export default function Step2BasicInfo() {
                     </motion.div>
 
                     <motion.div variants={itemVariants}>
-                        <FormPassword<registerSchemaType>
+                        <FormPassword<conditionalRegisterSchemaType>
                             control={control}
                             name="password"
                             label="كلمة المرور"

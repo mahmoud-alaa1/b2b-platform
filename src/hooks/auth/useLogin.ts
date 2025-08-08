@@ -8,6 +8,7 @@ export default function useLogin() {
         mutationFn: loginService,
         onSuccess: (data) => {
             toast.success("تم تسجيل الدخول بنجاح!");
+            console.log(data);
         },
         onError: (error) => {
             toast.error(`فشل تسجيل الدخول: ${error.message}`);

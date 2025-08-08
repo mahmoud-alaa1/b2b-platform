@@ -1,11 +1,13 @@
 import FormRadioCards from "@/components/forms-fields/FormRadioCards";
-import { registerSchemaType } from "@/schemas/authSchema";
 import { useFormContext } from "react-hook-form";
-import { Users, Building2, CheckCircle, Star } from "lucide-react";
+import { Users, Building2, CheckCircle, Star, ArrowLeft } from "lucide-react";
 import { motion } from "motion/react";
+import { conditionalRegisterSchemaType } from "@/schemas/authSchema";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export function Step1Type() {
-    const { control } = useFormContext<registerSchemaType>();
+    const { control } = useFormContext<conditionalRegisterSchemaType>();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -28,8 +30,8 @@ export function Step1Type() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            layout
         >
+            
             <motion.div className="text-center space-y-4" variants={itemVariants}>
                 <div className="w-16 h-16 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4">
                     <Star className="w-8 h-8 text-white" />
@@ -43,7 +45,7 @@ export function Step1Type() {
             </motion.div>
 
             <motion.div className="w-full max-w-2xl" variants={itemVariants}>
-                <FormRadioCards<registerSchemaType>
+                <FormRadioCards<conditionalRegisterSchemaType>
                     control={control}
                     name="accountType"
                     options={[
@@ -110,7 +112,27 @@ export function Step1Type() {
                     </div>
                 </motion.div>
             </motion.div>
+
+            {/* Login Link Section */}
+            <motion.div 
+                className="w-full max-w-2xl"
+                variants={itemVariants}
+            >
+                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center">
+                    <p className="text-gray-600 mb-4">
+                        هل لديك حساب بالفعل؟
+                    </p>
+                    <Link href="/login">
+                        <Button 
+                            variant="outline" 
+                            className="w-full sm:w-auto px-8 py-3 text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 transition-all duration-300 font-medium"
+                        >
+                            <ArrowLeft className="w-4 h-4 ml-2" />
+                            سجل الدخول من هنا
+                        </Button>
+                    </Link>
+                </div>
+            </motion.div>
         </motion.div>
     );
 }
-

@@ -17,7 +17,6 @@ import {
 } from "../ui/select";
 import useInfinite from "@/hooks/useInfinite";
 import Spinner from "../ui/spinner";
-import React from "react";
 
 interface FormInfiniteSelectProps<TFormValues extends FieldValues, TData> {
   label?: string;

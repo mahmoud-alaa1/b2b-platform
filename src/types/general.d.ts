@@ -1,12 +1,3 @@
-interface IApiResponse<T> {
-  data: T;
-}
-
-declare interface IErrorResponse {
-  message: string;
-}
-
-
 interface IPaginationMeta {
   currentPage: number;
   pageSize: number;
@@ -21,10 +12,13 @@ interface IPaginatedResponse<T> {
 }
 
 
+interface IApiResponse<T> {
+  data: T;
+}
 
 interface IErrorResponse {
   data: {
     message: string;
-    details?: string[];
+    details?: Record<string, string>[];
   };
 }

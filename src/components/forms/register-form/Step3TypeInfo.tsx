@@ -1,12 +1,14 @@
 'use client';
 
 import FormInput from "@/components/forms-fields/FormInput";
-import { registerSchemaType } from "@/schemas/authSchema";
+import { conditionalRegisterSchemaType } from "@/schemas/authSchema";
 import { useFormContext } from "react-hook-form";
-import { MapPin, Tag, Star, Target, } from "lucide-react";
+import { MapPin, Tag, Star, Target } from "lucide-react";
 import { motion } from "motion/react";
 import FormDropzone from "@/components/forms-fields/form-dropzone/FormDropzone";
-
+import { getCategories } from "@/services/categoriesServices";
+import FormInfiniteMultiCombobox from "@/components/forms-fields/FormMultiSelectCombobox";
+import SelectedCategories from "./SelectedCategories";
 
 const SUPPLIER_BENFITS = [
     "عرض خدماتك لعملاء محتملين",
@@ -27,7 +29,6 @@ const itemVariants = {
     visible: { y: 0, opacity: 1 }
 };
 
-
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -38,11 +39,10 @@ const containerVariants = {
     }
 };
 
-
-
 export function Step3TypeInfo() {
-    const { control, watch, } = useFormContext<registerSchemaType>();
+    const { control, watch } = useFormContext<conditionalRegisterSchemaType>();
     const accountType = watch("accountType");
+
 
 
     return (
@@ -53,7 +53,7 @@ export function Step3TypeInfo() {
             animate="visible"
         >
             <motion.div className="text-center space-y-4" variants={itemVariants}>
-                <div className="w-16 h-16 mx-auto  bg-indigo-500 rounded-2xl flex items-center justify-center mb-4">
+                <div className="w-16 h-16 mx-auto bg-indigo-500 rounded-2xl flex items-center justify-center mb-4">
                     {accountType === "Suppliers" ? (
                         <Tag className="w-8 h-8 text-white" />
                     ) : (
@@ -72,17 +72,16 @@ export function Step3TypeInfo() {
             </motion.div>
 
             <div className="w-full max-w-4xl space-y-8">
-
-                <FormDropzone<registerSchemaType>
+                <FormDropzone<conditionalRegisterSchemaType>
                     control={control}
                     name="documents"
                     label="المستندات"
-                    description="قم بتحميل المستندات الداعمة مثل السجل التجاري، الهوية، وغيرها."
-                    accept={{ 'application/pdf': ['.pdf'], 'image/*': ['.png', '.jpg', '.jpeg'] }}
+                    description="اقصى حجم 5MB ,قم بتحميل المستندات الداعمة مثل السجل التجاري، الهوية، وغيرها."
+                    accept={{ 'application/pdf': ['.pdf'] }}
                 />
 
                 {/* Location Input */}
-                <FormInput<registerSchemaType>
+                <FormInput<conditionalRegisterSchemaType>
                     control={control}
                     name="location"
                     label="الموقع"
@@ -92,25 +91,29 @@ export function Step3TypeInfo() {
 
                 {/* Categories/Business Type Section */}
                 <motion.div className="space-y-6" variants={itemVariants}>
-                    {accountType === "Suppliers" ? (
-                        <div className="space-y-4">
-                            <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-                                <Tag className="w-5 h-5 text-indigo-600" />
-                                ما هي خدماتك؟
-                            </h3>
-                            <p className="text-gray-600 mb-6">اختر الخدمات التي تقدمها (يمكنك اختيار أكثر من خدمة)</p>
+                    <div className="space-y-4">
+                        <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+                            <Tag className="w-5 h-5 text-indigo-600" />
+                            ما هي خدماتك؟
+                        </h3>
+                        <p className="text-gray-600 mb-6">اختر الخدمات التي تقدمها (يمكنك اختيار أكثر من خدمة)</p>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            </div>
+                        <FormInfiniteMultiCombobox<conditionalRegisterSchemaType, ICategory>
+                            control={control}
+                            name="categories"
+                            label="الخدمات"
+                            queryKey={["categories"]}
+                            fetchFn={(pageNumber) => getCategories({
+                                page: pageNumber,
+                            })}
+                            getOptionLabel={(item) => item.categoryName}
+                            getOptionValue={(item) => item.categoryId}
+                        />
+
+                        <SelectedCategories />
 
 
-                        </div>
-                    ) : (
-                        <div className="space-y-6">
-
-                            {/* Categories here */}
-                        </div>
-                    )}
+                    </div>
                 </motion.div>
 
                 {/* Benefits Section */}
@@ -144,7 +147,7 @@ export function Step3TypeInfo() {
                         )}
                     </div>
                 </motion.div>
-            </div >
-        </motion.div >
+            </div>
+        </motion.div>
     );
 }

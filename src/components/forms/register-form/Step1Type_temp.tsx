@@ -1,16 +1,16 @@
 import FormRadioGroup from "@/components/forms-fields/FormRadioGroup";
-import { registerSchemaType } from "@/schemas/authSchema";
+import { conditionalRegisterSchemaType } from "@/schemas/authSchema";
 import { useFormContext } from "react-hook-form";
 import { Users, Building2, CheckCircle, Star } from "lucide-react";
 import { motion } from "motion/react";
 
 export function Step1Type() {
-    const { control, watch } = useFormContext<registerSchemaType>();
+    const { control, watch } = useFormContext<conditionalRegisterSchemaType>();
     const selectedType = watch("accountType");
 
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: {
+        visible: {  
             opacity: 1,
             transition: {
                 staggerChildren: 0.1
@@ -43,7 +43,7 @@ export function Step1Type() {
             </motion.div>
 
             <motion.div className="w-full max-w-md" variants={itemVariants}>
-                <FormRadioGroup<registerSchemaType>
+                <FormRadioGroup<conditionalRegisterSchemaType>
                     control={control}
                     name="accountType"
                     direction="vertical"
