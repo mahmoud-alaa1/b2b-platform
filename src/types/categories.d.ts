@@ -1,5 +1,5 @@
 interface ICategory {
-    categoryId: number,
+    categoryId: number | string,
     categoryName: string,
     numberOfAssociatedSuppliers: number,
     numberOfAssociatedClients: number,

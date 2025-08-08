@@ -1,5 +1,6 @@
 import { registerService, } from "@/services/authServices";
 import { useMutation } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -16,8 +17,10 @@ export default function useRegister() {
             console.log(data);
         },
         onError: (error) => {
-            toast.error(`${error.message}`);
-            console.error("Register failed:", error);
+            console.log(error)
+            if (isAxiosError(error)) {
+                toast.error(`${error.response?.data?.data.message || 'فشل تسجيل الحساب بسبب خطأ في الخادم'}`);
+            }
         },
     });
 

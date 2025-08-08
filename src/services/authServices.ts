@@ -23,10 +23,6 @@ export async function registerService(data: FormData) {
         return res.data
 
     } catch (error) {
-        if (isAxiosError(error)) {
-            console.log(error)
-            throw new Error(error.response?.data?.data?.message || 'فشل تسجيل الحساب بسبب خطأ في الخادم')
-        }
-        throw new Error('فشل تسجيل الحساب بسبب خطأ غير متوقع')
+        throw error
     }
 }

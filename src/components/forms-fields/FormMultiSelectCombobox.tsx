@@ -15,7 +15,7 @@ import {
     PopoverTrigger,
 } from "../ui/popover";
 import { Button } from "../ui/button";
-import { Check, ChevronDown, X } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import Spinner from "../ui/spinner";
 import useInfinite from "@/hooks/useInfinite";
 import { useState, useMemo } from "react";
@@ -55,7 +55,6 @@ export default function FormInfiniteMultiCombobox<
     fetchFn,
     getOptionLabel,
     getOptionValue,
-    maxDisplayItems = 2,
     showCount = true,
     onOptionsChange,
 }: FormInfiniteMultiComboboxProps<TFormValues, TData>) {
@@ -90,20 +89,8 @@ export default function FormInfiniteMultiCombobox<
 
     // Helper function to format display text
     const getDisplayText = (selectedValues: (string | number)[]) => {
-        if (!selectedValues || selectedValues.length === 0) {
-            return placeholder || "اختر...";
-        }
+        return `تم اختيار ${selectedValues.length} عنصر`;
 
-        const selectedOptions = getSelectedOptions(selectedValues);
-
-        if (showCount && selectedValues.length > maxDisplayItems) {
-            return `تم اختيار ${selectedValues.length} عنصر`;
-        }
-
-        return selectedOptions
-            .slice(0, maxDisplayItems)
-            .map(option => getOptionLabel(option))
-            .join("، ") + (selectedValues.length > maxDisplayItems ? "..." : "");
     };
 
     // Toggle selection
@@ -129,7 +116,6 @@ export default function FormInfiniteMultiCombobox<
             name={name}
             render={({ field }) => {
                 const selectedValues: (string | number)[] = Array.isArray(field.value) ? field.value : [];
-                const selectedOptions = getSelectedOptions(selectedValues);
 
                 return (
                     <FormItem dir="rtl" className="w-full">
@@ -156,21 +142,8 @@ export default function FormInfiniteMultiCombobox<
                                         <span className="truncate flex-1 text-right">
                                             {getDisplayText(selectedValues)}
                                         </span>
-                                        <div className="flex items-center gap-2 flex-shrink-0">
-                                            {selectedValues.length > 0 && (
-                                                <button
-                                                    type="button"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        field.onChange([]);
-                                                    }}
-                                                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                                                >
-                                                    <X className="h-4 w-4" />
-                                                </button>
-                                            )}
-                                            <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
-                                        </div>
+
+                                        <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
                                     </Button>
                                 </PopoverTrigger>
                                 <PopoverContent className="p-0" dir="rtl">
@@ -183,7 +156,7 @@ export default function FormInfiniteMultiCombobox<
                                         <CommandEmpty>لا توجد نتائج</CommandEmpty>
                                         <CommandGroup className="h-60 overflow-auto">
                                             {options.map((item) => {
-                                                const value = getOptionValue(item);
+                                                const value = getOptionValue(item).toString();
                                                 const label = getOptionLabel(item);
                                                 const isSelected = selectedValues.includes(value);
 
@@ -208,13 +181,13 @@ export default function FormInfiniteMultiCombobox<
                                                         </span>
                                                         <div
                                                             className={cn(
-                                                                "flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+                                                                "flex h-5 w-5 items-center justify-center rounded-sm border border-primary",
                                                                 isSelected
                                                                     ? "bg-primary text-primary"
                                                                     : "opacity-50 [&_svg]:invisible"
                                                             )}
                                                         >
-                                                            <Check className="h-3 w-3 " />
+                                                            <Check className="h-3 w-3 text-white" />
                                                         </div>
                                                     </CommandItem>
                                                 );

@@ -106,18 +106,23 @@ export function MultiStepForm() {
         formData.append("categoriesId", id);
       });
       values.documents?.forEach(loc => {
-        formData.append("documents", loc);
+        formData.append("textNumberPicture", loc);
       });
+      formData.append("locations", values.location ||
+        "no location"
+      );
     }
 
     mutate(formData);
   }
 
+  console.log(form.formState.errors);
+
 
 
   return (
     <div className="max-w-4xl  p-6" dir="rtl">
-      <Form {...form}>
+      <Form  {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
 
 
@@ -130,30 +135,32 @@ export function MultiStepForm() {
           >
             <RegistersSteps totalSteps={totalSteps} step={step} />
 
+            <fieldset disabled={isPending} className="space-y-8 w-full">
 
-            <div className="relative w-[clamp(350px,95vw,600px)] min-h-[500px] overflow-hidden ">
-              <AnimatePresence custom={directionRef.current} mode="wait">
-                <motion.div
-                  key={step}
-                  custom={directionRef.current}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    duration: 0.4,
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30
-                  }}
-                  className=" inset-0 p-8"
-                >
-                  {step === 0 && <Step1Type />}
-                  {step === 1 && <Step2BasicInfo />}
-                  {step === 2 && <Step3TypeInfo />}
-                </motion.div>
-              </AnimatePresence>
-            </div>
+              <div className="relative w-[clamp(350px,95vw,600px)] min-h-[500px] overflow-hidden ">
+                <AnimatePresence custom={directionRef.current} mode="wait">
+                  <motion.div
+                    key={step}
+                    custom={directionRef.current}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      duration: 0.4,
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30
+                    }}
+                    className=" inset-0 p-8"
+                  >
+                    {step === 0 && <Step1Type />}
+                    {step === 1 && <Step2BasicInfo />}
+                    {step === 2 && <Step3TypeInfo />}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </fieldset>
 
             <div className="bg-gray-50 px-8 py-6 border-t">
               <div className="flex justify-between items-center">
@@ -209,9 +216,8 @@ export function MultiStepForm() {
               </div>
             </div>
           </motion.div>
-
         </form>
       </Form>
-    </div>
+    </div >
   );
 }
