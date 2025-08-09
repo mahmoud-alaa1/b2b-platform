@@ -62,7 +62,7 @@ export default function LoginForm() {
                 </div>
                 <Button
                     disabled={isPending}
-                    className="w-full text-white py-2 rounded transition-colors"
+                    className="w-full text-white py-2 transition rounded-2xl"
                 >
                     {isPending ? <Spinner /> : "تسجيل الدخول"}
                 </Button>
