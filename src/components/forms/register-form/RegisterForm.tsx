@@ -177,6 +177,7 @@ export function MultiStepForm() {
                 {/* Next/Submit Button */}
                 {isLastStep ? (
                   <Button
+                    key={`submit-${step}`}
                     type="submit"
                     disabled={isPending}
                     className=" bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition hover:shadow-lg"
@@ -195,9 +196,10 @@ export function MultiStepForm() {
                   </Button>
                 ) : (
                   <Button
+                    key={`next-${step}`}
                     type="button"
                     onClick={handleNext}
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl transition  hover:shadow-lg"
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl transition hover:shadow-lg"
                   >
                     التالي
                     <ChevronLeft className="w-4 h-4" />
