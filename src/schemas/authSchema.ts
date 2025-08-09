@@ -1,8 +1,14 @@
 import z from 'zod'
 
 export const loginSchema = z.object({
-    email: z.email(),
-    password: z.string().min(6).max(100),
+    email: z.email({
+        message: "من فضلك أدخل بريدًا إلكترونيًا صالحًا",
+    }),
+    password: z.string().min(8, {
+        message: "من فضلك أدخل كلمة مرور لا تقل عن 8 أحرف",
+    }).max(50, {
+        message: "من فضلك أدخل كلمة مرور لا تزيد عن 50 حرف",
+    }),
     rememberMe: z.boolean(),
 })
 
@@ -28,8 +34,8 @@ export const step2Schema = z.object({
     email: z.email("من فضلك أدخل بريدًا إلكترونيًا صالحًا"),
     password: z.string().min(8, {
         message: "من فضلك أدخل كلمة مرور لا تقل عن 8 أحرف",
-    }).max(100, {
-        message: "من فضلك أدخل كلمة مرور لا تزيد عن 100 حرف",
+    }).max(50, {
+        message: "من فضلك أدخل كلمة مرور لا تزيد عن 50 حرف",
     }),
     phoneNumber: z
         .string()
@@ -43,11 +49,7 @@ export const step2Schema = z.object({
 });
 
 export const step3Schema = z.object({
-    location: z.string().min(2, {
-        message: "من فضلك أدخل موقعًا صالحًا",
-    }).max(100, {
-        message: "من فضلك أدخل الموقع",
-    }),
+    location: z.string(),
     documents: z.array(z.any()).min(1, {
         message: "من فضلك قم بتحميل مستند واحد على الأقل",
     }),

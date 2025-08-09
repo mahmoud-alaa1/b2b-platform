@@ -1,29 +1,25 @@
 import api from '@/lib/axios'
-import { isAxiosError } from 'axios'
+import { handleApiError } from '@/utils/handleApiError'
 
 export async function loginService(data: {
-    email: string,
-    password: string,
-    rememberMe: boolean | string,
+    email: string;
+    password: string;
+    rememberMe: boolean | string;
 }) {
     try {
-        const response = await api.post('/auth/login', data)
-        return response.data
+        const response = await api.post<{ accessToken: string }>("/auth/login", data);
+        return response.data;
     } catch (error) {
-        if (isAxiosError(error)) {
-            throw new Error(error.response?.data?.data?.message || 'فشل تسجيل الدخول بسبب خطأ في الخادم')
-        }
-        throw new Error('فشل تسجيل الدخول بسبب خطأ غير متوقع')
+        throw handleApiError(error);
     }
 }
 
 
 export async function registerService(data: FormData) {
     try {
-        const res = await api.post('/register', data)
-        return res.data
-
+        const res = await api.post<IApiResponse<IRegisterResponse>>("/register", data);
+        return res.data;
     } catch (error) {
-        throw error
+        throw handleApiError(error);
     }
 }

@@ -21,7 +21,7 @@ import RegistersSteps from "./RegistersSteps";
 import { Step1Type } from "./Step1Type";
 import Step2BasicInfo from "./Step2BasicInfo";
 import { Step3TypeInfo } from "./Step3TypeInfo";
-import { ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle, } from "lucide-react";
 import Spinner from "@/components/ui/spinner";
 import useRegister from "@/hooks/auth/useRegister";
 const slideVariants = {
@@ -47,13 +47,11 @@ const slideVariants = {
 export function MultiStepForm() {
   const [step, setStep] = useState<number>(0);
   const directionRef = useRef<"next" | "back">("next");
-  const { mutate, isPending } = useRegister();
+  const { mutate, isPending, error } = useRegister();
 
 
   const form = useForm<conditionalRegisterSchemaType>({
     resolver: zodResolver(conditionalRegisterSchema),
-    mode: "onSubmit",
-    reValidateMode: "onChange",
     defaultValues: {
       accountType: "Clients",
       UserName: '',
@@ -61,7 +59,6 @@ export function MultiStepForm() {
       password: '',
       phoneNumber: '',
       location: '',
-
     },
   });
 
@@ -93,7 +90,6 @@ export function MultiStepForm() {
   }
 
   async function onSubmit(values: conditionalRegisterSchemaType) {
-    console.log("Submitted values:", values);
     const formData = new FormData();
     formData.append("accountType", values.accountType);
     formData.append("UserName", values.UserName);
@@ -116,6 +112,14 @@ export function MultiStepForm() {
     mutate(formData);
   }
 
+
+  if (error && error.data?.details) {
+    error.data.details.forEach((detail) => {
+      Object.entries(detail).forEach(([key, value]) => {
+        form.setError(key as keyof conditionalRegisterSchemaType, { message: value });
+      });
+    });
+  }
 
   return (
     <div className="max-w-4xl  p-6" dir="rtl">
