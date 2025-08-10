@@ -1,5 +1,6 @@
 import { loginService } from "@/services/authServices";
 import useAuth from "@/store/authStore";
+import { ApiError } from "@/utils/handleApiError";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -16,10 +17,12 @@ export default function useLogin() {
             login(data);
             router.push("/");
         },
-        onError: (error) => {
-            toast.error(`فشل تسجيل الدخول: ${error.message}`);
-            console.error("Login failed:", error);
-        },
+
+        onError: (error: ApiError) => {
+            toast.error(error.message);
+            console.error(error)
+
+        }
     });
 
 }

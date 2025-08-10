@@ -87,6 +87,7 @@ export function Step3TypeInfo() {
                     label="الموقع"
                     placeholder={accountType === "Suppliers" ? "أدخل موقع عملك" : "أدخل موقع شركتك"}
                     Icon={<MapPin className="w-5 h-5 text-gray-500" />}
+                    autoComplete="address-level1"
                 />
 
                 {/* Categories/Business Type Section */}

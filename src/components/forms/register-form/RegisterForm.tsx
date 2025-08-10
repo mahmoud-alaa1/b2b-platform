@@ -113,11 +113,9 @@ export function MultiStepForm() {
   }
 
 
-  if (error && error.data?.details) {
-    error.data.details.forEach((detail) => {
-      Object.entries(detail).forEach(([key, value]) => {
-        form.setError(key as keyof conditionalRegisterSchemaType, { message: value });
-      });
+  if (error) {
+    Object.entries(error.details || {}).forEach(([key, value]) => {
+      form.setError(key as keyof conditionalRegisterSchemaType, { message: value });
     });
   }
 
