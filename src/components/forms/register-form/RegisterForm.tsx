@@ -21,7 +21,7 @@ import RegistersSteps from "./RegistersSteps";
 import { Step1Type } from "./Step1Type";
 import Step2BasicInfo from "./Step2BasicInfo";
 import { Step3TypeInfo } from "./Step3TypeInfo";
-import { ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle, } from "lucide-react";
 import Spinner from "@/components/ui/spinner";
 import useRegister from "@/hooks/auth/useRegister";
 const slideVariants = {
@@ -47,13 +47,11 @@ const slideVariants = {
 export function MultiStepForm() {
   const [step, setStep] = useState<number>(0);
   const directionRef = useRef<"next" | "back">("next");
-  const { mutate, isPending } = useRegister();
+  const { mutate, isPending, error } = useRegister();
 
 
   const form = useForm<conditionalRegisterSchemaType>({
     resolver: zodResolver(conditionalRegisterSchema),
-    mode: "onSubmit",
-    reValidateMode: "onChange",
     defaultValues: {
       accountType: "Clients",
       UserName: '',
@@ -61,7 +59,6 @@ export function MultiStepForm() {
       password: '',
       phoneNumber: '',
       location: '',
-
     },
   });
 
@@ -93,7 +90,6 @@ export function MultiStepForm() {
   }
 
   async function onSubmit(values: conditionalRegisterSchemaType) {
-    console.log("Submitted values:", values);
     const formData = new FormData();
     formData.append("accountType", values.accountType);
     formData.append("UserName", values.UserName);
@@ -116,6 +112,12 @@ export function MultiStepForm() {
     mutate(formData);
   }
 
+
+  if (error) {
+    Object.entries(error.details || {}).forEach(([key, value]) => {
+      form.setError(key as keyof conditionalRegisterSchemaType, { message: value });
+    });
+  }
 
   return (
     <div className="max-w-4xl  p-6" dir="rtl">
@@ -177,6 +179,7 @@ export function MultiStepForm() {
                 {/* Next/Submit Button */}
                 {isLastStep ? (
                   <Button
+                    key={`submit-${step}`}
                     type="submit"
                     disabled={isPending}
                     className=" bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition hover:shadow-lg"
@@ -195,9 +198,10 @@ export function MultiStepForm() {
                   </Button>
                 ) : (
                   <Button
+                    key={`next-${step}`}
                     type="button"
                     onClick={handleNext}
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl transition  hover:shadow-lg"
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl transition hover:shadow-lg"
                   >
                     التالي
                     <ChevronLeft className="w-4 h-4" />

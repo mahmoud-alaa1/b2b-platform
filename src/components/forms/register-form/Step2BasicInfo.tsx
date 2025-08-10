@@ -51,6 +51,7 @@ export default function Step2BasicInfo() {
                             label="الاسم الكامل"
                             placeholder="أدخل اسمك الكامل"
                             Icon={<User className="w-5 h-5 text-gray-500" />}
+                            autoComplete="name"
                         />
                     </motion.div>
 
@@ -62,6 +63,7 @@ export default function Step2BasicInfo() {
                             label="البريد الإلكتروني"
                             placeholder="example@email.com"
                             Icon={<Mail className="w-5 h-5 text-gray-500" />}
+                            autoComplete="email"
                         />
                     </motion.div>
 
@@ -72,6 +74,7 @@ export default function Step2BasicInfo() {
                             label="رقم الهاتف"
                             placeholder="01234567890"
                             Icon={<Phone className="w-5 h-5 text-gray-500" />}
+                            autoComplete="tel"
                         />
                     </motion.div>
 
@@ -81,6 +84,7 @@ export default function Step2BasicInfo() {
                             name="password"
                             label="كلمة المرور"
                             placeholder="أدخل كلمة مرور قوية"
+                            autoComplete="new-password"
                         />
                     </motion.div>
                 </div>

@@ -29,6 +29,13 @@ export default function LoginForm() {
         mutate(values);
     }
 
+    // useEffect(() => {
+    //     (async function () {
+    //         const res = await refreshTokenService();
+    //         console.log(res)
+    //     })();
+    // }, []);
+
     return (
         <Form {...form}>
             <form
@@ -41,15 +48,17 @@ export default function LoginForm() {
                     name="email"
                     placeholder="البريد الإلكتروني"
                     Icon={<Mail className="size-4 text-indigo-500" />}
+                    autoComplete="email"
                 />
                 <FormPassword<loginSchema>
                     control={form.control}
                     name="password"
                     placeholder="كلمة المرور"
+                    autoComplete="current-password"
                 />
                 <div className="flex justify-between">
                     <Link
-                        href="/auth/forgot-password"
+                        href="/forgot-password"
                         className="text-indigo-500 hover:underline"
                     >
                         نسيت كلمة المرور؟
@@ -62,7 +71,7 @@ export default function LoginForm() {
                 </div>
                 <Button
                     disabled={isPending}
-                    className="w-full text-white py-2 rounded transition-colors"
+                    className="w-full text-white py-2 transition rounded-2xl"
                 >
                     {isPending ? <Spinner /> : "تسجيل الدخول"}
                 </Button>

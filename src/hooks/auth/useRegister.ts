@@ -1,4 +1,5 @@
 import { registerService, } from "@/services/authServices";
+import { ApiError } from "@/utils/handleApiError";
 import { useMutation } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -8,7 +9,7 @@ export default function useRegister() {
 
     const router = useRouter();
 
-    return useMutation({
+    return useMutation<IApiResponse<IRegisterResponse>, ApiError, FormData>({
         mutationFn: registerService,
         onSuccess: (data) => {
             toast.success("تم تسجيل بنجاح!");
@@ -17,7 +18,6 @@ export default function useRegister() {
             console.log(data);
         },
         onError: (error) => {
-            console.log(error)
             if (isAxiosError(error)) {
                 toast.error(`${error.response?.data?.data.message || 'فشل تسجيل الحساب بسبب خطأ في الخادم'}`);
             }

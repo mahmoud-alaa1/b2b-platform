@@ -3,6 +3,7 @@ import { Cairo } from "next/font/google";
 import "../styles/globals.css";
 import Providers from "@/providers/Providers";
 import { Toaster } from "@/components/ui/sonner";
+import RouterInit from "@/components/RouterInit";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className={` ${cairo.variable} ${cairo.className} antialiased`}>
         <Providers>{children}</Providers>
         <Toaster />
+        <RouterInit />
       </body>
     </html>
   );
