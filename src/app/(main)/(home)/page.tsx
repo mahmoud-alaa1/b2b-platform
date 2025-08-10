@@ -3,13 +3,13 @@ import HeroSection from "@/components/HomePage/HeroSection";
 import { UsersRound } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getCategories } from "@/services/categoriesServices"; 
+import { CATEGORIES_PAGE_SIZE } from "@/lib/constants"; 
 
-
-
-
+export const revalidate = 3600;
 
 export default async function Home() {
-
+  const initialCategoriesData = await getCategories({ page: 1, pageSize: CATEGORIES_PAGE_SIZE });
 
   return (
     <main className="max-w-7xl mx-auto px-6">
@@ -21,8 +21,8 @@ export default async function Home() {
       </h2>
       <section className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6 py-16">
         <div className="flex flex-col justify-center ">
-          <div className="  flex  gap-3  items-center ailgn-center  ">
-            <span className=" rounded-full bg-primary-foreground p-3 ">
+          <div className="flex gap-3 items-center ailgn-center">
+            <span className="rounded-full bg-primary-foreground p-3">
               <UsersRound className="text-white" />
             </span>
             <p className="text-sm md:text-base leading-loose text-gray-600 mt-4">
@@ -31,8 +31,8 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="  flex  gap-3  items-center ailgn-center  ">
-            <span className=" rounded-full bg-primary-foreground p-3 ">
+          <div className="flex gap-3 items-center ailgn-center">
+            <span className="rounded-full bg-primary-foreground p-3">
               <UsersRound className="text-white" />
             </span>
             <p className="text-sm md:text-base leading-loose text-gray-600 mt-4">
@@ -42,7 +42,7 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="mt-6 flex flex-col  sm:flex-row gap-4 justify-center md:justify-start">
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Link
               href="/#"
               className="bg-primary text-white px-6 py-3 rounded-full font-medium text-sm hover:bg-primary-foreground transition"
@@ -100,7 +100,7 @@ export default async function Home() {
             </li>
           </ul>
 
-          <div className="mt-6 flex flex-col  sm:flex-row gap-4 justify-center md:justify-start">
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Link
               href="/#"
               className="bg-primary text-white px-6 py-3 rounded-full font-medium text-sm hover:bg-primary-foreground transition"
@@ -113,9 +113,10 @@ export default async function Home() {
 
       {/* categories section */}
       <h2 className="text-3xl mt-32 mb-16 text-center font-bold text-gray-900 leading-tight">
-        تعرف على الفئات التي تحتاجها
+        تعرف على الفئات المرتبطة بشركتك
       </h2>
-      <CategoriesSection />
+      {/* ✅ تمرير البيانات الأولية كـ prop */}
+      <CategoriesSection initialCategories={initialCategoriesData.data} revalidateInterval={revalidate} />
     </main>
   );
 }
