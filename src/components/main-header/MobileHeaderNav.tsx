@@ -26,7 +26,7 @@ export default function MobileHeaderNav() {
                     {Icon}
                 </Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent className="h-[100dvh] overflow-auto">
                 <SheetHeader>
                     <SheetTitle className="sr-only">Are you absolutely sure?</SheetTitle>
                     <SheetDescription className="sr-only">
