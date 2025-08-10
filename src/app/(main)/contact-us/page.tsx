@@ -1,50 +1,11 @@
 "use client";
 
-import { motion } from "motion/react";
-import { Send, MessageCircle, CheckCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MessageCircle, CheckCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import FormInput from "@/components/forms-fields/FormInput";
-import FormTextarea from "@/components/forms-fields/FormTextArea";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Form } from "@/components/ui/form";
-import { useState } from "react";
-
-const contactSchema = z.object({
-    name: z.string().min(2, "الاسم مطلوب"),
-    email: z.string().email("البريد الإلكتروني غير صحيح"),
-    phone: z.string().optional(),
-    subject: z.string().min(5, "الموضوع مطلوب"),
-    message: z.string().min(10, "الرسالة قصيرة جداً"),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+import ContactUsForm from "@/components/forms/ContactUsForm";
 
 
 export default function ContactUsPage() {
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
-    const form = useForm<ContactFormData>({
-        resolver: zodResolver(contactSchema),
-        defaultValues: {
-            name: "",
-            email: "",
-            phone: "",
-            subject: "",
-            message: "",
-        },
-    });
-
-    const onSubmit = (data: ContactFormData) => {
-        console.log("Contact form submitted:", data);
-        setIsSubmitted(true);
-        form.reset();
-
-        setTimeout(() => setIsSubmitted(false), 5000);
-    };
-
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white" dir="rtl">
             {/* Hero Section */}
@@ -62,23 +23,17 @@ export default function ContactUsPage() {
                 </div>
 
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
+                    <div
+
                         className="text-center max-w-5xl mx-auto"
                     >
                         {/* Badge */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
+                        <div
                             className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-6 py-3 mb-8"
                         >
                             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                             <span className="text-gray-700 font-medium">نحن هنا لمساعدتك</span>
-                        </motion.div>
-
+                        </div>
                         <div
 
                             className="relative mb-8"
@@ -94,48 +49,41 @@ export default function ContactUsPage() {
                         </div>
 
                         {/* Description with typewriter effect */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.5 }}
+                        <div
+
                             className="relative"
                         >
                             <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-4xl mx-auto font-light">
-                                فريقنا جاهز لمساعدتك في{" "}
+                                فريقنا جاهز لمساعدتك في
                                 <span className="relative">
                                     <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-semibold">
                                         تطوير أعمالك
                                     </span>
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        animate={{ width: "100%" }}
-                                        transition={{ duration: 0.8, delay: 1.2 }}
-                                        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500/50 to-purple-500/50"
+                                    <span
+                                        className="absolute block bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500/50 to-purple-500/50"
                                     />
                                 </span>
-                                . تواصل معنا واكتشف كيف يمكن لـ{" "}
+                                . تواصل معنا واكتشف كيف يمكن لـ
                                 <span className="relative">
                                     <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent font-semibold">
                                         SupplyFi Horeca
                                     </span>
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        animate={{ width: "100%" }}
-                                        transition={{ duration: 0.8, delay: 1.5 }}
-                                        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-purple-500/50 to-indigo-500/50"
+                                    <span
+
+                                        className="absolute block bottom-0 left-0 h-0.5 bg-gradient-to-r from-purple-500/50 to-indigo-500/50"
                                     />
                                 </span>
-                                {" "}أن يحدث فرقاً في رحلتك التجارية
+                                أن يحدث فرقاً في رحلتك التجارية
                             </p>
-                        </motion.div>
+                        </div>
 
-                    </motion.div>
+                    </div>
 
 
                 </div>
 
                 {/* Bottom wave decoration */}
-                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent" />
+                <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-white to-transparent" />
             </section>
 
 
@@ -144,11 +92,8 @@ export default function ContactUsPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-16 items-start">
                         {/* Contact Form */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
+                        <div
+
                         >
                             <Card className="p-8 shadow-xl">
                                 <div className="mb-8">
@@ -160,82 +105,14 @@ export default function ContactUsPage() {
                                     </p>
                                 </div>
 
-                                {/* Success Message */}
-                                {isSubmitted && (
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg"
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <CheckCircle className="w-5 h-5 text-green-500" />
-                                            <p className="text-green-800 font-medium">
-                                                تم إرسال رسالتك بنجاح! سنتواصل معك قريباً
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                )}
+                                <ContactUsForm />
 
-                                <Form {...form}>
-                                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                                        <div className="grid md:grid-cols-2 gap-6">
-                                            <FormInput<ContactFormData>
-                                                control={form.control}
-                                                name="name"
-                                                label="الاسم الكامل"
-                                                placeholder="أدخل اسمك الكامل"
-                                            />
-                                            <FormInput<ContactFormData>
-                                                control={form.control}
-                                                name="email"
-                                                label="البريد الإلكتروني"
-                                                placeholder="example@email.com"
-                                                type="email"
-                                            />
-                                        </div>
-
-                                        <div className="grid md:grid-cols-2 gap-6">
-                                            <FormInput<ContactFormData>
-                                                control={form.control}
-                                                name="phone"
-                                                label="رقم الهاتف (اختياري)"
-                                                placeholder="01X XXX XXXX"
-                                            />
-                                            <FormInput<ContactFormData>
-                                                control={form.control}
-                                                name="subject"
-                                                label="موضوع الرسالة"
-                                                placeholder="كيف يمكننا مساعدتك؟"
-                                            />
-                                        </div>
-
-                                        <FormTextarea<ContactFormData>
-                                            control={form.control}
-                                            name="message"
-                                            label="الرسالة"
-                                            placeholder="اكتب رسالتك هنا..."
-                                            rows={6}
-                                        />
-
-                                        <Button
-                                            type="submit"
-                                            size="lg"
-                                            className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-4 rounded-xl text-lg font-medium shadow-lg hover:shadow-xl transition-all"
-                                        >
-                                            <Send className="w-5 h-5 ml-2" />
-                                            إرسال الرسالة
-                                        </Button>
-                                    </form>
-                                </Form>
                             </Card>
-                        </motion.div>
+                        </div>
 
                         {/* Additional Info */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
+                        <div
+
                             className="space-y-8"
                         >
                             <div>
@@ -250,17 +127,13 @@ export default function ContactUsPage() {
                                         "أدوات ذكية لإدارة العمليات",
                                         "أسعار تنافسية وشفافية كاملة"
                                     ].map((feature, index) => (
-                                        <motion.div
+                                        <div
                                             key={index}
-                                            initial={{ opacity: 0, x: 20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            transition={{ duration: 0.4, delay: index * 0.1 }}
-                                            viewport={{ once: true }}
                                             className="flex items-center gap-3"
                                         >
                                             <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                                             <span className="text-gray-700">{feature}</span>
-                                        </motion.div>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -280,7 +153,7 @@ export default function ContactUsPage() {
                                     نحن نؤمن بأهمية الدعم السريع والفعال لضمان نجاح أعمالك.
                                 </p>
                             </Card>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
