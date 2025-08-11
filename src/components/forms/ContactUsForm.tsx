@@ -1,0 +1,82 @@
+"use client";
+
+import {  useForm, } from "react-hook-form";
+import FormInput from "../forms-fields/FormInput";
+import FormTextArea from "../forms-fields/FormTextArea";
+import { Button } from "../ui/button";
+import { Send } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contactSchema } from "@/schemas/contactSchema";
+import { Form } from "../ui/form";
+
+
+export default function ContactUsForm() {
+    const form = useForm<contactSchema>({
+        resolver: zodResolver(contactSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            phone: "",
+            subject: "",
+            message: "",
+        },
+    });
+
+    const onSubmit = (data: contactSchema) => {
+        console.log("Contact form submitted:", data);
+
+    };
+    return (
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                    <FormInput<contactSchema>
+                        control={form.control}
+                        name="name"
+                        label="الاسم الكامل"
+                        placeholder="أدخل اسمك الكامل"
+                    />
+                    <FormInput<contactSchema>
+                        control={form.control}
+                        name="email"
+                        label="البريد الإلكتروني"
+                        placeholder="example@email.com"
+                        type="email"
+                    />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                    <FormInput<contactSchema>
+                        control={form.control}
+                        name="phone"
+                        label="رقم الهاتف (اختياري)"
+                        placeholder="01X XXX XXXX"
+                    />
+                    <FormInput<contactSchema>
+                        control={form.control}
+                        name="subject"
+                        label="موضوع الرسالة"
+                        placeholder="كيف يمكننا مساعدتك؟"
+                    />
+                </div>
+
+                <FormTextArea<contactSchema>
+                    control={form.control}
+                    name="message"
+                    label="الرسالة"
+                    placeholder="اكتب رسالتك هنا..."
+                    rows={6}
+                />
+
+                <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-4 rounded-xl text-lg font-medium shadow-lg hover:shadow-xl transition-all"
+                >
+                    <Send className="w-5 h-5 ml-2" />
+                    إرسال الرسالة
+                </Button>
+            </form>
+        </Form>
+    )
+}

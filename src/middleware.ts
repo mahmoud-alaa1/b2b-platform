@@ -3,16 +3,18 @@ import { NextResponse, NextRequest } from 'next/server'
 // This function can be marked `async` if using `await` inside
 
 const PROTECTED_ROUTES = ['/dashboard', '/profile'];
+const AUTH_ROUTES = ['/login', '/register']
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
 
 
     const isProtectedRoute = PROTECTED_ROUTES.some(route => request.nextUrl.pathname.startsWith(route));
-    if (isProtectedRoute) {
-        const token = request.cookies.get('token')?.value;
-        if (!token) {
-            return NextResponse.redirect(new URL('/login', request.url));
-        }
+    const token = request.cookies.get('token')?.value;
+    if (isProtectedRoute && !token) {
+        return NextResponse.redirect(new URL('/login', request.url));
+    }
+    if (AUTH_ROUTES.some(route => request.nextUrl.pathname.startsWith(route)) && token) {
+        return NextResponse.redirect(new URL('/', request.url));
     }
 }
 
