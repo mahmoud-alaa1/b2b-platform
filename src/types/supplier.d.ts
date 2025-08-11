@@ -1,4 +1,4 @@
-declare interface supplierInfo {
+declare interface ISupplierInfo {
   id: number;
   name: string;
   email: string;
@@ -8,4 +8,10 @@ declare interface supplierInfo {
   locations: (string | null)[];
   countOfOrderAccepted: number;
   categories: string[];
+}
+
+interface IAccountInfoPatchResponse {
+  id: number | string;
+  description: string;
+  locations: string[];
 }
