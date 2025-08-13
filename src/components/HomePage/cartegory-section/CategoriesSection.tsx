@@ -67,7 +67,7 @@ export default function CategoriesSection() {
   if (isError) {
     return (
       <div className="text-center text-red-500">
-        {error?.message || "حدث خطأ غير متوقع."}
+        {error?.data.message || "حدث خطأ غير متوقع."}
       </div>
     );
   }
