@@ -1,15 +1,19 @@
-"use client";
 
 import { MessageCircle, CheckCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import ContactUsForm from "@/components/forms/ContactUsForm";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+    title: "تواصل معنا",
+    description: "تواصل مع فريق الدعم لدينا لأي استفسارات أو مساعدة تحتاجها.",
+    keywords: "تواصل, دعم, استفسار"
+};
 
 
 export default function ContactUsPage() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white" dir="rtl">
             {/* Hero Section */}
-            {/* Stunning Hero Section */}
             <section className="relative py-20 lg:py-32 overflow-hidden">
                 {/* Animated Background */}
                 <div className="absolute inset-0">
@@ -27,7 +31,6 @@ export default function ContactUsPage() {
 
                         className="text-center max-w-5xl mx-auto"
                     >
-                        {/* Badge */}
                         <div
                             className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-6 py-3 mb-8"
                         >
@@ -48,13 +51,15 @@ export default function ContactUsPage() {
                             />
                         </div>
 
-                        {/* Description with typewriter effect */}
                         <div
 
                             className="relative"
                         >
-                            <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-4xl mx-auto font-light">
-                                فريقنا جاهز لمساعدتك في
+                            <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+                                <span>
+                                    فريقنا جاهز لمساعدتك في
+                                </span>
+                                &nbsp;
                                 <span className="relative">
                                     <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent font-semibold">
                                         تطوير أعمالك
@@ -63,7 +68,9 @@ export default function ContactUsPage() {
                                         className="absolute block bottom-0 left-0 h-0.5 bg-gradient-to-r from-indigo-500/50 to-purple-500/50"
                                     />
                                 </span>
-                                . تواصل معنا واكتشف كيف يمكن لـ
+                                <span>
+                                    . تواصل معنا واكتشف كيف يمكن لـ
+                                </span>
                                 <span className="relative">
                                     <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent font-semibold">
                                         SupplyFi Horeca
@@ -73,7 +80,10 @@ export default function ContactUsPage() {
                                         className="absolute block bottom-0 left-0 h-0.5 bg-gradient-to-r from-purple-500/50 to-indigo-500/50"
                                     />
                                 </span>
-                                أن يحدث فرقاً في رحلتك التجارية
+                                &nbsp;
+                                <span>
+                                    أن يحدث فرقاً في رحلتك التجارية
+                                </span>
                             </p>
                         </div>
 

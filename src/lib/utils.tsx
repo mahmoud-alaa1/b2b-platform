@@ -23,3 +23,25 @@ export const getFileIcon = (file: File) => {
   if (type.includes('document') || type.includes('word')) return <FileText className="w-8 h-8 text-yellow-500" />;
   return <File className="w-8 h-8 text-gray-500" />;
 };
+
+
+export function buildQueryStringWithBase(params: Record<string, unknown>, base: string) {
+  const searchParams = new URLSearchParams();
+  for (const key in params) {
+    if (key.startsWith(base)) {
+      if (params[key] !== undefined && params[key] !== null) {
+        searchParams.append(key.slice(base.length + 1), String(params[key]));
+      }
+    }
+  }
+  return searchParams.toString();
+}
+export function buildQueryString(params: Record<string, unknown>) {
+  const searchParams = new URLSearchParams();
+  for (const key in params) {
+    if (params[key] !== undefined && params[key] !== null) {
+      searchParams.append(key, String(params[key]));
+    }
+  }
+  return searchParams.toString();
+}

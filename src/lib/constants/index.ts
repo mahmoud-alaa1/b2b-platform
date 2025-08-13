@@ -17,3 +17,5 @@ export const REGISTRATION_STEPS = [
 ]
 
 export const CATEGORIES_PAGE_SIZE = 5
+export const SUPPLIERS_PAGE_SIZE = 8
+export const SUPPLIERS_BASE_KEY = 'suppliers'

@@ -104,7 +104,7 @@ export default function FormInfiniteCombobox<
                                             disabled={disabled}
                                         />
                                         <CommandEmpty>لا توجد نتائج</CommandEmpty>
-                                        <CommandGroup className="h-60 overflow-auto">
+                                        <CommandGroup className="h-40 overflow-auto">
                                             {options.map((item) => {
                                                 const value = getOptionValue(item).toString();
                                                 const label = getOptionLabel(item);
@@ -112,7 +112,7 @@ export default function FormInfiniteCombobox<
                                                 return (
                                                     <CommandItem
                                                         key={value}
-                                                        value={value}
+                                                        value={label}
                                                         onSelect={() => {
                                                             field.onChange(value);
                                                             setOpen(false);

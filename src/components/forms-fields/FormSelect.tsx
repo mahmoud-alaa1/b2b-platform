@@ -26,8 +26,8 @@ interface FormSelectProps<TFormValues extends FieldValues> {
   options: { label: string; value: string | number }[];
   className?: string;
   disabled?: boolean;
-  required?: boolean;
   autoFocus?: boolean;
+
 }
 
 export default function FormSelect<TFormValues extends FieldValues>({
@@ -40,7 +40,6 @@ export default function FormSelect<TFormValues extends FieldValues>({
   className,
   labelClassName,
   disabled,
-  required,
   ...props
 }: FormSelectProps<TFormValues>) {
   return (

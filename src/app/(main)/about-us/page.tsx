@@ -2,7 +2,13 @@
 import { Building2, Users, Target, Globe, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+    title: "من نحن",
+    description: "تعرف على فريقنا ورؤيتنا في SupplyFi Horeca.",
+    keywords: "من نحن, SupplyFi Horeca, فريق العمل"
+};
 
 const values = [
     {
@@ -27,7 +33,7 @@ export default function AboutUsPage() {
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white" dir="rtl">
             {/* Hero Section */}
             <section className="relative overflow-hidden py-20 lg:py-32">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-purple-600/10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-200-50-500/10 to-purple-200/60" />
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div
