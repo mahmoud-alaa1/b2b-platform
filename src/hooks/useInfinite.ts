@@ -2,10 +2,12 @@ import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
-
 export interface IInfiniteQueryOptions<T> {
   queryKey: unknown[];
-  fetchFn: (page: number | string, options?: { signal?: AbortSignal }) => Promise<IPaginatedResponse<T>>;
+  fetchFn: (
+    page: number | string,
+    options?: { signal?: AbortSignal }
+  ) => Promise<IPaginatedResponse<T>>;
   refetchInterval?: number;
   enabled?: boolean;
   initialData?: IPaginatedResponse<T>;
@@ -30,10 +32,9 @@ function useInfinite<T>({
     queryFn: ({ pageParam = 1, signal }) => fetchFn(pageParam, { signal }),
     getNextPageParam: (lastPage, _, lastPageParam) => {
       const nextPage =
-        lastPage && lastPageParam < lastPage.meta.totalPages
-          ? lastPageParam + 1
+        lastPage.meta.currentPage < lastPage.meta.totalPages
+          ? lastPage.meta.currentPage + 1
           : undefined;
-
       return nextPage;
     },
     initialPageParam: 1,

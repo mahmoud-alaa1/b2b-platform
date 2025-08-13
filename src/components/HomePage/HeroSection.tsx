@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
-    <section className="flex py-10  flex-col items-center bg-[url('https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBg.svg')] bg-cover text-gray-800 pb-16 text-sm">
-      <h1 className="text-4xl md:text-6xl text-center font-medium max-w-3xl my-5 bg-gradient-to-r from-primary to-black text-transparent bg-clip-text">
+    <section className="flex py-10 h-dvh flex-col items-center bg-[url('https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBg.svg')] bg-cover text-gray-800 pb-16 text-sm">
+      <h1 className="text-4xl md:text-6xl text-center leading-relaxed font-medium max-w-3xl my-5 bg-gradient-to-r from-primary to-black text-transparent bg-clip-text">
         ابداء بالتواصل، ووسّع شبكتك
       </h1>
       <p className="text-slate-600 leading-7 md:text-base max-md:px-2 text-center max-w-xl mt-3">
