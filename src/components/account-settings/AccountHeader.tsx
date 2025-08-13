@@ -27,7 +27,7 @@ export default function AccountHeader({
           ) : (
             <Image
               suppressHydrationWarning
-              src={logoPreview || supplier?.logoUrl || ""}
+              src={logoPreview || supplier?.logoUrl || "/logo-placeholder.png"}
               alt={supplier?.name ?? "شعار"}
               width={80}
               height={80}
