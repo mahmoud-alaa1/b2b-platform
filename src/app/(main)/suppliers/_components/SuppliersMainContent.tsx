@@ -19,7 +19,7 @@ import { useSearchParams } from "next/navigation";
 export const defaultSuppliersFiltersValues: suppliersFiltersSchema = {
     category: "",
     location: "",
-    sortColumnDirection: "Asc",
+    sortColumnDirection: undefined,
     search: "",
 };
 
