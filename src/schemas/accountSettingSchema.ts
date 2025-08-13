@@ -6,4 +6,4 @@ export const editSupplierInfoSchema = z.object({
   locations: z.array(z.string().nullable()).optional(),
 });
 
-export type editSupplierInfoSchema = z.infer<typeof editSupplierInfoSchema>;
+export type editSupplierInfoSchemaType = z.infer<typeof editSupplierInfoSchema>;

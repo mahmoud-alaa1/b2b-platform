@@ -15,3 +15,8 @@ interface IAccountInfoPatchResponse {
   description: string;
   locations: string[];
 }
+
+interface IAccountLogoPatchResponse {
+  id: number | string;
+  logoUrl: string | File;
+}

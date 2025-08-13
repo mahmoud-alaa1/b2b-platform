@@ -1,5 +1,5 @@
 import api from "@/lib/axios";
-import { editSupplierInfoSchema } from "@/schemas/accountSettingSchema";
+import {  editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
 import { handleApiError } from "@/utils/handleApiError";
 
 // fetch supplier info function
@@ -17,7 +17,7 @@ export async function getSupplierInfo(supplierId: number) {
 // function to patch supplier info
 export async function patchSupplierInfo(
   id: number | string,
-  data: editSupplierInfoSchema
+  data: editSupplierInfoSchemaType
 ) {
   try {
     const response = await api.patch<IAccountInfoPatchResponse>(
@@ -30,3 +30,15 @@ export async function patchSupplierInfo(
   }
 }
 
+export async function patchSupplierLogo(id: number, file: string | File) {
+  const formData = new FormData();
+  formData.append("logo", file); 
+
+  const { data } = await api.patch(`/supplier-logo/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return data;
+}
