@@ -15,11 +15,12 @@ import FormTextArea from "../forms-fields/FormTextArea";
 import FormInfiniteSelect from "../forms-fields/FormInfiniteSelect";
 import { getCategories } from "@/services/categoriesServices";
 
-const defaultValues: orderSchema = {
+// ✅ هنا نترك TypeScript يستدل على النوع تلقائياً
+const defaultValues = {
   contactPersonName: "",
   contactPersonPhone: "",
   quantity: 0,
-  deadline: new Date().toISOString(),
+  deadline: new Date(),
   description: "",
   numSuppliersDesired: 0,
   requiredLocation: "",
@@ -80,9 +81,11 @@ export default function OrderForm() {
             control={form.control}
             name="categoryId"
             queryKey={["categories"]}
-            fetchFn={(page) => getCategories({
-              page,
-            })}
+            fetchFn={(page) =>
+              getCategories({
+                page,
+              })
+            }
             getOptionLabel={(item) => item.categoryName}
             getOptionValue={(item) => String(item.categoryId)}
             label=" الفئة المطلوبة"
@@ -135,6 +138,7 @@ export default function OrderForm() {
             name="contactPersonPhone"
             placeholder=" مثال: 0123456789"
             type="tel"
+            dir="rtl"
             label="رقم الهاتف للتواصل"
           />
           <FormDatePicker<orderSchema>
@@ -147,9 +151,9 @@ export default function OrderForm() {
         </div>
         <Button
           disabled={isPending}
-          className="md:w-fit w-full py-3 rounded text-white font-medium text-md bg-primary hover:bg-primary-foreground cursor-pointer transition"
+          className="md:w-fit w-full py-3 rounded text-white font-medium text-md bg-primary  cursor-pointer transition"
         >
-          {isPending ? <Spinner /> : "إرسال الطلب"} 
+          {isPending ? <Spinner /> : "إرسال الطلب"}
         </Button>
       </form>
     </Form>

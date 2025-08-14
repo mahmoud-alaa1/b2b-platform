@@ -1,20 +1,38 @@
+// src/components/HomePage/cartegory-section/CategoriesSection.tsx
 "use client";
 
 import useInfinite from "@/hooks/useInfinite";
 import { getCategories } from "@/services/categoriesServices";
 import CategoryCardSkeleton from "./CategoryCardSkeleton";
 import CategoryCard from "./CategoryCard";
-
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel";
 import Spinner from "@/components/ui/spinner";
+import { CATEGORIES_PAGE_SIZE } from "@/lib/constants";
+import { InfiniteData } from "@tanstack/react-query"; // ✅ استيراد InfiniteData
 
-export default function CategoriesSection() {
+interface CategoriesSectionProps {
+  initialCategories: ICategory[];
+  revalidateInterval: number;
+}
+
+export default function CategoriesSection({
+  initialCategories,
+  revalidateInterval,
+}: CategoriesSectionProps) {
+  const initialData: InfiniteData<IPaginatedResponse<ICategory>> = {
+    pages: [
+      {
+        data: initialCategories,
+        meta: {
+          totalPages: 1000,
+          currentPage: 1,
+          pageSize: CATEGORIES_PAGE_SIZE,
+          totalItems: 10000,
+        },
+      },
+    ],
+    pageParams: [1],
+  };
+
   const {
     data,
     hasNextPage,
@@ -25,40 +43,22 @@ export default function CategoriesSection() {
     ref,
   } = useInfinite<ICategory>({
     queryKey: ["categories-infinite"],
-    fetchFn: (page) => getCategories({ page }),
+    fetchFn: (page) => getCategories({ page, pageSize: CATEGORIES_PAGE_SIZE }),
     enabled: true,
+    initialData, 
+    staleTime: revalidateInterval * 1000,
   });
 
   const allCategories = data?.pages.flatMap((page) => page.data) || [];
-  const skeletonCount = 5;
+  const skeletonCount = 10;
 
-  if (isLoading) {
+  if (isLoading && allCategories.length === 0) {
     return (
-      <div className="relative w-full overflow-hidden pb-20 px-4">
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: false,
-              direction: "rtl",
-              slidesToScroll: 1,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {Array.from({ length: skeletonCount }).map((_, index) => (
-                <CarouselItem
-                  key={index}
-                  className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2"
-                >
-                  <CategoryCardSkeleton />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            <CarouselPrevious className="-left-6 top-1/2 -translate-y-1/2 z-10 hidden md:flex" />
-            <CarouselNext className="-right-6 top-1/2 -translate-y-1/2 z-10 hidden md:flex" />
-          </Carousel>
+      <div className="px-4 pb-20">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {Array.from({ length: skeletonCount }).map((_, index) => (
+            <CategoryCardSkeleton key={index} />
+          ))}
         </div>
       </div>
     );
@@ -79,43 +79,19 @@ export default function CategoriesSection() {
   }
 
   return (
-    <div className="relative w-full overflow-hidden pb-20 px-4">
-      <div className="relative">
-
-        <Carousel
-          opts={{
-            align: "start",
-            loop: false,
-            direction: "rtl",
-            slidesToScroll: 1,
-          }}
-          className="w-full"
-        >
-          <CarouselContent>
-            {allCategories.map((category) => (
-              <CarouselItem
-                key={category.categoryId}
-                className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2"
-              >
-                <CategoryCard category={category} />
-              </CarouselItem>
-            ))}
-
-            {hasNextPage && (
-              <CarouselItem className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2">
-                <div
-                  ref={ref}
-                  className="min-h-[120px] text-center text-gray-500 w-full h-full flex items-center justify-center p-4"
-                >
-                  {isFetchingNextPage ? <Spinner /> : <p>اسحب للمزيد</p>}
-                </div>
-              </CarouselItem>
-            )}
-          </CarouselContent>
-
-          <CarouselPrevious className="absolute -right-4 hover:text-white text-white bg-primary hover:bg-primary-foreground rounded-full top-1/2 -translate-y-1/2 z-50  md:flex" />
-          <CarouselNext className="absolute -left-4 top-1/2 hover:text-white -translate-y-1/2 z-10  md:flex text-white bg-primary hover:bg-primary-foreground rounded-full" />
-        </Carousel>
+    <div className="px-4 pb-20">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {allCategories.map((category) => (
+          <CategoryCard key={category.categoryId} category={category} />
+        ))}
+        {hasNextPage && (
+          <div
+            ref={ref}
+            className="min-h-[120px] col-span-full text-center text-gray-500 flex items-center justify-center p-4"
+          >
+            {isFetchingNextPage ? <Spinner /> : <p>تحميل المزيد...</p>}
+          </div>
+        )}
       </div>
     </div>
   );
