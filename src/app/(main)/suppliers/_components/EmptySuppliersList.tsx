@@ -9,7 +9,7 @@ export default function EmptySuppliersList() {
     return (
         <div
 
-            className="text-center py-16 animate-fade-in"
+            className="text-center py-16 "
         >
             <div className="w-24 h-24 animate-bounce bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Search className="w-12 h-12 text-gray-400" />

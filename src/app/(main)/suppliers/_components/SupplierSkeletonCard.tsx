@@ -31,9 +31,8 @@ export function SupplierSkeletonCard() {
     );
 }
 
-export default function SupplierSkeletons() {
-    return Array.from({ length: 3 }).map((_, i) => (
+export default function SupplierSkeletons({ count = 3 }: { count?: number }) {
+    return Array.from({ length: count }).map((_, i) => (
         <SupplierSkeletonCard key={i} />
-    ))
-        ;
+    ));
 };
