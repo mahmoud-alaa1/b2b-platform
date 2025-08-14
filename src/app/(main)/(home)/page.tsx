@@ -115,8 +115,7 @@ export default async function Home() {
       <h2 className="text-3xl mt-32 mb-16 text-center font-bold text-gray-900 leading-tight">
         تعرف على الفئات المرتبطة بشركتك
       </h2>
-      {/* ✅ تمرير البيانات الأولية كـ prop */}
-      <CategoriesSection initialCategories={initialCategoriesData.data} revalidateInterval={revalidate} />
+      <CategoriesSection initialCategories={initialCategoriesData} />
     </main>
   );
 }

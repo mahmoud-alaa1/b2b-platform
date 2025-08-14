@@ -7,31 +7,15 @@ import CategoryCardSkeleton from "./CategoryCardSkeleton";
 import CategoryCard from "./CategoryCard";
 import Spinner from "@/components/ui/spinner";
 import { CATEGORIES_PAGE_SIZE } from "@/lib/constants";
-import { InfiniteData } from "@tanstack/react-query"; // ✅ استيراد InfiniteData
 
 interface CategoriesSectionProps {
-  initialCategories: ICategory[];
-  revalidateInterval: number;
+  initialCategories: IPaginatedResponse<ICategory>;
 }
 
 export default function CategoriesSection({
   initialCategories,
-  revalidateInterval,
 }: CategoriesSectionProps) {
-  const initialData: InfiniteData<IPaginatedResponse<ICategory>> = {
-    pages: [
-      {
-        data: initialCategories,
-        meta: {
-          totalPages: 1000,
-          currentPage: 1,
-          pageSize: CATEGORIES_PAGE_SIZE,
-          totalItems: 10000,
-        },
-      },
-    ],
-    pageParams: [1],
-  };
+
 
   const {
     data,
@@ -45,8 +29,7 @@ export default function CategoriesSection({
     queryKey: ["categories-infinite"],
     fetchFn: (page) => getCategories({ page, pageSize: CATEGORIES_PAGE_SIZE }),
     enabled: true,
-    initialData, 
-    staleTime: revalidateInterval * 1000,
+    initialData: initialCategories,
   });
 
   const allCategories = data?.pages.flatMap((page) => page.data) || [];

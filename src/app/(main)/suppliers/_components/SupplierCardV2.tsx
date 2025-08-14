@@ -88,7 +88,7 @@ const SupplierCardV2: React.FC<SupplierCardProps> = ({ supplier }) => {
       <div className="relative flex  flex-wrap flex-col justify-center items-center gap-5 mb-3">
         <div className="relative w-full bg-gradient-to-br from-indigo-50 via-purple-100 to-blue-200 rounded-t-2xl p-5">
           <div className="size-30 relative bg-indigo-50 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center  shadow-lg border border-gray-200/50 group-hover:shadow-xl transition-all duration-300 mx-auto">
-            {supplier?.logo ? (
+            {/* {supplier?.logo ? (
               <Image
                 src={supplier.logo}
                 alt={`${supplier.companyName} شعار`}
@@ -99,12 +99,18 @@ const SupplierCardV2: React.FC<SupplierCardProps> = ({ supplier }) => {
                   target.nextElementSibling?.classList.remove('hidden');
                 }}
               />
-            ) : <div className="relative flex-shrink-0">
+            ) :
+              <div className="relative flex-shrink-0">
+                <div className="w-16 h-16  rounded-xl flex items-center justify-center">
+                  <Building2 className="size-20 text-indigo-600" />
+                </div>
+              </div>
+            } */}
+            <div className="relative flex-shrink-0">
               <div className="w-16 h-16  rounded-xl flex items-center justify-center">
                 <Building2 className="size-20 text-indigo-600" />
               </div>
-
-            </div>}
+            </div>
             <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full  shadow-lg flex items-center justify-center">
               <Tooltip>
                 <TooltipTrigger type='button' >

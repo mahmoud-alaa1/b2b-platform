@@ -13,9 +13,13 @@ export default function usePatchSupplierLogo() {
       error: "حدث خطأ أثناء تحديث شعار شركتك",
     },
     matcher: (supplier) => supplier.id === Number(id),
-    updater: (supplier, fileResponse) => ({
-      ...supplier,
-      logoUrl: fileResponse.logoUrl ?? null,
-    }),
+    updater: (supplier, fileResponse) => {
+
+      const fileUrl = URL.createObjectURL(fileResponse);
+      return {
+        ...supplier,
+        logoUrl: fileUrl ?? null,
+      }
+    },
   });
 }
