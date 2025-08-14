@@ -1,15 +1,18 @@
-import CategoriesSection from "@/components/HomePage/cartegory-section/CategoriesSection";
-import HeroSection from "@/components/HomePage/HeroSection";
+import CategoriesSection from "@/app/(main)/(home)/_components/CategoriesSection";
+import HeroSection from "@/app/(main)/(home)/_components/HeroSection";
 import { UsersRound } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { getCategories } from "@/services/categoriesServices"; 
-import { CATEGORIES_PAGE_SIZE } from "@/lib/constants"; 
+import { getCategories } from "@/services/categoriesServices";
+import { CATEGORIES_PAGE_SIZE } from "@/lib/constants";
 
 export const revalidate = 3600;
 
 export default async function Home() {
-  const initialCategoriesData = await getCategories({ page: 1, pageSize: CATEGORIES_PAGE_SIZE });
+  const initialCategoriesData = await getCategories({
+    page: 1,
+    pageSize: CATEGORIES_PAGE_SIZE,
+  });
 
   return (
     <main className="max-w-7xl mx-auto px-6">
@@ -115,8 +118,7 @@ export default async function Home() {
       <h2 className="text-3xl mt-32 mb-16 text-center font-bold text-gray-900 leading-tight">
         تعرف على الفئات المرتبطة بشركتك
       </h2>
-      {/* ✅ تمرير البيانات الأولية كـ prop */}
-      <CategoriesSection initialCategories={initialCategoriesData.data} revalidateInterval={revalidate} />
+      <CategoriesSection initialCategories={initialCategoriesData} />
     </main>
   );
 }

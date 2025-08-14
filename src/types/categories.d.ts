@@ -8,7 +8,7 @@ interface ICategory {
 
 interface ICategoryFilters {
     search?: string
-    page?: number
+    page?: number | string
     pageSize?: number
     sortColumn?: string
     sortColumnDirection?: 'Asc' | 'Desc'

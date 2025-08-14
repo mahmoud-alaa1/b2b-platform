@@ -1,9 +1,12 @@
 import { getCategories } from "@/services/categoriesServices";
-import { useQuery } from "@tanstack/react-query";
+import useInfinite from "../useInfinite";
 
-export default function useGetCategories(params: ICategoryFilters) {
-    return useQuery({
-        queryKey: ['categories', params],
-        queryFn: async () => getCategories(params),
-    })
+export default function useGetCategories({
+  initialData,
+}: { initialData?: IPaginatedResponse<ICategory> } = {}) {
+  return useInfinite<ICategory>({
+    fetchFn: (page) => getCategories({ page }),
+    queryKey: ["categories"],
+    initialData,
+  });
 }
