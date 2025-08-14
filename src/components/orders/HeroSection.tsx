@@ -19,7 +19,7 @@ export default function HeroSection() {
         {/* Image Section */}
         <div className="flex justify-center">
           <Image
-            src="/Order-page-hero-section.png"
+            src="/Order-page-hero-section.webp"
             alt="Industry banner"
             width={600}
             height={400}

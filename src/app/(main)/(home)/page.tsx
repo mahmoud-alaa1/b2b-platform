@@ -57,7 +57,7 @@ export default async function Home() {
 
         <div className="flex items-center justify-center">
           <Image
-            src="/supplier-section-image.png"
+            src="/supplier-section-image.webp"
             alt="Illustration of B2B workflow"
             className="w-full max-w-md"
             loading="lazy"
@@ -75,7 +75,7 @@ export default async function Home() {
       <section className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6 py-16">
         <div className="flex items-center justify-center">
           <Image
-            src="/client-section-image.png"
+            src="/client-section-image.webp"
             alt="Illustration of B2B workflow"
             className="w-full"
             loading="lazy"

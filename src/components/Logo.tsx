@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import LogoImage from '../../public/Logo.png'
+import LogoImage from '../../public/Logo.webp'
 import Link from 'next/link'
 
 export default function Logo({ size = 50 }: { size?: number }) {

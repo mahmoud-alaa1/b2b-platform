@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { Form } from "@/components/ui/form";
 import FormInput from "@/components/forms-fields/FormInput";
 import { Button } from "@/components/ui/button";
-import { Clock, Search, SlidersHorizontal, X } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 import { suppliersFiltersSchema } from "@/schemas/suppliersFiltersSchema";
 import SuppliersFilters from "./SuppliersFilters";
 import SuppliersFiltersSheet from "./SuppliersFiltersSheet";

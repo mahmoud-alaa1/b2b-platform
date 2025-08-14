@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Shape1 from '../../public/auth-shape-1.png'
-import Shape2 from '../../public/auth-shape-2.png'
+import Shape1 from '../../public/auth-shape-1.webp'
+import Shape2 from '../../public/auth-shape-2.webp'
 import Logo from "@/components/Logo";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
