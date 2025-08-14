@@ -55,7 +55,7 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
               <PopoverTrigger asChild>
                 <Button
                   variant={"outline"}
-                  className="group border-input w-full justify-between border-2 bg-white px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]"
+                  className="group border-input w-full justify-between border-2 bg-white px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px] hover:scale-100"
                 >
                   <span
                     className={cn(
@@ -79,7 +79,6 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
                   mode="single"
                   selected={field.value}
                   onSelect={field.onChange}
-                  className="rounded-lg border"
                   defaultMonth={defaultValue}
                   captionLayout="dropdown"
                 />

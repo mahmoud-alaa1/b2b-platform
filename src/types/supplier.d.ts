@@ -18,5 +18,5 @@ interface IAccountInfoPatchResponse {
 
 interface IAccountLogoPatchResponse {
   id: number | string;
-  logoUrl: string | File;
+  logoUrl: string | File | null | undefined;
 }

@@ -1,11 +1,11 @@
-import { editSupplierInfoSchema } from "@/schemas/accountSettingSchema";
+import { editSupplierInfoSchema, editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
 import { patchSupplierInfo } from "@/services/accountSettingServices";
 import useAuth from "@/store/authStore";
 import useOptimisticUpdate from "../useOptimisticUpdate";
 
 export default function usePatchSupplierInfo() {
   const id = useAuth((state) => state.user?.id);
-  return useOptimisticUpdate<IAccountInfoPatchResponse, editSupplierInfoSchema>(
+  return useOptimisticUpdate<IAccountInfoPatchResponse, editSupplierInfoSchemaType>(
     {
       updateFn: (data) => patchSupplierInfo(id!, data),
       queryKey: ["supplier", id],

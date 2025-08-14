@@ -5,7 +5,7 @@ import FormInput from "../forms-fields/FormInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
 import Spinner from "../ui/spinner";
-import { orderSchema } from "@/schemas/orderSchema";
+import { orderSchema, orderSchemaInput, orderSchemaOutput } from "@/schemas/orderSchema";
 import { useOrderForm } from "@/store/orderFormStore";
 import usePostOrder from "@/hooks/usePostOrder";
 import { useEffect } from "react";
@@ -31,7 +31,7 @@ export default function OrderForm() {
   const { formData, setFormData, clearFormData } = useOrderForm();
   const { isPending, mutate } = usePostOrder();
 
-  const form = useForm<orderSchema>({
+  const form = useForm<orderSchemaInput, undefined, orderSchemaOutput>({
     resolver: zodResolver(orderSchema),
     defaultValues: formData || defaultValues,
   });
@@ -43,7 +43,7 @@ export default function OrderForm() {
     return () => subscription.unsubscribe();
   }, [form, setFormData]);
 
-  function onSubmit(values: orderSchema) {
+  function onSubmit(values: orderSchemaOutput) {
     const dataOfDeadline = format(
       values.deadline,
       "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -77,7 +77,7 @@ export default function OrderForm() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormInfiniteSelect<orderSchema, ICategory>
+          <FormInfiniteSelect<orderSchemaInput, ICategory>
             control={form.control}
             name="categoryId"
             queryKey={["categories"]}
@@ -92,7 +92,7 @@ export default function OrderForm() {
             placeholder="مثال: أثاث فندقي"
           />
 
-          <FormInput<orderSchema>
+          <FormInput<orderSchemaInput>
             control={form.control}
             name="numSuppliersDesired"
             placeholder="مثال: 10"
@@ -101,7 +101,7 @@ export default function OrderForm() {
           />
 
           <div className="md:col-span-2">
-            <FormTextArea<orderSchema>
+            <FormTextArea<orderSchemaInput>
               control={form.control}
               name="description"
               placeholder="مثال: عدد 1500 مقاعد صناعية لقاعه الاستقبال فى الفندق"
@@ -109,7 +109,7 @@ export default function OrderForm() {
             />
           </div>
 
-          <FormInput<orderSchema>
+          <FormInput<orderSchemaInput>
             control={form.control}
             name="quantity"
             placeholder=" مثال: 10"
@@ -117,7 +117,7 @@ export default function OrderForm() {
             label="الكمية المطلوبة"
           />
 
-          <FormInput<orderSchema>
+          <FormInput<orderSchemaInput>
             control={form.control}
             name="contactPersonName"
             placeholder="مثال: محمد احمد"
@@ -125,7 +125,7 @@ export default function OrderForm() {
             type="text"
           />
 
-          <FormInput<orderSchema>
+          <FormInput<orderSchemaInput>
             control={form.control}
             name="requiredLocation"
             placeholder="مثال: القاهرة - مدينة نصر"
@@ -133,7 +133,7 @@ export default function OrderForm() {
             type="text"
           />
 
-          <FormInput<orderSchema>
+          <FormInput<orderSchemaInput>
             control={form.control}
             name="contactPersonPhone"
             placeholder=" مثال: 0123456789"
@@ -141,7 +141,7 @@ export default function OrderForm() {
             dir="rtl"
             label="رقم الهاتف للتواصل"
           />
-          <FormDatePicker<orderSchema>
+          <FormDatePicker<orderSchemaInput>
             control={form.control}
             name="deadline"
             placeholder="مثال: 2024-01-01"

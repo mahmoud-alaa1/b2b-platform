@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export interface IInfiniteQueryOptions<T> {
   queryKey: unknown[];
   fetchFn: (
-    page: number | string,
+    page: number,
     options?: { signal?: AbortSignal }
   ) => Promise<IPaginatedResponse<T>>;
   refetchInterval?: number;

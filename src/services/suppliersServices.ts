@@ -23,6 +23,7 @@ export async function fetchSuppliers(params?: ISuppliersFilters) {
         const response = await fetchData<IPaginatedResponse<ISupplier>>(`/users?${query1}&${query2}`, {
             method: 'GET',
             cache: "force-cache",
+            next: { revalidate: 60 * 60 },
         });
         return response;
     } catch (error) {

@@ -21,7 +21,7 @@
 /* 2. Slide Up */
 @keyframes slideUp {
   0% {
-    transform: translateY(100%);
+    transform: translateY(50%);
     opacity: 0;
   }
   100% {
@@ -268,5 +268,12 @@
   }
   body {
     font-family: var(--font-alexandria);
+  }
+}
+
+@layer utilities {
+  .text-ellipsis-start {
+    direction: rtl;
+    text-align: left;
   }
 }
