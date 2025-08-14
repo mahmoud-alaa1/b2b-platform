@@ -16,6 +16,7 @@ import AccountLocations from "./AccountLocations";
 import AccountCategories from "./AccountCategories";
 import AccountActions from "./AccountActions";
 import { useCallback, useEffect, useState } from "react";
+import { Building2 } from "lucide-react";
 
 export default function Account() {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
@@ -64,13 +65,16 @@ export default function Account() {
   return (
     <div className="max-w-7xl mx-auto px-6 pb-10" dir="rtl">
       <div className="flex items-center justify-between mb-6">
-        <div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
-            ملف شركتك
-          </h2>
-          <p className="text-sm text-gray-500 mt-1">
-            نظرة عامة ومعلومات عن شركتك
-          </p>
+        <div className="flex items-center gap-4">
+          <Building2 className="w-12 h-12 text-indigo-600" />
+          <div>
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+              ملف شركتك
+            </h2>
+            <p className="text-sm text-gray-500 mt-1">
+              نظرة عامة ومعلومات عن شركتك
+            </p>
+          </div>
         </div>
       </div>
 
@@ -106,7 +110,7 @@ export default function Account() {
             remove={remove}
           />
 
-          <AccountCategories supplier={supplier}  isPending={isPending} />
+          <AccountCategories supplier={supplier} isPending={isPending} />
 
           <AccountActions
             isEditMode={isEditMode}
