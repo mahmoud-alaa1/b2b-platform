@@ -2,38 +2,41 @@
 
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-import { MenuIcon, X } from "lucide-react"
+import { MenuIcon, X, } from "lucide-react"
 import MainHeaderNav from "./MainHeaderNav";
 import { Button } from "../ui/button";
+import { useState } from "react";
 export default function MobileHeaderNav() {
 
 
     let Icon = <MenuIcon />;
 
+    const [open, setOpen] = useState(false);
+
     return (
-        <Sheet onOpenChange={(open) => {
+        <Sheet open={open} onOpenChange={(open) => {
             Icon = open ? <X /> : <MenuIcon />;
+            setOpen(open);
         }}>
             <SheetTrigger asChild>
                 <Button>
-
                     {Icon}
                 </Button>
             </SheetTrigger>
             <SheetContent className="h-[100dvh] overflow-auto">
                 <SheetHeader>
-                    <SheetTitle className="sr-only">Are you absolutely sure?</SheetTitle>
+                    <SheetTitle className="sr-only">قائمة التنقل</SheetTitle>
                     <SheetDescription className="sr-only">
-                        This action cannot be undone. This will permanently delete your account
-                        and remove your data from our servers.
+                        استخدم القائمة أدناه للتنقل في التطبيق.
                     </SheetDescription>
-                    <MainHeaderNav />
+                    <MainHeaderNav closeSheet={() => setOpen(false)} />
                 </SheetHeader>
             </SheetContent>
         </Sheet>

@@ -12,7 +12,7 @@ export default function HeroSection() {
 
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-12">
       {/* Animated Background */}
       <div className="absolute inset-0 z-10">
         <div
