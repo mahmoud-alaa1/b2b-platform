@@ -21,7 +21,7 @@
 /* 2. Slide Up */
 @keyframes slideUp {
   0% {
-    transform: translateY(50%);
+    transform: translateY(20%);
     opacity: 0;
   }
   100% {
@@ -140,7 +140,7 @@
 
 @theme inline {
   --animate-bounce: bounce 1s infinite;
-  --animate-slide-up: slideUp 1s ease-in-out;
+  --animate-slide-up: slideUp 0.5s ease-in-out;
   --animate-slide-down: slideDown 0.5s ease-in-out;
   --animate-fade-in: fadeIn 0.5s ease-in-out;
   --animate-fade-out: fadeOut 0.5s ease-in-out;

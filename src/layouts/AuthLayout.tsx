@@ -13,8 +13,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                 {children}
             </main>
             <div className="flex justify-between">
-                <Image placeholder="blur" src={Shape2} className="   size-[clamp(200px,25vw,200px)] -left-5 " alt="شكل 1 للديكور" />
-                <Image placeholder="blur" src={Shape1} className=" size-[clamp(200px,25vw,200px)] -left-5 " alt="شكل 1 للديكور" />
+                <Image src={Shape2} className="   size-[clamp(200px,25vw,200px)] -left-5 " alt="شكل 1 للديكور" />
+                <Image src={Shape1} className=" size-[clamp(200px,25vw,200px)] -left-5 " alt="شكل 1 للديكور" />
             </div>
         </div>
     )
