@@ -9,6 +9,9 @@ interface ILoginResponse {
   user: IUser;
   token: string;
 }
+interface IForgotPasswordResponse {
+  message: string;
+}
 
 
 declare interface IRefreshResponse {

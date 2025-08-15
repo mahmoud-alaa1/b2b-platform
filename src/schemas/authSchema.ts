@@ -1,5 +1,35 @@
 import z from 'zod'
 
+
+// Reset Password Schema ******************
+
+export const resetPasswordSchema = z.object({
+    newPassword: z.string({
+        message: "من فضلك أدخل كلمة مرور صالحة",
+    }).max(50, {
+        message: "من فضلك أدخل كلمة مرور لا تزيد عن 50 حرف",
+    }).min(8, {
+        message: "من فضلك أدخل كلمة مرور لا تقل عن 8 أحرف",
+    }),
+})
+
+export type resetPasswordSchema = z.infer<typeof resetPasswordSchema>;
+
+
+// Reset Password Schema ******************
+export const forgotPasswordSchema = z.object({
+    email: z.email({
+        message: "من فضلك أدخل بريدًا إلكترونيًا صالحًا",
+    }),
+})
+
+export type forgotPasswordSchema = z.infer<typeof forgotPasswordSchema>
+
+
+
+
+
+// Login Schema ******************
 export const loginSchema = z.object({
     email: z.email({
         message: "من فضلك أدخل بريدًا إلكترونيًا صالحًا",

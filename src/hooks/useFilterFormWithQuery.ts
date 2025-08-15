@@ -24,7 +24,7 @@ export function useFilterFormWithQuery<T extends Record<string, any>>({
         const entries: Partial<T> = {};
         searchParams.forEach((value, key) => {
             if (key.startsWith(baseKey + "-")) {
-                const originalKey = key.slice(baseKey.length + 1); 
+                const originalKey = key.slice(baseKey.length + 1);
                 entries[originalKey as keyof T] = value as any;
             }
         });
@@ -53,7 +53,8 @@ export function useFilterFormWithQuery<T extends Record<string, any>>({
 
         const newUrl = `${window.location.pathname}?${query.toString()}`;
         if (newUrl !== window.location.href) {
-            router.replace(newUrl, { scroll: false });
+            router.replace(newUrl, { scroll: false }); // prevent instant jump
+            window.scrollTo({ top: 300, behavior: "smooth" }); // smooth scroll
         }
     }, [debouncedValues, baseKey, router]);
 

@@ -36,7 +36,7 @@ export function buildQueryStringWithBase(params: Record<string, unknown>, base: 
   }
   return searchParams.toString();
 }
-export function buildQueryString(params: Record<string, unknown>) {
+export function buildQueryString(params?: Record<string, unknown>) {
   const searchParams = new URLSearchParams();
   for (const key in params) {
     if (params[key] !== undefined && params[key] !== null) {

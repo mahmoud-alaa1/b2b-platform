@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { formatDistance } from 'date-fns';
 import { ar } from 'date-fns/locale';
+import Image from 'next/image';
 
 
 export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
@@ -27,16 +28,12 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
       <div className="relative flex  flex-wrap flex-col justify-center items-center gap-5 mb-3">
         <div className="relative w-full bg-gradient-to-br from-indigo-50 via-purple-100 to-blue-200 rounded-t-2xl p-5">
           <div className="size-30 relative bg-indigo-50 rounded-2xl bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center  shadow-lg border border-gray-200/50 group-hover:shadow-xl transition-all duration-300 mx-auto">
-            {/* {supplier?.logo ? (
+            {supplier?.logoUrl ? (
               <Image
-                src={supplier.logo}
+                src={supplier.logoUrl}
                 alt={`${supplier.companyName} شعار`}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  target.nextElementSibling?.classList.remove('hidden');
-                }}
+                className="w-full rounded-[inherit] h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                fill
               />
             ) :
               <div className="relative flex-shrink-0">
@@ -44,12 +41,8 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
                   <Building2 className="size-20 text-indigo-600" />
                 </div>
               </div>
-            } */}
-            <div className="relative flex-shrink-0">
-              <div className="w-16 h-16  rounded-xl flex items-center justify-center">
-                <Building2 className="size-20 text-indigo-600" />
-              </div>
-            </div>
+            }
+
             <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full  shadow-lg flex items-center justify-center">
               <Tooltip>
                 <TooltipTrigger type='button' >
@@ -86,7 +79,7 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
         {/* Categories */}
         <div className="my-4">
           <div className="flex flex-wrap gap-3">
-            {supplier.categoryNames.slice(0, 5).map((category, index) => (
+            {supplier?.categoryNames?.slice(0, 5).map((category, index) => (
               <Badge
                 key={index}
                 className='px-2  py-1 rounded-xl shadow-lg'
@@ -95,9 +88,9 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
                 {category}
               </Badge>
             ))}
-            {supplier.categoryNames.length > 5 && (
+            {supplier?.categoryNames?.length > 5 && (
               <Badge className="shadow-lg rounded-xl text-sm font-semibold bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600 border border-gray-300/50  transition-transform duration-200">
-                +{supplier.categoryNames.length - 5}
+                +{supplier?.categoryNames.length - 5}
                 <Tag />
               </Badge>
             )}
@@ -137,7 +130,7 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
             {supplier.phoneNumber}
           </Link>
           <Button type='button' variant="gradient-indigo" className='mt-auto'>
-            <Link href={`/suppliers/${supplier.userId}/profile`} className="flex items-center gap-2">
+            <Link href={`/suppliers/${supplier.id}/profile`} className="flex items-center gap-2">
               <User className="size-4 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" />
               عرض الملف الشخصي
             </Link>

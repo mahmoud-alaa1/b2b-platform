@@ -5,12 +5,13 @@ import { Button } from "../ui/button";
 import { LogIn, UserPlus } from "lucide-react";
 import useAuth from "@/store/authStore";
 import LogoutButton from "../LogoutButton";
+import Cookies from "js-cookie";
 
 export default function AuthButtonts() {
 
     const auth = useAuth();
     return (<div className="flex md:flex-row flex-col md:items-center gap-4">
-        {auth.user ?
+        {(auth.user || Cookies.get("token")) ?
             <LogoutButton /> :
             <>
                 <Button

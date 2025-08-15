@@ -25,21 +25,14 @@ export default function LoginForm() {
         },
     });
     function onSubmit(values: loginSchema) {
-        console.log(values)
         mutate(values);
     }
 
-    // useEffect(() => {
-    //     (async function () {
-    //         const res = await refreshTokenService();
-    //         console.log(res)
-    //     })();
-    // }, []);
+
 
     return (
         <Form {...form}>
             <form
-                dir="ltr"
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-8"
             >
@@ -57,17 +50,17 @@ export default function LoginForm() {
                     autoComplete="current-password"
                 />
                 <div className="flex justify-between">
+                    <FormCheckbox<loginSchema>
+                        control={form.control}
+                        name="rememberMe"
+                        label="تذكرني"
+                    />
                     <Link
                         href="/forgot-password"
                         className="text-indigo-500 hover:underline"
                     >
                         نسيت كلمة المرور؟
                     </Link>
-                    <FormCheckbox<loginSchema>
-                        control={form.control}
-                        name="rememberMe"
-                        label="تذكرني"
-                    />
                 </div>
                 <Button
                     disabled={isPending}

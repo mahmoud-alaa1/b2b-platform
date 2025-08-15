@@ -34,7 +34,7 @@ export default function SuppliersList({
                 >
                     {allSuppliers.map((supplier, i) => (
                         <div
-                            key={`${supplier.userId}-${i}`}
+                            key={`${supplier.id}-${i}`}
                             ref={i === allSuppliers.length - 1 ? ref : null}
 
                             className="h-full animate-slide-up"

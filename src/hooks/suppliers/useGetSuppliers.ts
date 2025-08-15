@@ -7,7 +7,7 @@ export default function useGetSuppliers({ initialData }: { initialData?: IPagina
     const searchQueries = useGetSearchQueries(SUPPLIERS_BASE_KEY).filters;
 
     return useInfinite<ISupplier>({
-        fetchFn: (page, options) => getSuppliers({ ...searchQueries, page }, options?.signal),
+        fetchFn: (page) => getSuppliers({ ...searchQueries, page }),
         queryKey: [SUPPLIERS_BASE_KEY, searchQueries],
         initialData
     });

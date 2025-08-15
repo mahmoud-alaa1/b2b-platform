@@ -9,13 +9,13 @@ interface ISuppliersFilters {
 }
 
 interface ISupplier {
-    userId: number | string,
+    id: 75,
     companyName: string,
-    userName: string,
-    role: "Suppliers",
-    categoryNames: string[],
-    joinDate: string,
-    locations: string[],
     email: string,
-    phoneNumber: string
+    categoryNames: string[],
+    phoneNumber: string,
+    logoUrl: string,
+    locations: string[],
+    planName: string,
+    joinDate: string
 }

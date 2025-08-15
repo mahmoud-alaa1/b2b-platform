@@ -47,6 +47,8 @@ export default async function SuppliersPage({
         pageSize: SUPPLIERS_PAGE_SIZE,
     });
 
+    console.log(suppliers);
+
     return (
         <div
             className="min-h-screen bg-gradient-to-b from-gray-50 to-white"

@@ -7,6 +7,8 @@ import FAQSection from './_components/FAQSection';
 import CTASection from './_components/CTASection';
 // import StickyFloatingCTA from './_components/StickyFloatingCTA';
 import StructuredData from './_components/StructuredData';
+import { getCategoriesServer } from '@/services/categoriesServices';
+import Categories from './_components/Categories';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://supplyfi-horeca.com'),
@@ -42,13 +44,20 @@ export const metadata: Metadata = {
   }
 };
 
-export default function HomePage() {
+export const revalidate = 3600;
+
+export default async function HomePage() {
+
+
+  const categories = await getCategoriesServer();
+  console.log(categories);
   return (
     <>
       <StructuredData />
       <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/30">
         <HeroSection />
         <HowItWorksSection />
+        <Categories categories={categories} />
         <ValuePropositionSection />
         <FAQSection />
         <CTASection />

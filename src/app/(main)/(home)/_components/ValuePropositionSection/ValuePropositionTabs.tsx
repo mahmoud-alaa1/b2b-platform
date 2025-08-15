@@ -80,7 +80,7 @@ function ValuePropositionTabContent({ benefit }: {
 }) {
     return (
         <div
-            className="animate-slide-up"
+            className=""
         >
             <Card className="bg-white/80 backdrop-blur-sm border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                 <CardContent className="p-6 text-center">
@@ -143,7 +143,7 @@ export default function ValuePropositionTabs() {
                     </Button>
                 </TabsTrigger>
             </TabsList>
-            <TabsContent value="buyers" className=" max-w-7xl mx-auto animate-slide-up ">
+            <TabsContent value="buyers" className=" max-w-7xl mx-auto animate-fade-in ">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                     {
@@ -172,7 +172,7 @@ export default function ValuePropositionTabs() {
                     </div>
                 </div>
             </TabsContent>
-            <TabsContent value="suppliers" className=" max-w-7xl mx-auto animate-slide-up ">
+            <TabsContent value="suppliers" className=" max-w-7xl mx-auto animate-fade-in ">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {supplierBenefits.map((benefit, index) => (
                         <ValuePropositionTabContent key={index} benefit={benefit} />
