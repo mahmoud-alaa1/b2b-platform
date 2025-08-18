@@ -60,7 +60,6 @@ export default function FormInfiniteMultiCombobox<
   fetchFn,
   getOptionLabel,
   getOptionValue,
-  showCount = true,
   onOptionsChange,
 }: FormInfiniteMultiComboboxProps<TFormValues, TData>) {
   const { data, isFetching, ref } = useInfinite<TData>({

@@ -3,7 +3,6 @@ import {
   ArrowLeft,
   Sparkles,
   Clock,
-  Users,
   TrendingUp,
   CheckCircle,
   Zap,

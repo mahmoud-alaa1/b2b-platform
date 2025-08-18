@@ -3,7 +3,6 @@ import SupplierHero from "./_components/SupplierHero";
 import SupplierSidebar from "./_components/SupplierSidebar";
 import { getSupplierInfo } from "@/services/accountSettingServices";
 import {
-  fetchSuppliers,
   getSupplierProductsAndReviews,
 } from "@/services/suppliersServices";
 import { notFound } from "next/navigation";
@@ -13,21 +12,14 @@ import { Metadata } from "next";
 
 export const revalidate = 3600;
 
-export async function generateStaticParams() {
-  const paginatedSuppliers: IPaginatedResponse<ISupplier> =
-    await fetchSuppliers();
-  return paginatedSuppliers.data.map((supplier) => ({
-    id: String(supplier.userId),
-  }));
-}
 
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   try {
-    const supplier = await getSupplierInfo(Number(params.id));
+    const supplier = await getSupplierInfo(Number((await params).id));
 
     if (!supplier || !supplier.data) {
       return {
@@ -52,7 +44,7 @@ export async function generateMetadata({
         follow: true,
       },
       alternates: {
-        canonical: `/suppliers/${params.id}`,
+        canonical: `/suppliers/${(await params).id}`,
       },
     };
   } catch {
@@ -64,8 +56,12 @@ export async function generateMetadata({
   }
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
   let supplier;
   try {

@@ -5,7 +5,7 @@ export default function usePostOrder() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: postOrderService,
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("تم ارسال الطلب بنجاح!");
       queryClient.invalidateQueries({ queryKey: ["orders"] });
     },

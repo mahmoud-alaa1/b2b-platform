@@ -1,7 +1,4 @@
-import {
-  editSupplierInfoSchema,
-  editSupplierInfoSchemaType,
-} from "@/schemas/accountSettingSchema";
+import { editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
 import { patchSupplierInfo } from "@/services/accountSettingServices";
 import useAuth from "@/store/authStore";
 import useOptimisticUpdate from "../useOptimisticUpdate";
@@ -23,8 +20,8 @@ export default function usePatchSupplierInfo() {
       ...supplier,
       ...Object.fromEntries(
         Object.entries(input).filter(
-          ([, value]) => value !== undefined && value !== null,
-        ),
+          ([, value]) => value !== undefined && value !== null
+        )
       ),
     }),
   });

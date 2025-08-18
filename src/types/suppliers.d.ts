@@ -1,3 +1,15 @@
+interface ISupplierInfo {
+  id: number | string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  logoUrl: string;
+  description: string;
+  locations: (string | null)[];
+  countOfOrderAccepted: number;
+  categories: string[];
+}
+
 interface ISuppliersFilters {
   search?: string;
   planName?: string;
@@ -9,7 +21,7 @@ interface ISuppliersFilters {
 }
 
 interface ISupplier {
-  id: 75;
+  id: number | string;
   companyName: string;
   email: string;
   categoryNames: string[];
@@ -18,4 +30,15 @@ interface ISupplier {
   locations: string[];
   planName: string;
   joinDate: string;
+}
+
+interface IAccountInfoPatchResponse {
+  id: number | string;
+  description: string;
+  locations: string[];
+}
+
+interface IAccountLogoPatchResponse {
+  id: number | string;
+  logoUrl: string | File;
 }

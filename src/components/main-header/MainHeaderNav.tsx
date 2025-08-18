@@ -1,6 +1,4 @@
 import Link from "next/link";
-import AuthButtonts from "./AuthButtonts";
-import UserDropdown from "../UserDropdown";
 
 const HEADER_LINKS = [
   { href: "/", label: "الرئيسية" },
