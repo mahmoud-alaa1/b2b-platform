@@ -1,12 +1,112 @@
-import React from 'react'
+import React from "react";
+import SupplierHero from "./_components/SupplierHero";
+import SupplierSidebar from "./_components/SupplierSidebar";
+import { getSupplierInfo } from "@/services/accountSettingServices";
+import {
+  fetchSuppliers,
+  getSupplierProductsAndReviews,
+} from "@/services/suppliersServices";
+import { notFound } from "next/navigation";
+import ProductList from "./_components/ProductList";
+import SupplierReviews from "./_components/SupplierReviews";
+import { Metadata } from "next";
 
-export default async function page({ params }: {
-    params: Promise<{
-        id: string
-    }>
-}) {
-    const id = (await params).id;
-    return (
-        <div>page {id}</div>
-    )
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const paginatedSuppliers: IPaginatedResponse<ISupplier> =
+    await fetchSuppliers();
+  return paginatedSuppliers.data.map((supplier) => ({
+    id: String(supplier.userId),
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  try {
+    const supplier = await getSupplierInfo(Number(params.id));
+
+    if (!supplier || !supplier.data) {
+      return {
+        title: "مورد غير موجود | SupplyFi Horeca",
+        description: "لم يتم العثور على المورد المطلوب.",
+        robots: { index: false },
+      };
+    }
+
+    return {
+      title: `${supplier.data.name} | SupplyFi Horeca`,
+      description: `اكتشف منتجات وخدمات المورد ${supplier.data.name} مع تقييمات حقيقية من العملاء.`,
+      keywords: `${supplier.data.name}, موردين, SupplyFi, Horeca`,
+      openGraph: {
+        title: `${supplier.data.name} | SupplyFi Horeca`,
+        description: `صفحة المورد ${supplier.data.name} مع المنتجات والتقييمات.`,
+        type: "profile",
+        locale: "ar_SA",
+      },
+      robots: {
+        index: true,
+        follow: true,
+      },
+      alternates: {
+        canonical: `/suppliers/${params.id}`,
+      },
+    };
+  } catch {
+    return {
+      title: "خطأ في تحميل المورد | SupplyFi Horeca",
+      description: "حدث خطأ أثناء تحميل بيانات المورد.",
+      robots: { index: false },
+    };
+  }
+}
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const { id } = params;
+
+  let supplier;
+  try {
+    supplier = await getSupplierInfo(Number(id));
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    notFound();
+  }
+
+  if (!supplier || !supplier.data) {
+    notFound();
+  }
+
+  const supplierProductsAndReviews = await getSupplierProductsAndReviews(
+    Number(id)
+  );
+
+  return (
+    <>
+      <main className="mb-10 bg-white/70 backdrop-blur-sm shadow-xl border border-white/20 min-h-full relative overflow-hidden">
+        <div className="flex flex-col gap-8">
+          <SupplierHero supplier={supplier.data} />
+        </div>
+      </main>
+
+      <div className="container flex flex-col md:flex-row gap-6 mt-8 px-4 md:px-16">
+        <div className="flex-1">
+          <ProductList products={supplierProductsAndReviews.data.products} />
+          <SupplierReviews
+            allReviews={supplierProductsAndReviews.data.allReviews}
+          />
+
+          <div className="block md:hidden mt-6">
+            <SupplierSidebar supplier={supplier.data} />
+          </div>
+        </div>
+
+        <div className="hidden md:block w-80 flex-shrink-0 self-start sticky top-20">
+          <SupplierSidebar supplier={supplier.data} />
+        </div>
+      </div>
+    </>
+  );
 }
