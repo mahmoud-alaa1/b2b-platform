@@ -1,13 +1,13 @@
 import { Metadata } from "next";
-import HeroSection from "@/pages/landing/sections/HeroSection";
-import HowItWorksSection from "@/pages/landing/sections/HowItWorksSection";
-import ValuePropositionSection from "@/pages/landing/sections/ValuePropositionSection/ValuePropositionSection";
+import HeroSection from "@/app/(main)/(home)/_components/sections/HeroSection";
+import HowItWorksSection from "@/app/(main)/(home)/_components/sections/HowItWorksSection";
+import ValuePropositionSection from "@/app/(main)/(home)/_components/sections/ValuePropositionSection/ValuePropositionSection";
 
-import FAQSection from "@/pages/landing/sections/FAQSection";
-import CTASection from "@/pages/landing/sections/CTASection";
-import StructuredData from "@/pages/landing/StructuredData";
+import FAQSection from "@/app/(main)/(home)/_components/sections/FAQSection";
+import CTASection from "@/app/(main)/(home)/_components/sections/CTASection";
+import StructuredData from "@/app/(main)/(home)/_components/StructuredData";
 import { getCategoriesServer } from "@/services/categoriesServices";
-import Categories from "@/pages/landing/sections/categories-section/Categories";
+import Categories from "@/app/(main)/(home)/_components/sections/categories-section/Categories";
 import { fetchAdvertisements } from "@/services/advertisementsServices";
 import CarouselSection from "@/components/CarouselSection";
 

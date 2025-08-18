@@ -32,12 +32,12 @@ export default function SuppliersMainContent({
   const initialValues: suppliersFiltersSchema = {
     ...defaultSuppliersFiltersValues,
     ...Object.fromEntries(
-      Array.from(searchParams.entries())
+      Array.from(searchParams?.entries() || [])
         .filter(([key]) => key.startsWith(`${SUPPLIERS_BASE_KEY}-`))
         .map(([key, value]) => [
           key.slice(SUPPLIERS_BASE_KEY.length + 1),
           value,
-        ]),
+        ])
     ),
   } as suppliersFiltersSchema;
 
@@ -90,8 +90,7 @@ export default function SuppliersMainContent({
                     <Button
                       type="button"
                       variant="link"
-                      onClick={() => form.setValue("search", "")}
-                    >
+                      onClick={() => form.setValue("search", "")}>
                       {form.watch("search") ? (
                         <X />
                       ) : (
