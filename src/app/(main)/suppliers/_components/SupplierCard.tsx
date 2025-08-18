@@ -127,7 +127,7 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
           </Link>
           <Button type="button" variant="gradient-indigo" className="mt-auto">
             <Link
-              href={`/suppliers/${supplier.id}/profile`}
+              href={`/suppliers/${supplier.id}`}
               className="flex items-center gap-2"
             >
               <User className="size-4 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" />

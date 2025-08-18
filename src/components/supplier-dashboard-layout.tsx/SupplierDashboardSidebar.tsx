@@ -2,6 +2,7 @@ import {
   CreditCard,
   Megaphone,
   Package,
+  Settings,
   ShoppingCart,
   Star,
 } from "lucide-react";
@@ -13,6 +14,7 @@ const sidebarItems = [
   { path: "/suppliers-dashboard/rating", label: "التقييمات", icon: Star },
   { path: "/suppliers-dashboard/subscription", label: "الاشتراكات", icon: CreditCard },
   { path: "/suppliers-dashboard/ads", label: "الإعلانات", icon: Megaphone },
+  { path: "/suppliers-dashboard/account-settings", label: "إعدادات الحساب", icon: Settings },
 ];
 
 export default function SupplierDashboardSidebar() {

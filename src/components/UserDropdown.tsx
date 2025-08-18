@@ -17,6 +17,7 @@ import {
   ShoppingCart,
   User,
   ChevronDown,
+  Settings,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -187,7 +188,7 @@ export default function UserDropdown() {
               </DropdownMenuItem>
             </Link>
 
-            {!isSupplier && (
+            {!isSupplier ? (
               <Link href="/orders" className="block">
                 <DropdownMenuItem
                   className="
@@ -209,6 +210,34 @@ export default function UserDropdown() {
                     </div>
                     <span className="font-medium text-slate-900">
                       إنشاء طلب
+                    </span>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+            ) : (
+              <Link
+                href="/suppliers-dashboard/account-settings"
+                className="block">
+                <DropdownMenuItem
+                  className="
+                  h-12 rounded-xl cursor-pointer
+                  hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50
+                  hover:border hover:border-green-200/50
+                  transition-all duration-200
+                  justify-between
+                  group
+                ">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="
+                      p-2 rounded-lg bg-gradient-to-r from-green-100 to-emerald-100
+                      group-hover:from-green-200 group-hover:to-emerald-200
+                      transition-all duration-200
+                    ">
+                      <Settings className="w-4 h-4 text-green-700" />
+                    </div>
+                    <span className="font-medium text-slate-900">
+                      الاعدادات
                     </span>
                   </div>
                 </DropdownMenuItem>
