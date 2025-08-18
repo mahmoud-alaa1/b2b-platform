@@ -30,7 +30,7 @@ export const getFileIcon = (file: File) => {
 
 export function buildQueryStringWithBase(
   params: Record<string, unknown>,
-  base: string,
+  base: string
 ) {
   const searchParams = new URLSearchParams();
   for (const key in params) {

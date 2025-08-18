@@ -14,37 +14,12 @@ export async function loginService(data: {
     throw handleApiError(err);
   }
 }
-export async function resetPasswordService(data: {
-  newPassword: string;
-  token: string;
-}) {
-  try {
-    const response = await api.post<IApiResponse<IForgotPasswordResponse>>(
-      `/reset-password`,
-      data,
-    );
-    return response.data;
-  } catch (err) {
-    throw handleApiError(err);
-  }
-}
-
-export async function forgotPasswordService(data: { email: string }) {
-  try {
-    const response = await api.get<IApiResponse<IForgotPasswordResponse>>(
-      `/reset-password/${data.email}`,
-    );
-    return response.data;
-  } catch (err) {
-    throw handleApiError(err);
-  }
-}
 
 export async function registerService(data: FormData) {
   try {
     const res = await api.post<IApiResponse<IRegisterResponse>>(
       "/register",
-      data,
+      data
     );
     return res.data;
   } catch (error) {
@@ -56,7 +31,7 @@ export async function refreshTokenService() {
   try {
     const response = await axios.post<IApiResponse<IRefreshResponse>>(
       `${process.env.NEXT_PUBLIC_API_URL}/refresh`,
-      {},
+      {}
     );
     return response.data;
   } catch (error) {

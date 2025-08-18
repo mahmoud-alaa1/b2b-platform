@@ -1,5 +1,6 @@
 import api from "@/lib/axios";
 import { editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
+import { IAccountInfoPatchResponse, ISupplierInfo } from "@/types/supplier";
 import { handleApiError } from "@/utils/handleApiError";
 
 // fetch supplier info function

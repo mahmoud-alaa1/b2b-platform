@@ -4,7 +4,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export async function fetchData<T>(
   url: string,
-  options?: RequestInit,
+  options?: RequestInit
 ): Promise<T> {
   if (url.startsWith("/")) {
     url = `${BASE_URL}${url}`;

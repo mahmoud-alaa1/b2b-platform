@@ -23,22 +23,21 @@ api.interceptors.request.use((config) => {
 });
 
 api.interceptors.response.use(
-  (response) => response,
-  async (error: AxiosError) => {
-    const originalRequest: ICustomAxiosInternalConfig | undefined =
-      error.config;
-    if (originalRequest?.url?.includes("/login")) {
-      return Promise.reject(error);
-    }
-    if (
-      error.response?.status === 401 &&
-      originalRequest &&
-      !originalRequest._retry
-    ) {
-      originalRequest._retry = true;
-      try {
-        const response = await refreshTokenService();
-        const accessToken = response.data.accessToken;
+    (response) => response,
+    async (error: AxiosError) => {
+
+
+        const originalRequest: ICustomAxiosInternalConfig | undefined = error.config;
+        if (
+            originalRequest?.url?.includes("/login")
+        ) {
+            return Promise.reject(error);
+        }
+        if (error.response?.status === 401 && originalRequest && !originalRequest._retry) {
+            originalRequest._retry = true;
+            try {
+                const response = await refreshTokenService();
+                const accessToken = response.data.accessToken;
 
         api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
