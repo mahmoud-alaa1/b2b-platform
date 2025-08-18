@@ -1,3 +1,4 @@
+import api from "@/lib/axios";
 import { fetchData } from "@/lib/fetchApi";
 import { handleApiError } from "@/utils/handleApiError";
 
@@ -12,6 +13,17 @@ export async function fetchAdvertisements() {
         },
         cache: "force-cache",
       }
+    );
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+}
+export async function postAdvertisements(data: FormData) {
+  try {
+    const response = await api.post<IApiResponse<IPostAdvertisement>>(
+      "/advertisement",
+      data
     );
     return response.data;
   } catch (error) {

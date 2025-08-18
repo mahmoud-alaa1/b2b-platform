@@ -27,7 +27,7 @@ export default function MobileHeaderNav() {
         setOpen(open);
       }}>
       <SheetTrigger asChild>
-        <Button>{Icon}</Button>
+        <Button variant="ghost" className="border">{Icon}</Button>
       </SheetTrigger>
       <SheetContent className="h-[100dvh] overflow-auto">
         <SheetHeader>

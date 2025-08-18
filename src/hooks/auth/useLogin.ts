@@ -14,7 +14,11 @@ export default function useLogin() {
     onSuccess: (data) => {
       toast.success("تم تسجيل الدخول بنجاح!");
       login(data);
-      router.push("/");
+      router.push(
+        data.user.role === "Clients"
+          ? "/clients-dashboard"
+          : "/suppliers-dashboard/orders"
+      );
     },
 
     onError: (error: ApiError) => {

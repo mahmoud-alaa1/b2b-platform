@@ -155,7 +155,11 @@ export default function UserDropdown() {
           {/* Navigation Items */}
           <DropdownMenuGroup className="space-y-1">
             <Link
-              href={isSupplier ? "/suppliers-dashboard" : "/clients-dashboard"}
+              href={
+                isSupplier
+                  ? "/suppliers-dashboard/products"
+                  : "/clients-dashboard"
+              }
               className="block">
               <DropdownMenuItem
                 className="

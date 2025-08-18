@@ -3,3 +3,7 @@ interface IAdvertisement {
   targetUrl: null | string;
   imagUrl: string;
 }
+
+interface IPostAdvertisement {
+  message: string;
+}

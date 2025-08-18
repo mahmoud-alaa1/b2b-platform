@@ -28,8 +28,8 @@ interface FileItemProps {
 
 const FileItem: React.FC<FileItemProps> = ({ file, index, onRemove }) => {
   return (
-    <div className="flex items-center justify-between p-4  border border-gray-200 rounded-lg hover:shadow-md transition ">
-      <div className="flex items-center  gap-2">
+    <div className="flex items-center gap-4 justify-between p-4  border border-gray-200 rounded-lg hover:shadow-md transition ">
+      <div className="flex items-center flex-wrap gap-2">
         {getFileIcon(file)}
 
         <div>
@@ -60,8 +60,7 @@ const FileItem: React.FC<FileItemProps> = ({ file, index, onRemove }) => {
         size="sm"
         variant="destructive"
         onClick={() => onRemove(index)}
-        className="mx-4"
-      >
+        className="mx-4">
         <X className="w-4 h-4" />
       </Button>
     </div>
@@ -104,6 +103,7 @@ interface FileDropzoneProps {
   multiple?: boolean;
   disabled?: boolean;
   placeholder?: string;
+  name: string;
 }
 
 const FileDropzone: React.FC<FileDropzoneProps> = ({
@@ -115,6 +115,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
   multiple = true,
   disabled = false,
   placeholder = "اسحب وأفلت الملفات هنا أو انقر للاختيار",
+  name
 }) => {
   const [dragActive, setDragActive] = useState(false);
 
@@ -125,7 +126,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
           preview: file.type.startsWith("image/")
             ? URL.createObjectURL(file)
             : undefined,
-        }),
+        })
       );
 
       if (multiple) {
@@ -136,7 +137,7 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
       }
       setDragActive(false);
     },
-    [files, onFilesChange, multiple, maxFiles],
+    [files, onFilesChange, multiple, maxFiles]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -165,22 +166,20 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
             ? "border-blue-400 bg-blue-50 scale-105"
             : "border-gray-300 hover:border-gray-400 hover:bg-gray-50",
           disabled && "opacity-50 cursor-not-allowed",
-          "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
-        )}
-      >
-        <input {...getInputProps()} />
+          "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        )}>
+        <input id={name} {...getInputProps()} />
 
         {/* Upload Icon */}
         <div
           className={cn(
             "w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center transition-colors duration-200",
-            isDragActive || dragActive ? "bg-blue-100" : "bg-gray-100",
-          )}
-        >
+            isDragActive || dragActive ? "bg-blue-100" : "bg-gray-100"
+          )}>
           <Upload
             className={cn(
               "w-8 h-8 transition-colors duration-200",
-              isDragActive || dragActive ? "text-blue-600" : "text-gray-600",
+              isDragActive || dragActive ? "text-blue-600" : "text-gray-600"
             )}
           />
         </div>
@@ -190,9 +189,8 @@ const FileDropzone: React.FC<FileDropzoneProps> = ({
           <p
             className={cn(
               "text-lg font-medium transition-colors duration-200",
-              isDragActive || dragActive ? "text-blue-700" : "text-gray-700",
-            )}
-          >
+              isDragActive || dragActive ? "text-blue-700" : "text-gray-700"
+            )}>
             {isDragActive ? "أفلت الملفات هنا" : placeholder}
           </p>
           <p className="text-sm text-gray-500">
@@ -254,8 +252,8 @@ export default function FormDropzone<TFormValues extends FieldValues>({
         const files = multiple
           ? field.value || []
           : field.value
-            ? [field.value]
-            : [];
+          ? [field.value]
+          : [];
 
         const handleFilesChange = (newFiles: FileWithPreview[]) => {
           if (multiple) {
@@ -268,7 +266,7 @@ export default function FormDropzone<TFormValues extends FieldValues>({
         return (
           <FormItem className={className}>
             {label && (
-              <FormLabel className="text-base font-semibold ">
+              <FormLabel htmlFor={name} className="text-base font-semibold ">
                 {label}
               </FormLabel>
             )}
@@ -279,6 +277,7 @@ export default function FormDropzone<TFormValues extends FieldValues>({
             )}
             <FormControl>
               <FileDropzone
+                name={name}
                 files={files}
                 onFilesChange={handleFilesChange}
                 accept={accept}

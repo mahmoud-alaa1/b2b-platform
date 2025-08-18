@@ -10,6 +10,8 @@ import { getCategoriesServer } from "@/services/categoriesServices";
 import Categories from "@/app/(main)/(home)/_components/sections/categories-section/Categories";
 import { fetchAdvertisements } from "@/services/advertisementsServices";
 import CarouselSection from "@/components/CarouselSection";
+import PricingSection from "./_components/sections/PricingSection";
+import { fetchPlans } from "@/services/plansServices";
 
 export const metadata: Metadata = {
   title: "منصة SupplyFi Horeca | ابحث عن الموردين وقدّم RFQ خلال دقائق",
@@ -51,6 +53,7 @@ export const revalidate = 3600;
 export default async function HomePage() {
   const categories = await getCategoriesServer();
   const advertisements = await fetchAdvertisements();
+  const plans = await fetchPlans( );
   return (
     <>
       <StructuredData />
@@ -58,6 +61,7 @@ export default async function HomePage() {
         <CarouselSection advertisements={advertisements} />
         <HeroSection />
         <HowItWorksSection />
+        <PricingSection plans={plans.data} />
         <Categories categories={categories} />
         <ValuePropositionSection />
         <FAQSection />
