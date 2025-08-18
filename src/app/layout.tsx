@@ -55,9 +55,9 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body className={`${cairo.variable} ${cairo.className} antialiased`}>
-        <Providers>{children}</Providers>
-        <Toaster />
-        <RouterInit />
+          <Providers>{children}</Providers>
+          <Toaster />
+          <RouterInit />
       </body>
     </html>
   );

@@ -6,11 +6,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "../ui/input-otp";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 
 import { Control, FieldValues, Path } from "react-hook-form";
 

@@ -1,6 +1,5 @@
 "use client";
 
-
 import CategoryCard from "./CategoryCard";
 import useGetCategories from "@/hooks/categories/useGetCategories";
 import CategoryCardSkeleton from "./CategoryCardSkeleton";

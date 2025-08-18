@@ -5,7 +5,11 @@ import FormInput from "../forms-fields/FormInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../ui/form";
 import Spinner from "../ui/spinner";
-import { orderSchema, orderSchemaInput, orderSchemaOutput } from "@/schemas/orderSchema";
+import {
+  orderSchema,
+  orderSchemaInput,
+  orderSchemaOutput,
+} from "@/schemas/orderSchema";
 import { useOrderForm } from "@/store/orderFormStore";
 import usePostOrder from "@/hooks/usePostOrder";
 import { useEffect } from "react";
@@ -46,7 +50,7 @@ export default function OrderForm() {
   function onSubmit(values: orderSchemaOutput) {
     const dataOfDeadline = format(
       values.deadline,
-      "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+      "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
     );
     mutate(
       { ...values, deadline: dataOfDeadline },
@@ -55,7 +59,7 @@ export default function OrderForm() {
           clearFormData();
           form.reset();
         },
-      }
+      },
     );
   }
 

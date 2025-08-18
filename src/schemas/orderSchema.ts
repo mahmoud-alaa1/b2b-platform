@@ -16,7 +16,8 @@ export const orderSchema = z.object({
       message: "رقم الهاتف غير صالح.",
     })
     .regex(/^01[0-2]\d{8}$/, {
-      message: "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 ويحتوي على 11 رقمًا.",
+      message:
+        "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 ويحتوي على 11 رقمًا.",
     })
     .trim(),
   quantity: z.coerce
@@ -71,5 +72,5 @@ export const orderSchema = z.object({
 
 export type orderSchema = z.infer<typeof orderSchema>;
 
-export type orderSchemaInput = z.input<typeof orderSchema>;  
-export type orderSchemaOutput = z.output<typeof orderSchema>; 
+export type orderSchemaInput = z.input<typeof orderSchema>;
+export type orderSchemaOutput = z.output<typeof orderSchema>;

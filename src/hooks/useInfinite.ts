@@ -6,7 +6,7 @@ export interface IInfiniteQueryOptions<T> {
   queryKey: unknown[];
   fetchFn: (
     page: number,
-    options?: { signal?: AbortSignal }
+    options?: { signal?: AbortSignal },
   ) => Promise<IPaginatedResponse<T>>;
   refetchInterval?: number;
   enabled?: boolean;

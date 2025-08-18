@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,6 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
 import {
-
   conditionalRegisterSchema,
   conditionalRegisterSchemaType,
   step1Schema,
@@ -21,7 +20,7 @@ import RegistersSteps from "./RegistersSteps";
 import { Step1Type } from "./Step1Type";
 import Step2BasicInfo from "./Step2BasicInfo";
 import { Step3TypeInfo } from "./Step3TypeInfo";
-import { ChevronLeft, ChevronRight, CheckCircle, } from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
 import Spinner from "@/components/ui/spinner";
 import useRegister from "@/hooks/auth/useRegister";
 const slideVariants = {
@@ -42,23 +41,20 @@ const slideVariants = {
   }),
 };
 
-
-
 export function MultiStepForm() {
   const [step, setStep] = useState<number>(0);
   const directionRef = useRef<"next" | "back">("next");
   const { mutate, isPending, error } = useRegister();
 
-
   const form = useForm<conditionalRegisterSchemaType>({
     resolver: zodResolver(conditionalRegisterSchema),
     defaultValues: {
       accountType: "Clients",
-      UserName: '',
-      email: '',
-      password: '',
-      phoneNumber: '',
-      location: '',
+      UserName: "",
+      email: "",
+      password: "",
+      phoneNumber: "",
+      location: "",
     },
   });
 
@@ -75,7 +71,9 @@ export function MultiStepForm() {
   const isFirstStep = step === 0;
 
   async function handleNext() {
-    const currentStepFields = Object.keys(stepSchemas[step].shape) as (keyof conditionalRegisterSchemaType)[];
+    const currentStepFields = Object.keys(
+      stepSchemas[step].shape,
+    ) as (keyof conditionalRegisterSchemaType)[];
 
     const isStepValid = await form.trigger(currentStepFields);
     if (isStepValid) {
@@ -98,33 +96,33 @@ export function MultiStepForm() {
     formData.append("phoneNumber", values.phoneNumber);
 
     if (values.accountType === "Suppliers") {
-      values.categories?.forEach(id => {
+      values.categories?.forEach((id) => {
         formData.append("categoriesId", id);
       });
-      values.documents?.forEach(loc => {
+      values.documents?.forEach((loc) => {
         formData.append("textNumberPicture", loc);
       });
-      formData.append("locations", values.location ||
-        "no location"
-      );
+      formData.append("locations", values.location || "no location");
     }
 
     mutate(formData);
   }
 
-
   if (error) {
     Object.entries(error.details || {}).forEach(([key, value]) => {
-      form.setError(key as keyof conditionalRegisterSchemaType, { message: value });
+      form.setError(key as keyof conditionalRegisterSchemaType, {
+        message: value,
+      });
     });
   }
 
   return (
     <div className="max-w-4xl  p-6" dir="rtl">
-      <Form  {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
-
-
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-full"
+        >
           {/* Main Content Card */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -135,7 +133,6 @@ export function MultiStepForm() {
             <RegistersSteps totalSteps={totalSteps} step={step} />
 
             <fieldset disabled={isPending} className="space-y-8 w-full">
-
               <div className="relative w-[clamp(350px,95vw,600px)] min-h-[500px] overflow-hidden ">
                 <AnimatePresence custom={directionRef.current} mode="wait">
                   <motion.div
@@ -149,7 +146,7 @@ export function MultiStepForm() {
                       duration: 0.4,
                       type: "spring",
                       stiffness: 300,
-                      damping: 30
+                      damping: 30,
                     }}
                     className=" inset-0 p-8"
                   >
@@ -173,8 +170,6 @@ export function MultiStepForm() {
                   <ChevronRight className="w-4 h-4" />
                   السابق
                 </Button>
-
-
 
                 {/* Next/Submit Button */}
                 {isLastStep ? (
@@ -219,6 +214,6 @@ export function MultiStepForm() {
           </motion.div>
         </form>
       </Form>
-    </div >
+    </div>
   );
 }

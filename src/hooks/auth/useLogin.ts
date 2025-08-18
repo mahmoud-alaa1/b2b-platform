@@ -6,23 +6,20 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export default function useLogin() {
+  const login = useAuth((s) => s.login);
+  const router = useRouter();
 
-    const login = useAuth((s) => s.login)
-    const router = useRouter();
+  return useMutation({
+    mutationFn: loginService,
+    onSuccess: (data) => {
+      toast.success("تم تسجيل الدخول بنجاح!");
+      login(data);
+      router.push("/");
+    },
 
-    return useMutation({
-        mutationFn: loginService,
-        onSuccess: (data) => {
-            toast.success("تم تسجيل الدخول بنجاح!");
-            login(data);
-            router.push("/");
-        },
-
-        onError: (error: ApiError) => {
-            toast.error(error.message);
-            console.error(error)
-
-        }
-    });
-
+    onError: (error: ApiError) => {
+      toast.error(error.message);
+      console.error(error);
+    },
+  });
 }

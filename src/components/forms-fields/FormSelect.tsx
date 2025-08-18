@@ -27,7 +27,6 @@ interface FormSelectProps<TFormValues extends FieldValues> {
   className?: string;
   disabled?: boolean;
   autoFocus?: boolean;
-
 }
 
 export default function FormSelect<TFormValues extends FieldValues>({
@@ -58,17 +57,20 @@ export default function FormSelect<TFormValues extends FieldValues>({
               value={field.value?.toString()}
               onValueChange={field.onChange}
               disabled={disabled}
-              {...props}>
+              {...props}
+            >
               <SelectTrigger
                 dir="rtl"
-                className={cn("w-full h-full bg-background", className)}>
+                className={cn("w-full h-full bg-background", className)}
+              >
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
               <SelectContent dir="rtl">
                 {options.map((option) => (
                   <SelectItem
                     key={option.value}
-                    value={option.value.toString()}>
+                    value={option.value.toString()}
+                  >
                     {option.label}
                   </SelectItem>
                 ))}

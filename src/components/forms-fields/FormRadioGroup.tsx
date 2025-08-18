@@ -40,18 +40,13 @@ export default function FormRadioGroup<TFormValues extends FieldValues>({
   labelClassName,
   direction = "vertical",
 }: FormRadioGroupProps<TFormValues>) {
-
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
         <FormItem>
-          {label && (
-            <FormLabel className={cn("mb-2")}>
-              {label}
-            </FormLabel>
-          )}
+          {label && <FormLabel className={cn("mb-2")}>{label}</FormLabel>}
           <FormControl>
             <RadioGroup
               name={name}
@@ -66,7 +61,7 @@ export default function FormRadioGroup<TFormValues extends FieldValues>({
                   className={cn(
                     "flex items-center",
                     direction === "vertical" ? "flex-row" : "",
-                    itemClassName
+                    itemClassName,
                   )}
                 >
                   <RadioGroupItem
@@ -76,7 +71,8 @@ export default function FormRadioGroup<TFormValues extends FieldValues>({
                   <FormLabel
                     htmlFor={`${name}-${option.value}`}
                     className={cn(
-                      "cursor-pointer flex items-center gap-2",labelClassName,
+                      "cursor-pointer flex items-center gap-2",
+                      labelClassName,
                     )}
                   >
                     {option.icon && <span>{option.icon}</span>}

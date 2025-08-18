@@ -14,7 +14,7 @@ interface OptimisticUpdateConfig<TData, TInput> {
 
 export default function useOptimisticUpdate<
   TData extends Record<string, any>,
-  TInput
+  TInput,
 >({
   updateFn,
   queryKey,
@@ -47,7 +47,7 @@ export default function useOptimisticUpdate<
             pages: old.pages.map((page: any) => ({
               ...page,
               data: page.data.map((item: TData) =>
-                matcher(item, input) ? updater(item, input) : item
+                matcher(item, input) ? updater(item, input) : item,
               ),
             })),
           };

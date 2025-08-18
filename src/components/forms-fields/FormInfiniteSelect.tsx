@@ -37,7 +37,7 @@ interface FormInfiniteSelectProps<TFormValues extends FieldValues, TData> {
 
 export default function FormInfiniteSelect<
   TFormValues extends FieldValues,
-  TData
+  TData,
 >({
   control,
   name,
@@ -82,12 +82,18 @@ export default function FormInfiniteSelect<
                 const numericValue = Number(value);
                 field.onChange(isNaN(numericValue) ? value : numericValue);
               }}
-              value={field.value !== undefined ? String(field.value) : undefined}
+              value={
+                field.value !== undefined ? String(field.value) : undefined
+              }
               disabled={disabled || isFetching}
               required={required}
               {...props}
             >
-              <SelectTrigger id={name} dir="rtl" className={cn("w-full", className)}>
+              <SelectTrigger
+                id={name}
+                dir="rtl"
+                className={cn("w-full", className)}
+              >
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
               <SelectContent id={name} className="max-h-56" dir="rtl">

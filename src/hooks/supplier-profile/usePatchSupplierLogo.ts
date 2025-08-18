@@ -14,12 +14,11 @@ export default function usePatchSupplierLogo() {
     },
     matcher: (supplier) => supplier.id === Number(id),
     updater: (supplier, fileResponse) => {
-
       const fileUrl = URL.createObjectURL(fileResponse);
       return {
         ...supplier,
         logoUrl: fileUrl ?? null,
-      }
+      };
     },
   });
 }

@@ -1,10 +1,6 @@
-import React from 'react'
-import ReactQueryProvider from './ReactQueryProvider'
+import React from "react";
+import ReactQueryProvider from "./ReactQueryProvider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-    return (
-        <ReactQueryProvider>
-            {children}
-        </ReactQueryProvider>
-    )
+  return <ReactQueryProvider>{children}</ReactQueryProvider>;
 }

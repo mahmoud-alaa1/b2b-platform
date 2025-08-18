@@ -73,7 +73,7 @@ export default function AccountHeader({
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StatsCard
           title="الطلبات المقبولة"
-          value={supplier ? supplier.countOfOrderAccepted ?? 0 : 0}
+          value={supplier ? (supplier.countOfOrderAccepted ?? 0) : 0}
           icon={<CheckCircle className="w-5 h-5 text-white" />}
           color="from-green-400 to-green-600"
         />

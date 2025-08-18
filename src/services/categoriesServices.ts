@@ -12,7 +12,7 @@ export async function getCategories(params?: ICategoryFilters) {
           ...params,
           pageSize: CATEGORIES_PAGE_SIZE,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -20,7 +20,6 @@ export async function getCategories(params?: ICategoryFilters) {
   }
 }
 export async function getCategoriesServer(params?: ICategoryFilters) {
-
   try {
     const response = await fetchData<IPaginatedResponse<ICategory>>(
       "/categories?pageSize=" + 100000,
@@ -28,7 +27,7 @@ export async function getCategoriesServer(params?: ICategoryFilters) {
         method: "GET",
         cache: "force-cache",
         next: { revalidate: 60 * 60 },
-      }
+      },
     );
     return response.data;
   } catch (error) {

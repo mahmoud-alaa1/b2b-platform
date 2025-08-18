@@ -20,6 +20,6 @@ export const useOrderForm = create<OrderFormState & OrderFormActions>()(
     }),
     {
       name: "order-form-storage",
-    }
-  )
+    },
+  ),
 );

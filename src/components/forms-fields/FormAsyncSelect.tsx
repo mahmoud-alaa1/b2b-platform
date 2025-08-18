@@ -36,7 +36,7 @@ interface FormAsyncSelectProps<TFormValues extends FieldValues, TOption> {
 
 export default function FormAsyncSelect<
   TFormValues extends FieldValues,
-  TOption
+  TOption,
 >({
   control,
   name,
@@ -55,7 +55,7 @@ export default function FormAsyncSelect<
     {
       queryKey,
       queryFn: fetchFn,
-    }
+    },
   );
 
   const options = data?.data || [];
@@ -75,11 +75,13 @@ export default function FormAsyncSelect<
             <Select
               onValueChange={field.onChange}
               value={field.value?.toString()}
-              disabled={disabled || isPending}>
+              disabled={disabled || isPending}
+            >
               <SelectTrigger
                 dir="rtl"
                 id={name}
-                className={cn("w-full", className)}>
+                className={cn("w-full", className)}
+              >
                 <SelectValue
                   placeholder={isPending ? "جاري التحميل..." : placeholder}
                 />
@@ -101,7 +103,8 @@ export default function FormAsyncSelect<
                         className="h-6 w-6"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke="currentColor">
+                        stroke="currentColor"
+                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -115,7 +118,8 @@ export default function FormAsyncSelect<
                     </p>
                     <button
                       onClick={() => refetch()}
-                      className="px-3 py-1.5 text-xs bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
+                      className="px-3 py-1.5 text-xs bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                    >
                       إعادة المحاولة
                     </button>
                   </div>
@@ -145,7 +149,8 @@ export default function FormAsyncSelect<
                       className="h-8 w-8 mb-2 opacity-50"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor">
+                      stroke="currentColor"
+                    >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"

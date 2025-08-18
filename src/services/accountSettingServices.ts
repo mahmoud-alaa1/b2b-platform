@@ -1,12 +1,12 @@
 import api from "@/lib/axios";
-import {  editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
+import { editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
 import { handleApiError } from "@/utils/handleApiError";
 
 // fetch supplier info function
 export async function getSupplierInfo(supplierId: number) {
   try {
     const response = await api.get<IApiResponse<ISupplierInfo>>(
-      `/supplier-info/${supplierId}`
+      `/supplier-info/${supplierId}`,
     );
     return response?.data;
   } catch (error) {
@@ -17,12 +17,12 @@ export async function getSupplierInfo(supplierId: number) {
 // function to patch supplier info
 export async function patchSupplierInfo(
   id: number | string,
-  data: editSupplierInfoSchemaType
+  data: editSupplierInfoSchemaType,
 ) {
   try {
     const response = await api.patch<IAccountInfoPatchResponse>(
       `/supplier-info/${id}`,
-      data
+      data,
     );
     return response?.data;
   } catch (error) {
@@ -32,7 +32,7 @@ export async function patchSupplierInfo(
 
 export async function patchSupplierLogo(id: number, file: string | File) {
   const formData = new FormData();
-  formData.append("logo", file); 
+  formData.append("logo", file);
 
   const { data } = await api.patch(`/supplier-logo/${id}`, formData, {
     headers: {

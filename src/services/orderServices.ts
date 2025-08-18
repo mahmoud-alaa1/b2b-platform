@@ -9,7 +9,7 @@ export async function postOrderService(data: IOrder) {
   } catch (error) {
     if (isAxiosError(error)) {
       throw new Error(
-        error.response?.data?.message || "حدث خطأ في ارسال الطلب "
+        error.response?.data?.message || "حدث خطأ في ارسال الطلب ",
       );
     }
     throw error;

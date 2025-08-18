@@ -9,7 +9,7 @@ export default function CategoryCard({ category }: categoryCardProps) {
     <div className="flex flex-col border hover:border-primary border-primary/20 items-center cursor-pointer justify-center gap-2 py-4  bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300  h-full text-center">
       {category.imageURL && (
         <Image
-          src={category.imageURL} 
+          src={category.imageURL}
           alt={category.categoryName}
           width={100}
           height={100}

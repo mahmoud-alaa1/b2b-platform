@@ -11,7 +11,6 @@ interface IPaginatedResponse<T> {
   meta: IPaginationMeta;
 }
 
-
 interface IApiResponse<T> {
   data: T;
 }

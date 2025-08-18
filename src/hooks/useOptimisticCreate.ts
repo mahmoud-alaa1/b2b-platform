@@ -43,7 +43,7 @@ export default function useOptimisticCreate<TData, TInput>({
               ...old.pages.slice(1),
             ],
           };
-        }
+        },
       );
 
       return { previousData };

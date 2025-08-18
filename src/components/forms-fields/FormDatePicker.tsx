@@ -60,7 +60,7 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
                   <span
                     className={cn(
                       "truncate",
-                      !field.value && "text-muted-foreground"
+                      !field.value && "text-muted-foreground",
                     )}
                   >
                     {field.value

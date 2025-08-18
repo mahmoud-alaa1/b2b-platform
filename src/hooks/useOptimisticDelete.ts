@@ -49,7 +49,7 @@ export default function useOptimisticDelete<TData, TId>({
       else if (Array.isArray(previousData)) {
         queryClient.setQueryData(
           queryKey,
-          previousData.filter((item) => !matcher(item, id))
+          previousData.filter((item) => !matcher(item, id)),
         );
       }
 

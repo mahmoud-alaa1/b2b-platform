@@ -12,63 +12,57 @@ import { loginSchema } from "@/schemas/authSchema";
 import Spinner from "../ui/spinner";
 import useLogin from "@/hooks/auth/useLogin";
 
-
 export default function LoginForm() {
-    const { mutate, isPending } = useLogin();
+  const { mutate, isPending } = useLogin();
 
-    const form = useForm<loginSchema>({
-        resolver: zodResolver(loginSchema),
-        defaultValues: {
-            email: "",
-            password: "",
-            rememberMe: true,
-        },
-    });
-    function onSubmit(values: loginSchema) {
-        mutate(values);
-    }
+  const form = useForm<loginSchema>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      rememberMe: true,
+    },
+  });
+  function onSubmit(values: loginSchema) {
+    mutate(values);
+  }
 
-
-
-    return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8"
-            >
-                <FormInput<loginSchema>
-                    control={form.control}
-                    name="email"
-                    placeholder="البريد الإلكتروني"
-                    Icon={<Mail className="size-4 text-indigo-500" />}
-                    autoComplete="email"
-                />
-                <FormPassword<loginSchema>
-                    control={form.control}
-                    name="password"
-                    placeholder="كلمة المرور"
-                    autoComplete="current-password"
-                />
-                <div className="flex justify-between">
-                    <FormCheckbox<loginSchema>
-                        control={form.control}
-                        name="rememberMe"
-                        label="تذكرني"
-                    />
-                    <Link
-                        href="/forgot-password"
-                        className="text-indigo-500 hover:underline"
-                    >
-                        نسيت كلمة المرور؟
-                    </Link>
-                </div>
-                <Button
-                    disabled={isPending}
-                    className="w-full text-white py-2 transition rounded-2xl"
-                >
-                    {isPending ? <Spinner /> : "تسجيل الدخول"}
-                </Button>
-            </form>
-        </Form>
-    );
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormInput<loginSchema>
+          control={form.control}
+          name="email"
+          placeholder="البريد الإلكتروني"
+          Icon={<Mail className="size-4 text-indigo-500" />}
+          autoComplete="email"
+        />
+        <FormPassword<loginSchema>
+          control={form.control}
+          name="password"
+          placeholder="كلمة المرور"
+          autoComplete="current-password"
+        />
+        <div className="flex justify-between">
+          <FormCheckbox<loginSchema>
+            control={form.control}
+            name="rememberMe"
+            label="تذكرني"
+          />
+          <Link
+            href="/forgot-password"
+            className="text-indigo-500 hover:underline"
+          >
+            نسيت كلمة المرور؟
+          </Link>
+        </div>
+        <Button
+          disabled={isPending}
+          className="w-full text-white py-2 transition rounded-2xl"
+        >
+          {isPending ? <Spinner /> : "تسجيل الدخول"}
+        </Button>
+      </form>
+    </Form>
+  );
 }

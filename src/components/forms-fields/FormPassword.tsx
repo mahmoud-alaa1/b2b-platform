@@ -43,7 +43,8 @@ export default function FormPassword<TFormValues extends FieldValues>({
           className=" p-0 w-fit  "
           size="icon"
           type="button"
-          onClick={() => setShowPassword(!showPassword)}>
+          onClick={() => setShowPassword(!showPassword)}
+        >
           {showPassword ? (
             <Eye className="w-4 h-4" />
           ) : (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Mail,
   Phone,
@@ -8,22 +8,23 @@ import {
   Verified,
   User,
   ShieldCheck,
-  Tag
-} from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
-import { formatDistance } from 'date-fns';
-import { ar } from 'date-fns/locale';
-import Image from 'next/image';
-
+  Tag,
+} from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { formatDistance } from "date-fns";
+import { ar } from "date-fns/locale";
+import Image from "next/image";
 
 export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
-
   return (
     <div className="group flex flex-col relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-200/50  hover:shadow-2xl hover:shadow-gray-900/10 hover:border-gray-300/50 transition-all duration-500 transform  h-full">
-
       {/* Header Section */}
       <div className="relative flex  flex-wrap flex-col justify-center items-center gap-5 mb-3">
         <div className="relative w-full bg-gradient-to-br from-indigo-50 via-purple-100 to-blue-200 rounded-t-2xl p-5">
@@ -35,43 +36,44 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
                 className="w-full rounded-[inherit] h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 fill
               />
-            ) :
+            ) : (
               <div className="relative flex-shrink-0">
                 <div className="w-16 h-16  rounded-xl flex items-center justify-center">
                   <Building2 className="size-20 text-indigo-600" />
                 </div>
               </div>
-            }
+            )}
 
             <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full  shadow-lg flex items-center justify-center">
               <Tooltip>
-                <TooltipTrigger type='button' >
+                <TooltipTrigger type="button">
                   <Verified className="size-4 text-white" />
                 </TooltipTrigger>
-                <TooltipContent className='text-xs! flex gap-2 items-center font-semibold p-2'>
+                <TooltipContent className="text-xs! flex gap-2 items-center font-semibold p-2">
                   <span>موثق</span>
                   <ShieldCheck className="size-4 text-white" />
                 </TooltipContent>
               </Tooltip>
             </div>
           </div>
-
         </div>
-
       </div>
-      <div className='p-5 pt-0 space-y-2 relative'>
+      <div className="p-5 pt-0 space-y-2 relative">
         <div className="flex-1 space-y-1 self-start">
           <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2 truncate group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
             {supplier.companyName}
           </h3>
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <Calendar className="w-4 h-4" />
-            <span>انضم {formatDistance(supplier.joinDate, new Date(), {
-              locale: ar,
-              addSuffix: true,
-            })}</span>
+            <span>
+              انضم{" "}
+              {formatDistance(supplier.joinDate, new Date(), {
+                locale: ar,
+                addSuffix: true,
+              })}
+            </span>
           </div>
-          <div className='flex items-center gap-2 text-gray-500 '>
+          <div className="flex items-center gap-2 text-gray-500 ">
             <Mail className="size-4 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" />
             {supplier.email}
           </div>
@@ -80,10 +82,7 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
         <div className="my-4">
           <div className="flex flex-wrap gap-3">
             {supplier?.categoryNames?.slice(0, 5).map((category, index) => (
-              <Badge
-                key={index}
-                className='px-2  py-1 rounded-xl shadow-lg'
-              >
+              <Badge key={index} className="px-2  py-1 rounded-xl shadow-lg">
                 <Tag />
                 {category}
               </Badge>
@@ -102,13 +101,12 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
           {supplier.locations.map((location, index) => (
             <Badge
               key={index}
-              className='px-2  py-1 rounded-2xl shadow-lg!'
+              className="px-2  py-1 rounded-2xl shadow-lg!"
               variant="outline"
             >
               <MapPin className="size-4" />
               {location}
             </Badge>
-
           ))}
           {supplier.locations.length > 3 && (
             <Badge className="shadow-lg rounded-xl text-sm font-semibold bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600 border border-gray-300/50  transition-transform duration-200">
@@ -117,8 +115,6 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
             </Badge>
           )}
         </div>
-
-
 
         {/* Contact Actions */}
         <div className="relative flex flex-col gap-4 mt-auto">
@@ -129,17 +125,17 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
             <Phone className="size-4 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" />
             {supplier.phoneNumber}
           </Link>
-          <Button type='button' variant="gradient-indigo" className='mt-auto'>
-            <Link href={`/suppliers/${supplier.id}/profile`} className="flex items-center gap-2">
+          <Button type="button" variant="gradient-indigo" className="mt-auto">
+            <Link
+              href={`/suppliers/${supplier.id}/profile`}
+              className="flex items-center gap-2"
+            >
               <User className="size-4 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" />
               عرض الملف الشخصي
             </Link>
           </Button>
         </div>
       </div>
-
-
-
-    </div >
+    </div>
   );
-};
+}
