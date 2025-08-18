@@ -1,6 +1,8 @@
+import "../styles/globals.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
-import "../styles/globals.css";
 import Providers from "@/providers/Providers";
 import { Toaster } from "@/components/ui/sonner";
 import RouterInit from "@/components/RouterInit";
@@ -54,10 +56,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
+
       <body className={`${cairo.variable} ${cairo.className} antialiased`}>
-          <Providers>{children}</Providers>
-          <Toaster />
-          <RouterInit />
+        <Providers>{children}</Providers>
+        <Toaster />
+        <RouterInit />
       </body>
     </html>
   );

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-12">
+    <section className="relative min-h-[80dvh] flex items-center justify-center overflow-hidden ">
       {/* Animated Background */}
       <div className="absolute inset-0 z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5  to-slate-900/5" />

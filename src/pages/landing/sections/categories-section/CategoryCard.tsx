@@ -14,6 +14,7 @@ export default function CategoryCard({ category }: categoryCardProps) {
           width={100}
           height={100}
           className="rounded-full ring-1 ring-gray-300 object-cover w-24 h-24 mb-2"
+          sizes="(max-width: 640px) 100px, (max-width: 768px) 100px, 100px"
         />
       )}
       <span className="md:text-lg text-sm font-bold text-gray-800 break-words">
