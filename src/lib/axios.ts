@@ -37,7 +37,7 @@ api.interceptors.response.use(
 
         const originalRequest: ICustomAxiosInternalConfig | undefined = error.config;
         if (
-            originalRequest?.url?.includes("/auth/login")
+            originalRequest?.url?.includes("/login")
         ) {
             return Promise.reject(error);
         }

@@ -1,5 +1,5 @@
 declare interface ISupplierInfo {
-  id: number;
+  id: number | string;
   name: string;
   email: string;
   phoneNumber: string;
@@ -8,6 +8,8 @@ declare interface ISupplierInfo {
   locations: (string | null)[];
   countOfOrderAccepted: number;
   categories: string[];
+  averageRating: number;
+  productCount: number;
 }
 
 interface IAccountInfoPatchResponse {
@@ -19,4 +21,28 @@ interface IAccountInfoPatchResponse {
 interface IAccountLogoPatchResponse {
   id: number | string;
   logoUrl: string | File;
+}
+
+// interface for supplier Product and reviews
+declare interface ISupplierProductsAndReviews {
+  products: ISupplierProducts[];
+  allReviews: ISupplierReviews[];
+  companyName: string;
+}
+
+export interface ISupplierProducts {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  companyName: string;
+  productImageURl: string;
+  offer: number;
+  isSpecial: boolean;
+}
+
+declare interface ISupplierReviews {
+  reviewerName: string;
+  rating: number;
+  comment: string;
 }

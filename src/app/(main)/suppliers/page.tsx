@@ -50,7 +50,6 @@ export default async function SuppliersSearchClient({
         pageSize: SUPPLIERS_PAGE_SIZE,
     });
 
-    console.log(`the server suppliers`, suppliers)
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white" dir="rtl">
