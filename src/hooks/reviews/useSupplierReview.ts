@@ -15,7 +15,7 @@ export default function useSupplierReview({
     onSuccess: (data) => {
       console.log("Review submitted successfully:", data);
       toast.success("تم إرسال المراجعة بنجاح");
-      queryClient.invalidateQueries({queryKey:["supplier-deals"]});
+      queryClient.invalidateQueries({ queryKey: ["supplier-deals"] });
     },
     onError: (error) => {
       console.error("Error submitting review:", error);
