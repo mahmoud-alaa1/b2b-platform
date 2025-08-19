@@ -53,13 +53,13 @@ export const revalidate = 3600;
 export default async function HomePage() {
   const categories = await getCategoriesServer();
   const advertisements = await fetchAdvertisements();
-  const plans = await fetchPlans( );
+  const plans = await fetchPlans();
   return (
     <>
       <StructuredData />
       <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/30">
-        <CarouselSection advertisements={advertisements} />
         <HeroSection />
+        <CarouselSection advertisements={advertisements} />
         <HowItWorksSection />
         <PricingSection plans={plans.data} />
         <Categories categories={categories} />

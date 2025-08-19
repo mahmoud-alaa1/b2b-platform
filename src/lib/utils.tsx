@@ -1,3 +1,5 @@
+import { queryClient } from "@/providers/ReactQueryProvider";
+import useAuth from "@/store/authStore";
 import { clsx, type ClassValue } from "clsx";
 import { File, FileText, FileVideo, ImageIcon, Music } from "lucide-react";
 import { twMerge } from "tailwind-merge";
@@ -52,3 +54,7 @@ export function buildQueryString(params?: Record<string, unknown>) {
   return searchParams.toString();
 }
 
+export function clearState() {
+  queryClient.clear();
+  useAuth.getState().logout();
+}

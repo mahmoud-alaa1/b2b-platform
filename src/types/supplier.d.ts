@@ -46,3 +46,15 @@ declare interface ISupplierReviews {
   rating: number;
   comment: string;
 }
+
+interface ISupplierDeal {
+  dealId: number | string;
+  description: string;
+  CompanyName: string;
+  CompanyEmail: string;
+  CompanyPhone: string;
+  contactPersonName: string;
+  contactPersonPhone: string;
+  dealstatus: keyof typeof EDealStatus;
+  OrderStatus: keyof typeof EOrderStatus;
+}

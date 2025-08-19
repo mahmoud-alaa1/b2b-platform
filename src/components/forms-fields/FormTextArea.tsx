@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Control, FieldValues, Path } from "react-hook-form";
+import { Control, FieldValues, Path, useFormContext } from "react-hook-form";
 import { TextareaHTMLAttributes } from "react";
 import { AutosizeTextarea } from "../ui/AutoResizeTextarea";
 
@@ -26,7 +26,6 @@ interface FormInputProps<TFormValues extends FieldValues>
 }
 
 export default function FormTextArea<TFormValues extends FieldValues>({
-  control,
   label,
   name,
   rightComponent,
@@ -36,9 +35,11 @@ export default function FormTextArea<TFormValues extends FieldValues>({
   onEnterSubmit,
   ...inputProps
 }: FormInputProps<TFormValues>) {
+  const form = useFormContext<TFormValues>();
+
   const isMobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent,
+      navigator.userAgent
     );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -59,7 +60,7 @@ export default function FormTextArea<TFormValues extends FieldValues>({
 
   return (
     <FormField
-      control={control}
+      control={form.control}
       name={name}
       render={({ field }) => (
         <FormItem>
@@ -76,6 +77,7 @@ export default function FormTextArea<TFormValues extends FieldValues>({
                 id={name}
                 {...inputProps}
                 {...field}
+
                 onKeyDown={handleKeyDown}
                 className={`${rightComponent ? "pr-10" : ""} ${
                   leftComponent ? "pl-10" : ""

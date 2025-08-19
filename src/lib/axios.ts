@@ -1,8 +1,8 @@
 import { refreshTokenService } from "@/services/authServices";
-import useAuth from "@/store/authStore";
 import { navigateTo } from "@/utils/navigationHelper";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import Cookies from "js-cookie";
+import { clearState } from "./utils";
 
 interface ICustomAxiosInternalConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
@@ -47,7 +47,7 @@ api.interceptors.response.use(
         return api(originalRequest);
       } catch (refreshError) {
         console.error("Token refresh failed:", refreshError);
-        useAuth.getState().logout();
+        clearState()
         navigateTo("/login");
         return Promise.reject(refreshError);
       }

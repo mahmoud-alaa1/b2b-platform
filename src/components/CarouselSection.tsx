@@ -1,12 +1,6 @@
 import React from "react";
 import AdvertisementCarousel from "@/components/AdvertisementCarousel";
 
-interface IAdvertisement {
-  id: string | number;
-  targetUrl: null | string;
-  imagUrl: string;
-}
-
 interface CarouselSectionProps {
   advertisements: IAdvertisement[];
 }
@@ -14,7 +8,6 @@ interface CarouselSectionProps {
 const CarouselSection: React.FC<CarouselSectionProps> = ({
   advertisements,
 }) => {
-  // Don't render the section if no advertisements
   if (!advertisements || advertisements.length === 0) {
     return null;
   }
@@ -44,7 +37,6 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-slate-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent mb-2 leading-tight">
               عروض حصرية
             </h2>
-
           </div>
         </div>
 

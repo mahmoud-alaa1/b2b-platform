@@ -1,5 +1,5 @@
-import ProductsForm from "@/components/forms/products-form/ProductsForm";
+import ProductsList from "./_components/ProductsList";
 
 export default function page() {
-  return <ProductsForm />;
+  return <ProductsList />;
 }

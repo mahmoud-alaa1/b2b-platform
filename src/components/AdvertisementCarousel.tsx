@@ -51,7 +51,7 @@ const AdvertisementCarousel: React.FC<AdvertisementCarouselProps> = ({
     const slideContent = (
       <div className="relative w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px]">
         <Image
-          src={advertisement.imagUrl}
+          src={advertisement.imageUrl}
           alt={`إعلان ${advertisement.id}`}
           fill
           className="object-cover object-center"
@@ -60,7 +60,7 @@ const AdvertisementCarousel: React.FC<AdvertisementCarouselProps> = ({
       </div>
     );
 
-    if (advertisement.targetUrl) {
+    if (advertisement.targetUrl && advertisement.targetUrl !== "") {
       return (
         <Link
           href={advertisement.targetUrl}

@@ -33,8 +33,8 @@ export const loginSchema = z.object({
   }),
   password: z
     .string()
-    .min(8, {
-      message: "من فضلك أدخل كلمة مرور لا تقل عن 8 أحرف",
+    .min(6, {
+      message: "من فضلك أدخل كلمة مرور لا تقل عن 6 أحرف",
     })
     .max(50, {
       message: "من فضلك أدخل كلمة مرور لا تزيد عن 50 حرف",

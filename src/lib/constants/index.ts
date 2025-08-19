@@ -19,3 +19,5 @@ export const REGISTRATION_STEPS = [
 export const CATEGORIES_PAGE_SIZE = 5;
 export const SUPPLIERS_PAGE_SIZE = 8;
 export const SUPPLIERS_BASE_KEY = "suppliers";
+export const TABLE_ROWS = 10;
+export const SUPPLIER_DEALS_TABLE_NAME = "الموردين المشتركين";

@@ -8,7 +8,12 @@ import {
   FormMessage,
 } from "../ui/form";
 import { cn } from "@/lib/utils";
-import { type Control, type FieldValues, type Path } from "react-hook-form";
+import {
+  useFormContext,
+  type Control,
+  type FieldValues,
+  type Path,
+} from "react-hook-form";
 import { Input } from "../ui/input";
 
 interface FormInputProps<TFormValues extends FieldValues>
@@ -32,9 +37,11 @@ export default function FormInput<TFormValues extends FieldValues>({
   labelClassName,
   ...inputProps
 }: FormInputProps<TFormValues>) {
+  const form = useFormContext<TFormValues>();
+
   return (
     <FormField
-      control={control}
+      control={form.control}
       name={name}
       render={({ field }) => (
         <FormItem>
