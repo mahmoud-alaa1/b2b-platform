@@ -8,57 +8,55 @@ import { AnimatePresence, motion } from "motion/react";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
-import {
-  conditionalRegisterSchema,
-  conditionalRegisterSchemaType,
-  step1Schema,
-  step2Schema,
-  step3Schema,
-} from "@/schemas/authSchema";
-
-import RegistersSteps from "./RegistersSteps";
-import { Step1Type } from "./Step1Type";
-import Step2BasicInfo from "./Step2BasicInfo";
-import { Step3TypeInfo } from "./Step3TypeInfo";
 import { ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
 import Spinner from "@/components/ui/spinner";
-import useRegister from "@/hooks/auth/useRegister";
+import usePostOrder from "@/hooks/usePostOrder";
+import {
+  CompleteOrderInput,
+  CompleteOrderOutput,
+  completeOrderSchema,
+  contactInfoSchema,
+  deliveryDetailsSchema,
+  productDetailsSchema,
+} from "@/schemas/orderSchema";
+import ProductDetailsStep from "./ProductDetailsStep";
+import DeliveryDetailsStep from "./DeliveryDetailsStep";
+import ContactInfoStep from "./ContactInfoStep";
 import { SLIDER_VARIANTS } from "@/lib/constants";
 
+const defaultValues = {
+  categoryId: undefined,
+  description: "",
+  quantity: 1,
+  numSuppliersDesired: 1,
+  requiredLocation: "",
+  deadline: new Date(),
+  contactPersonName: "",
+  contactPersonPhone: "",
+};
 
-export function MultiStepForm() {
+export function OrdersFormV2() {
   const [step, setStep] = useState<number>(0);
   const directionRef = useRef<"next" | "back">("next");
-  const { mutate, isPending, error } = useRegister();
+  const { mutate, isPending, error } = usePostOrder();
 
-  const form = useForm<conditionalRegisterSchemaType>({
-    resolver: zodResolver(conditionalRegisterSchema),
-    defaultValues: {
-      accountType: "Clients",
-      UserName: "",
-      email: "",
-      password: "",
-      phoneNumber: "",
-      location: "",
-    },
+  const form = useForm<CompleteOrderInput, undefined, CompleteOrderOutput>({
+    resolver: zodResolver(completeOrderSchema),
+    defaultValues: defaultValues,
   });
 
-  const accountType = form.watch("accountType");
   const stepSchemas = useMemo(() => {
-    return [
-      step1Schema,
-      step2Schema,
-      ...(accountType === "Suppliers" ? [step3Schema] : []),
-    ];
-  }, [accountType]);
+    return [productDetailsSchema, deliveryDetailsSchema, contactInfoSchema];
+  }, []);
+
   const totalSteps = stepSchemas.length;
   const isLastStep = step === totalSteps - 1;
   const isFirstStep = step === 0;
 
   async function handleNext() {
     const currentStepFields = Object.keys(
-      stepSchemas[step].shape,
-    ) as (keyof conditionalRegisterSchemaType)[];
+      stepSchemas[step].shape
+    ) as (keyof CompleteOrderOutput)[];
 
     const isStepValid = await form.trigger(currentStepFields);
     if (isStepValid) {
@@ -72,51 +70,35 @@ export function MultiStepForm() {
     setStep((prev) => Math.max(prev - 1, 0));
   }
 
-  async function onSubmit(values: conditionalRegisterSchemaType) {
-    const formData = new FormData();
-    formData.append("accountType", values.accountType);
-    formData.append("UserName", values.UserName);
-    formData.append("email", values.email);
-    formData.append("password", values.password);
-    formData.append("phoneNumber", values.phoneNumber);
-
-    if (values.accountType === "Suppliers") {
-      values.categories?.forEach((id) => {
-        formData.append("categoriesId", id);
-      });
-      values.documents?.forEach((loc) => {
-        formData.append("textNumberPicture", loc);
-      });
-      formData.append("locations", values.location || "no location");
-    }
-
-    mutate(formData);
+  async function onSubmit(values: CompleteOrderOutput) {
+    console.log(values);
+    mutate(values, {
+      onSuccess: () => {
+        form.reset();
+        setStep(0);
+      },
+    });
   }
 
   if (error) {
     Object.entries(error.details || {}).forEach(([key, value]) => {
-      form.setError(key as keyof conditionalRegisterSchemaType, {
+      form.setError(key as keyof CompleteOrderOutput, {
         message: value,
       });
     });
   }
 
   return (
-    <div className="max-w-4xl  p-6" dir="rtl">
+    <div className="w-full border rounded-2xl " dir="rtl">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full">
+          className="space-y-8 w-full rounded-2xl">
           {/* Main Content Card */}
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-white rounded-2xl shadow-2xl ">
-            <RegistersSteps totalSteps={totalSteps} step={step} />
-
             <fieldset disabled={isPending} className="space-y-8 w-full">
-              <div className="relative w-[clamp(350px,95vw,600px)] min-h-[500px] overflow-hidden ">
+              <div className="relative overflow-hidden ">
                 <AnimatePresence custom={directionRef.current} mode="wait">
                   <motion.div
                     key={step}
@@ -132,15 +114,15 @@ export function MultiStepForm() {
                       damping: 30,
                     }}
                     className=" inset-0 p-8">
-                    {step === 0 && <Step1Type />}
-                    {step === 1 && <Step2BasicInfo />}
-                    {step === 2 && <Step3TypeInfo />}
+                    {step === 0 && <ProductDetailsStep />}
+                    {step === 1 && <DeliveryDetailsStep />}
+                    {step === 2 && <ContactInfoStep />}
                   </motion.div>
                 </AnimatePresence>
               </div>
             </fieldset>
 
-            <div className="bg-gray-50 px-8 py-6 border-t">
+            <div className="bg-gray-50 px-8 py-6 border-t rounded-2xl">
               <div className="flex justify-between items-center">
                 <Button
                   type="button"

@@ -8,3 +8,21 @@ declare interface IOrder {
   quantity: number | string;
   requiredLocation: string;
 }
+
+interface IGetOrderResponse {
+  orderId: string | number;
+  categoryId: number;
+  description: string;
+  quantity: number;
+  requiredLocation: string;
+  deadline: string;
+  numSuppliersDesired: number;
+  contactPersonName: string;
+  contactPersonPhone: string;
+  dealStatus: TDealStatus;
+  OrderStatus: TOrderStatus;
+}
+
+interface IPostOrderResponse {
+  message: string;
+}

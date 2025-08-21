@@ -54,7 +54,7 @@ const AdvertisementCarousel: React.FC<AdvertisementCarouselProps> = ({
           src={advertisement.imageUrl}
           alt={`إعلان ${advertisement.id}`}
           fill
-          className="object-cover object-center"
+          className="object-cover "
           priority
         />
       </div>

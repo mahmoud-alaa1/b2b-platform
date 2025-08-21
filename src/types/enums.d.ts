@@ -11,3 +11,6 @@ enum EOrderStatus {
   Completed,
   Canceled,
 }
+
+type TDealStatus = keyof typeof EDealStatus;
+type TOrderStatus = keyof typeof EOrderStatus;

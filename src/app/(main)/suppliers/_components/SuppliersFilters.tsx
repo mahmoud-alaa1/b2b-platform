@@ -16,10 +16,9 @@ export default function SuppliersFilters() {
   return (
     <div className="space-y-8 h-fit">
       <FormInfiniteCombobox<suppliersFiltersSchema, ICategory>
-        control={form.control}
         name="category"
         placeholder="اختار فئة للبحث..."
-        fetchFn={(page) => getCategories({ page })}
+        fetchFn={(page, search) => getCategories({ page, search })}
         getOptionLabel={(option) => option.categoryName}
         getOptionValue={(option) => option.categoryId}
         queryKey={["categories"]}

@@ -1,12 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import useAuth from "@/store/authStore";
-import Loading from "../(main)/loading";
+
+import Loading from "@/app/loading";
 import SupplierDashboardHeader from "@/components/supplier-dashboard-layout.tsx/SupplierDashboardHeader";
 import SupplierDashboardSidebar from "@/components/supplier-dashboard-layout.tsx/SupplierDashboardSidebar";
+import useAuth from "@/store/authStore";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default function ProtectedLayout({
+export default function SupplierLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -16,8 +17,8 @@ export default function ProtectedLayout({
 
   useEffect(() => {
     if (auth.hasHydrated) {
-      if (!auth.user) {
-        router.replace("/login");
+      if (auth.user?.role !== "Suppliers") {
+        router.replace("/");
       }
     }
   }, [auth.hasHydrated, auth.user, router]);
@@ -33,10 +34,7 @@ export default function ProtectedLayout({
       </div>
       <div className="lg:col-span-10">
         <SupplierDashboardHeader />
-        <main className="p-4">
-        {children}
-
-        </main>
+        <main className="p-4">{children}</main>
       </div>
     </div>
   );

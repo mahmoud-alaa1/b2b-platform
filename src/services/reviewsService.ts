@@ -11,3 +11,12 @@ export async function postSupplierReview(data: supplierReviewSchemaOutput & { de
     throw handleApiError(error);
   }
 }
+
+export async function postClientReview(data: supplierReviewSchemaOutput & { orderId: string | number }) {
+  try {
+    const res = await api.post(`/client/review`, data);
+    return res.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+}

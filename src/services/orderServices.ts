@@ -1,17 +1,47 @@
 import api from "@/lib/axios";
-import { isAxiosError } from "axios";
+import { CompleteOrderOutput } from "@/schemas/orderSchema";
+import { handleApiError } from "@/utils/handleApiError";
 
-// post order funcation
-export async function postOrderService(data: IOrder) {
+export async function postOrderService(data: CompleteOrderOutput) {
   try {
-    const response = await api.post("/order", data);
+    const response = await api.post<IApiResponse<IPostOrderResponse>>(
+      "/order",
+      data
+    );
     return response.data;
   } catch (error) {
-    if (isAxiosError(error)) {
-      throw new Error(
-        error.response?.data?.message || "حدث خطأ في ارسال الطلب ",
-      );
-    }
-    throw error;
+    throw handleApiError(error);
+  }
+}
+
+export async function getClientDeals() {
+  try {
+    const response = await api.get<IApiResponse<IGetOrderResponse[]>>(
+      "/client/deals"
+    );
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+}
+
+export async function clientCancelDeal({ id }: { id: string | number }) {
+  try {
+    const response = await api.patch<IApiResponse<{ message: string }>>(
+      `/client/cancel-order/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+}
+export async function clientConfirmDeal({ id }: { id: string | number }) {
+  try {
+    const response = await api.patch<IApiResponse<{ message: string }>>(
+      `/client/cancel-order/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
   }
 }

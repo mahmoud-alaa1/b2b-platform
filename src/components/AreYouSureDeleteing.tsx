@@ -82,9 +82,7 @@ export function AreYouSureDeleteing({
               <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
               <div className="text-sm text-red-800">
                 <p className="font-medium mb-1">تحذير!</p>
-                <p>
-                  هذا الإجراء لا يمكن التراجع عنه. سيتم حذف البيانات نهائياً.
-                </p>
+                <p>هذا الإجراء لا يمكن التراجع عنه.</p>
               </div>
             </div>
           </div>

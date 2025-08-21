@@ -76,7 +76,6 @@ export function ResponsiveModal({
     return heightMap[height];
   };
 
-  console.log(getHeightClass())
 
   if (isDesktop) {
     return (

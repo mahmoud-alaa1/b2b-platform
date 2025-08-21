@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Control, FieldValues, Path } from "react-hook-form";
+import { Control, FieldValues, Path, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import {
   Command,
@@ -21,6 +21,7 @@ import { Check, ChevronDown } from "lucide-react";
 import Spinner from "../ui/spinner";
 import useInfinite from "@/hooks/useInfinite";
 import { useState } from "react";
+import useDebounce from "@/hooks/useDebounce";
 
 interface FormInfiniteComboboxProps<TFormValues extends FieldValues, TData> {
   label?: string;
@@ -31,18 +32,19 @@ interface FormInfiniteComboboxProps<TFormValues extends FieldValues, TData> {
   disabled?: boolean;
   required?: boolean;
   queryKey: string[];
-  fetchFn: (pageNumber: number) => Promise<IPaginatedResponse<TData>>;
+  fetchFn: (
+    pageNumber: number,
+    search: string
+  ) => Promise<IPaginatedResponse<TData>>;
   getOptionLabel: (item: TData) => string;
   getOptionValue: (item: TData) => string | number;
-  control: Control<TFormValues>;
   name: Path<TFormValues>;
 }
 
 export default function FormInfiniteCombobox<
   TFormValues extends FieldValues,
-  TData,
+  TData
 >({
-  control,
   name,
   label,
   description,
@@ -55,9 +57,14 @@ export default function FormInfiniteCombobox<
   getOptionLabel,
   getOptionValue,
 }: FormInfiniteComboboxProps<TFormValues, TData>) {
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 500);
+
+  const form = useFormContext<TFormValues>();
+
   const { data, isFetching, ref } = useInfinite<TData>({
-    queryKey,
-    fetchFn: (pageNumber) => fetchFn(pageNumber),
+    queryKey: [...queryKey, debouncedSearch],
+    fetchFn: (pageNumber) => fetchFn(pageNumber, debouncedSearch),
   });
 
   const options = data?.pages.flatMap((page) => page.data) ?? [];
@@ -69,11 +76,11 @@ export default function FormInfiniteCombobox<
 
   return (
     <FormField
-      control={control}
+      control={form.control}
       name={name}
       render={({ field }) => {
         const selected = options.find(
-          (item) => getOptionValue(item).toString() === field.value?.toString(),
+          (item) => getOptionValue(item).toString() === field.value?.toString()
         );
 
         return (
@@ -91,10 +98,9 @@ export default function FormInfiniteCombobox<
                     role="combobox"
                     className={cn(
                       "w-full justify-between hover:scale-100",
-                      className,
+                      className
                     )}
-                    disabled={disabled}
-                  >
+                    disabled={disabled}>
                     {selected
                       ? getOptionLabel(selected)
                       : placeholder || "اختر..."}
@@ -107,12 +113,13 @@ export default function FormInfiniteCombobox<
                       placeholder="ابحث..."
                       className="h-9"
                       disabled={disabled}
+                      value={search}
+                      onValueChange={setSearch}
                     />
                     <CommandEmpty>لا توجد نتائج</CommandEmpty>
                     <CommandGroup
                       className="max-h-40 overscroll-contain overflow-y-auto"
-                      style={{ WebkitOverflowScrolling: "touch" }}
-                    >
+                      style={{ WebkitOverflowScrolling: "touch" }}>
                       {options.map((item) => {
                         const value = getOptionValue(item).toString();
                         const label = getOptionLabel(item);
@@ -124,8 +131,7 @@ export default function FormInfiniteCombobox<
                             onSelect={() => {
                               field.onChange(value);
                               setOpen(false);
-                            }}
-                          >
+                            }}>
                             {label}
                             {value === field.value?.toString() && (
                               <Check className="ml-auto h-4 w-4" />

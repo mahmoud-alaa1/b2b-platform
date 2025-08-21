@@ -15,9 +15,9 @@ export const orderSchema = z.object({
     .min(10, {
       message: "رقم الهاتف غير صالح.",
     })
-    .regex(/^01[0-2]\d{8}$/, {
+    .regex(/^01[0|1|2|5]\d{8}$/, {
       message:
-        "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 ويحتوي على 11 رقمًا.",
+        "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 أو 015 ويحتوي على 11 رقمًا.",
     })
     .trim(),
   quantity: z.coerce
@@ -74,3 +74,51 @@ export type orderSchema = z.infer<typeof orderSchema>;
 
 export type orderSchemaInput = z.input<typeof orderSchema>;
 export type orderSchemaOutput = z.output<typeof orderSchema>;
+
+// Step 1: Product Details Schema
+export const productDetailsSchema = z.object({
+  categoryId: z.coerce.number({
+    error: "يجب اختيار فئة المنتج",
+  }),
+  description: z.string().min(10, "الوصف يجب أن يكون 10 أحرف على الأقل").trim(),
+  quantity: z.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
+  numSuppliersDesired: z
+    .number()
+    .min(1, "عدد الموردين يجب أن يكون أكبر من صفر"),
+});
+export type productDetailsOutput = z.output<typeof productDetailsSchema>;
+
+// Step 2: Delivery Details Schema
+export const deliveryDetailsSchema = z.object({
+  requiredLocation: z.string().min(3, "الموقع يجب أن يكون 3 أحرف على الأقل"),
+  deadline: z
+    .date()
+    .refine(
+      (date) => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return date >= today;
+      },
+      {
+        message: "لا يمكن التسليم في الماضي",
+      }
+    )
+    .transform((date) => date.toISOString()),
+});
+
+// Step 3: Contact Information Schema
+export const contactInfoSchema = z.object({
+  contactPersonName: z.string().min(2, "الاسم يجب أن يكون حرفين على الأقل"),
+  contactPersonPhone: z.string().min(11, "رقم الهاتف غير صحيح"),
+});
+
+// Combined schema for final submission
+export const completeOrderSchema = productDetailsSchema
+  .extend(deliveryDetailsSchema.shape)
+  .extend(contactInfoSchema.shape);
+
+export type ProductDetailsInput = z.infer<typeof productDetailsSchema>;
+export type DeliveryDetailsInput = z.infer<typeof deliveryDetailsSchema>;
+export type ContactInfoInput = z.infer<typeof contactInfoSchema>;
+export type CompleteOrderInput = z.input<typeof completeOrderSchema>;
+export type CompleteOrderOutput = z.output<typeof completeOrderSchema>;

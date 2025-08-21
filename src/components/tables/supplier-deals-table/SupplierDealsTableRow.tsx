@@ -1,6 +1,6 @@
 "use client";
 
-import SupplierReview from "@/app/(client-protected)/suppliers-dashboard/orders/_components/SupplierReview";
+import SupplierReview from "@/app/(client-side-protected)/suppliers-dashboard/orders/_components/SupplierReview";
 import { Badge } from "@/components/ui/badge";
 import { TableCell, TableRow } from "@/components/ui/table";
 

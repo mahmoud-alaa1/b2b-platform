@@ -16,7 +16,7 @@ export default function useLogin() {
       login(data);
       router.push(
         data.user.role === "Clients"
-          ? "/clients-dashboard"
+          ? "/clients-dashboard/overview"
           : "/suppliers-dashboard/orders"
       );
     },

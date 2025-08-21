@@ -61,7 +61,7 @@ export default function FormInput<TFormValues extends FieldValues>({
                 id={name}
                 {...field}
                 {...inputProps}
-                className={cn("py-5.5!", Icon && "pe-8", className)}
+                className={cn("py-5.5!", Icon && "pe-9", className)}
                 // ⬅️ تم إضافة هذا التعديل لضمان عدم ظهور "NaN"
                 value={
                   inputProps.type === "number" && isNaN(field.value as number)

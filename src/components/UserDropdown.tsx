@@ -159,7 +159,7 @@ export default function UserDropdown() {
               href={
                 isSupplier
                   ? "/suppliers-dashboard/products"
-                  : "/clients-dashboard"
+                  : "/clients-dashboard/overview"
               }
               className="block">
               <DropdownMenuItem
@@ -189,7 +189,7 @@ export default function UserDropdown() {
             </Link>
 
             {!isSupplier ? (
-              <Link href="/orders" className="block">
+              <Link href="/clients-dashboard/new-order" className="block">
                 <DropdownMenuItem
                   className="
                   h-12 rounded-xl cursor-pointer

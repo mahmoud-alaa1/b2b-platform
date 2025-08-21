@@ -22,6 +22,16 @@ const buttonVariants = cva(
         "link": "text-primary underline-offset-4 hover:underline",
         "gradient-indigo":
           "bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700",
+        "gradient-green":
+          "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg hover:from-emerald-600 hover:to-teal-700 hover:shadow-xl focus-visible:ring-emerald-500/30 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border-0 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/10 before:to-white/0 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700",
+        "gradient-mint":
+          "bg-gradient-to-r from-green-400 to-cyan-500 text-white shadow-lg hover:from-green-500 hover:to-cyan-600 hover:shadow-xl focus-visible:ring-green-400/30 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200",
+        "gradient-forest":
+          "bg-gradient-to-r from-green-600 to-emerald-700 text-white shadow-lg hover:from-green-700 hover:to-emerald-800 hover:shadow-xl focus-visible:ring-green-600/30 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200",
+        "gradient-lime":
+          "bg-gradient-to-r from-lime-500 to-green-600 text-white shadow-lg hover:from-lime-600 hover:to-green-700 hover:shadow-xl focus-visible:ring-lime-500/30 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200",
+        "gradient-ocean":
+          "bg-gradient-to-r from-teal-500 to-emerald-600 text-white shadow-lg hover:from-teal-600 hover:to-emerald-700 hover:shadow-xl focus-visible:ring-teal-500/30 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

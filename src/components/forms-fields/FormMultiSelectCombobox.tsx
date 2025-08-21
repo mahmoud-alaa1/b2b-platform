@@ -21,20 +21,23 @@ import { Check, ChevronDown } from "lucide-react";
 import Spinner from "../ui/spinner";
 import useInfinite from "@/hooks/useInfinite";
 import { useState, useMemo } from "react";
+import useDebounce from "@/hooks/useDebounce";
 
 interface FormInfiniteMultiComboboxProps<
   TFormValues extends FieldValues,
-  TData,
+  TData
 > {
   label?: string;
   description?: string;
   labelClassName?: string;
-  placeholder?: string;
   className?: string;
   disabled?: boolean;
   required?: boolean;
   queryKey: string[];
-  fetchFn: (pageNumber: number) => Promise<IPaginatedResponse<TData>>;
+  fetchFn: (
+    pageNumber: number,
+    search: string
+  ) => Promise<IPaginatedResponse<TData>>;
   getOptionLabel: (item: TData) => string;
   getOptionValue: (item: TData) => string | number;
   control: Control<TFormValues>;
@@ -46,13 +49,12 @@ interface FormInfiniteMultiComboboxProps<
 
 export default function FormInfiniteMultiCombobox<
   TFormValues extends FieldValues,
-  TData,
+  TData
 >({
   control,
   name,
   label,
   description,
-  placeholder,
   className,
   labelClassName,
   disabled,
@@ -62,14 +64,17 @@ export default function FormInfiniteMultiCombobox<
   getOptionValue,
   onOptionsChange,
 }: FormInfiniteMultiComboboxProps<TFormValues, TData>) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
   const { data, isFetching, ref } = useInfinite<TData>({
-    queryKey,
-    fetchFn: (pageNumber) => fetchFn(pageNumber),
+    queryKey: [...queryKey, debouncedSearchTerm],
+    fetchFn: (pageNumber) => fetchFn(pageNumber, debouncedSearchTerm),
   });
 
   const options = useMemo(
     () => data?.pages.flatMap((page) => page.data) ?? [],
-    [data],
+    [data]
   );
   const lastPage = data?.pages[data.pages.length - 1];
   const hasMoreData =
@@ -84,12 +89,12 @@ export default function FormInfiniteMultiCombobox<
     }
   }, [options, onOptionsChange]);
 
-  // Helper function to get selected options
-  const getSelectedOptions = (selectedValues: (string | number)[]) => {
-    return options.filter((option) =>
-      selectedValues.includes(getOptionValue(option)),
-    );
-  };
+  // // Helper function to get selected options
+  // const getSelectedOptions = (selectedValues: (string | number)[]) => {
+  //   return options.filter((option) =>
+  //     selectedValues.includes(getOptionValue(option))
+  //   );
+  // };
 
   // Helper function to format display text
   const getDisplayText = (selectedValues: (string | number)[]) => {
@@ -100,7 +105,7 @@ export default function FormInfiniteMultiCombobox<
   const toggleOption = (
     optionValue: string | number,
     currentValues: (string | number)[],
-    onChange: (values: (string | number)[]) => void,
+    onChange: (values: (string | number)[]) => void
   ) => {
     const isSelected = currentValues.includes(optionValue);
 
@@ -135,15 +140,15 @@ export default function FormInfiniteMultiCombobox<
               <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                   <Button
+                    id={name}
                     variant="outline"
                     role="combobox"
                     className={cn(
                       "w-full justify-between hover:scale-100 h-auto min-h-[40px] px-3 py-2",
                       selectedValues.length === 0 && "text-muted-foreground",
-                      className,
+                      className
                     )}
-                    disabled={disabled}
-                  >
+                    disabled={disabled}>
                     <span className="truncate flex-1 text-right">
                       {getDisplayText(selectedValues)}
                     </span>
@@ -157,6 +162,8 @@ export default function FormInfiniteMultiCombobox<
                       placeholder="ابحث..."
                       className="h-9"
                       disabled={disabled}
+                      value={searchTerm}
+                      onValueChange={setSearchTerm}
                     />
                     <CommandEmpty>لا توجد نتائج</CommandEmpty>
                     <CommandGroup className="h-60 overflow-auto">
@@ -173,23 +180,21 @@ export default function FormInfiniteMultiCombobox<
                               toggleOption(
                                 value,
                                 selectedValues,
-                                field.onChange,
+                                field.onChange
                               );
                             }}
                             className={cn(
                               "flex items-center justify-between cursor-pointer",
-                              isSelected && "bg-accent",
-                            )}
-                          >
+                              isSelected && "bg-accent"
+                            )}>
                             <span className="flex-1 text-right">{label}</span>
                             <div
                               className={cn(
                                 "flex h-5 w-5 items-center justify-center rounded-sm border border-primary",
                                 isSelected
                                   ? "bg-primary text-primary"
-                                  : "opacity-50 [&_svg]:invisible",
-                              )}
-                            >
+                                  : "opacity-50 [&_svg]:invisible"
+                              )}>
                               <Check className="h-3 w-3 text-white" />
                             </div>
                           </CommandItem>
