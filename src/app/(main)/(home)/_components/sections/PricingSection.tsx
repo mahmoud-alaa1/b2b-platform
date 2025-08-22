@@ -12,6 +12,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import Link from "next/link";
+import { formatMonths } from "@/lib/utils";
 
 interface PricingSectionProps {
   plans: IPlan[];
@@ -73,41 +74,8 @@ export default function PricingSection({ plans }: PricingSectionProps) {
     );
   };
 
-  const formatDuration = (duration: number) => {
-    if (duration === 1) return "شهر";
-    if (duration <= 10) return `${duration} أشهر`;
-    if (duration === 12) return "سنة";
-    if (duration === 24) return "سنتين";
-    return `${duration} شهر`;
-  };
-
-  const sortedPlans = [...plans].sort((a, b) => {
-    if (a.price === 0 && b.price > 0) return -1;
-    if (b.price === 0 && a.price > 0) return 1;
-    return a.price - b.price;
-  });
-
-  if (!plans || plans.length === 0) {
-    return (
-      <section className="py-24 bg-gradient-to-br from-white to-indigo-50/30">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
-            خطط الأسعار
-          </h2>
-          <p className="text-slate-600">لا توجد خطط متاحة حالياً</p>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section className="py-24 bg-gradient-to-br from-white to-indigo-50/30 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-purple-400 to-violet-500 rounded-full blur-3xl" />
-      </div>
-
+    <section className="py-12 bg-gradient-to-br from-white to-indigo-50/30 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <Badge className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-indigo-200/50">
@@ -125,16 +93,16 @@ export default function PricingSection({ plans }: PricingSectionProps) {
 
         <div
           className={`grid grid-cols-1 gap-8 max-w-6xl mx-auto ${
-            sortedPlans.length === 1
+            plans.length === 1
               ? "md:grid-cols-1 max-w-md"
-              : sortedPlans.length === 2
+              : plans.length === 2
               ? "md:grid-cols-2 max-w-4xl"
               : "lg:grid-cols-3"
           }`}>
-          {sortedPlans.map((plan, index) => {
+          {plans.map((plan, index) => {
             const PlanIcon = getPlanIcon(plan, index);
             const colors = getPlanColors(plan, index);
-            const popular = isPopular(plan, index, sortedPlans);
+            const popular = isPopular(plan, index, plans);
 
             return (
               <div key={plan.id} className="relative">
@@ -166,7 +134,7 @@ export default function PricingSection({ plans }: PricingSectionProps) {
                             {plan.planName}
                           </h3>
                           <p className="text-sm text-slate-600">
-                            {formatDuration(plan.duration)}
+                            {formatMonths(plan.duration)}
                           </p>
                         </div>
                       </div>
@@ -183,7 +151,7 @@ export default function PricingSection({ plans }: PricingSectionProps) {
                         </span>
                         {plan.price > 0 && (
                           <span className="text-slate-600">
-                            / {formatDuration(plan.duration)}
+                            / {formatMonths(plan.duration)}
                           </span>
                         )}
                       </div>
@@ -272,10 +240,7 @@ export default function PricingSection({ plans }: PricingSectionProps) {
         {/* Bottom Note */}
         <div className="text-center mt-12">
           <p className="text-slate-600">
-            جميع الخطط تشمل ضمان استرداد المال خلال 30 يوم •{" "}
-            <button className="text-indigo-600 hover:text-indigo-700 font-medium underline underline-offset-2">
-              اتصل بنا للمساعدة
-            </button>
+            جميع الخطط تشمل ضمان استرداد المال خلال 30 يوم
           </p>
         </div>
       </div>

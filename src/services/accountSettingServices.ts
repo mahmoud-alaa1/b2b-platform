@@ -22,7 +22,7 @@ export async function patchSupplierInfo(
 ) {
   try {
     const response = await api.patch<IAccountInfoPatchResponse>(
-      `/supplier-info/${id}`,
+      `/supplier/supplier-info/${id}`,
       data,
     );
     return response?.data;
@@ -35,7 +35,7 @@ export async function patchSupplierLogo(id: number, file: string | File) {
   const formData = new FormData();
   formData.append("logo", file);
 
-  const { data } = await api.patch(`/supplier-logo/${id}`, formData, {
+  const { data } = await api.patch(`/supplier/supplier-logo/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

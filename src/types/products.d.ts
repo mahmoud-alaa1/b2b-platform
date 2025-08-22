@@ -8,3 +8,12 @@ interface ISelfProduct {
   offer: number;
   isSpecial: boolean;
 }
+
+interface IGetProductsResponse {
+  products: ISelfProduct[];
+  stats: {
+    total: number;
+  };
+}
+
+

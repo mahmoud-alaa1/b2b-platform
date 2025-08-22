@@ -3,7 +3,6 @@ import useAuth from "@/store/authStore";
 import { clsx, type ClassValue } from "clsx";
 import { File, FileText, FileVideo, ImageIcon, Music } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -58,3 +57,13 @@ export function clearState() {
   queryClient.clear();
   useAuth.getState().logout();
 }
+
+export const formatMonths = (months: number): string => {
+  if (months === 1) return "شهر";
+  if (months === 2) return "شهرين";
+  if (months <= 10) return `${months} أشهر`;
+  if (months === 12) return "سنة";
+  if (months === 24) return "سنتين";
+  if (months % 12 === 0) return `${months / 12} سنوات`;
+  return `${months} شهر`;
+};

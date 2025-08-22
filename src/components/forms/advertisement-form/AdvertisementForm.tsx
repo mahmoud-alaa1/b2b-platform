@@ -15,6 +15,8 @@ export default function AdvertisementForm() {
     resolver: zodResolver(advertisementSchema),
     defaultValues: {
       Title: "",
+      TargetUrl:"",
+      ImageFile: undefined,
     },
   });
   function onSubmit(values: advertisementSchema) {

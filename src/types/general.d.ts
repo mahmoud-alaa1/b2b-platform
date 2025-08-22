@@ -21,3 +21,11 @@ interface IErrorResponse {
     details?: Record<string, string>;
   };
 }
+
+
+
+// Error Page Props handling
+interface ErrorProps {
+  error: Error & { digest?: string };
+  reset: () => void;
+}

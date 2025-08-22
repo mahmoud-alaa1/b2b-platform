@@ -9,7 +9,7 @@ export default function OrdersStats() {
   const { data: deals, error, isPending, refetch } = useGetClientDeals();
 
   const activeDeals = (deals?.data || []).filter(
-    (deal) => deal.OrderStatus === "Active"
+    (deal) => deal.dealStatus === "Pending"
   );
   const confirmedDeals = (deals?.data || []).filter(
     (deal) => deal.OrderStatus === "Completed"

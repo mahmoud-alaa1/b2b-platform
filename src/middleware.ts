@@ -1,10 +1,9 @@
 import { NextResponse, NextRequest } from "next/server";
 import { verifyToken } from "./lib/verifyToken";
 
-// This function can be marked `async` if using `await` inside
 
-const PROTECTED_ROUTES = ["/dashboard", "/profile"];
-const AUTH_ROUTES = ["/login", "/register"];
+const PROTECTED_ROUTES = ["/clients-dashboard", "/suppliers-dashboard"];
+const AUTH_ROUTES = ["/login", "/register", "/forgot-password","/reset-password"];
 
 function isProtectedRoute(pathname: string) {
   return PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
@@ -18,6 +17,8 @@ export async function middleware(request: NextRequest) {
   const isProtected = isProtectedRoute(request.nextUrl.pathname);
   const token = request.cookies.get("token")?.value;
   const verifiedToken = await verifyToken(token);
+  console.log("here\n");
+  console.log(verifiedToken);
   if (isProtected && !verifiedToken) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

@@ -26,7 +26,11 @@ export async function postProduct(data: FormData) {
 }
 export async function deleteProduct({ id }: { id: string | number }) {
   try {
-    const res = await api.delete(`/product?productId=${id}`);
+    const res = await api.delete(`/supplier/product`, {
+      params: {
+        productId: id,
+      },
+    });
     return res.data;
   } catch (error) {
     throw handleApiError(error);

@@ -12,21 +12,29 @@ const sidebarItems = [
   { path: "/suppliers-dashboard/orders", label: "الطلبات", icon: ShoppingCart },
   { path: "/suppliers-dashboard/products", label: "المنتجات", icon: Package },
   { path: "/suppliers-dashboard/rating", label: "التقييمات", icon: Star },
-  { path: "/suppliers-dashboard/subscription", label: "الاشتراكات", icon: CreditCard },
+  {
+    path: "/suppliers-dashboard/subscription",
+    label: "الاشتراكات",
+    icon: CreditCard,
+  },
   { path: "/suppliers-dashboard/ads", label: "الإعلانات", icon: Megaphone },
-  { path: "/suppliers-dashboard/account-settings", label: "إعدادات الحساب", icon: Settings },
+  {
+    path: "/suppliers-dashboard/account-settings",
+    label: "إعدادات الحساب",
+    icon: Settings,
+  },
 ];
 
 export default function SupplierDashboardSidebar() {
   return (
-    <aside>
-      <div className="flex items-center justify-between p-6 border-b border-gray-100">
+    <aside className="h-full border-e">
+      <div className="flex  items-center justify-between p-6 border-b border-gray-100">
         <h2 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
           لوحة المورد
         </h2>
       </div>
 
-      <nav className="p-4 space-y-2">
+      <nav className="p-4 space-y-2 sticky top-0">
         {sidebarItems.map((item) => {
           const Icon = item.icon;
           return (

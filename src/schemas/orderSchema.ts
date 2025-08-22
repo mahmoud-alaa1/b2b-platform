@@ -81,10 +81,8 @@ export const productDetailsSchema = z.object({
     error: "يجب اختيار فئة المنتج",
   }),
   description: z.string().min(10, "الوصف يجب أن يكون 10 أحرف على الأقل").trim(),
-  quantity: z.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
-  numSuppliersDesired: z
-    .number()
-    .min(1, "عدد الموردين يجب أن يكون أكبر من صفر"),
+  quantity: z.coerce.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
+  numSuppliersDesired: z.coerce.number().min(1, "عدد الموردين يجب أن يكون أكبر من صفر"),
 });
 export type productDetailsOutput = z.output<typeof productDetailsSchema>;
 
