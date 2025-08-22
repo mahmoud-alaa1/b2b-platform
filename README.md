@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#  SupplyFi Horeca — منصة التوريد الذكية B2B
 
-## Getting Started
+![Platform Screenshot](./assets/demo-screenshot.png)  
+*SupplyFi Horeca brings supply requests, quotes, and procurement into one seamless digital experience.*
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+###  1. Purpose  
+SupplyFi Horeca is a smart B2B sourcing platform that streamlines procurement. It lets businesses request quotes from verified suppliers, get competitive responses quickly, and significantly improve sourcing efficiency.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Key Value Propositions:**
+- Get quotes within *minutes* instead of weeks  
+- Save up to **40% in time**  
+- Work with **100% verified suppliers**  
+- Gain actionable **procurement insights**  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+###  2. Tech Stack & Tools
 
-## Learn More
+- **Frontend**: Next.js, TypeScript, TailwindCSS, ShadCN UI, React Query, ISR, Framer Motion, Zustand  
+- **Backend**: ASP.NET 8 (Clean Architecture)  
+- **Infrastructure**: Deployed on Vercel (frontend) and ASP Monster (backend)  
+- **Tools**: VS Code, .NET SDK, Git (GitHub), Swagger for API docs, Postman for API testing  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+###  3. How to Try It
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Environment   | URL                                      |
+|---------------|------------------------------------------|
+| Frontend      | [b2b-platform-nu.vercel.app](https://b2b-platform-nu.vercel.app/) |
+| Backend (API) | [b2bapp.runasp.net](https://b2bapp.runasp.net/) |
 
-## Deploy on Vercel
+Kickstart your exploration from the modern landing page to discover how the journey flows from requesting quotes to getting matched with suppliers.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+###  4. Demo / Visual Walkthrough   
+See the platform in action:
+
+- **Homepage:** Sleek modern branding, hero with value props, categories, and pricing plans  
+- **Supplier Listings:** Explore verified providers with smart filters like category, name, and location  
+- **Easy Onboarding:** Scroll-friendly entry points for account creation and login
+
+*(Consider adding GIFs or images in the `assets/` folder and referencing them here)*  
+
+---
+
+###  5. License & Credits  
+- **License:** MIT — free to use and adapt with proper attribution  
+- **Built by:** The SupplyFi Dev Team — bringing modern B2B procurement to life
+
+---
+
+> **Next Steps (Optional):** Add interactive versions of key features (Forms, Supplier Reviews, Order Flow) using sandbox environments or video walkthroughs for deeper demonstrations.
+
+---
+
+With this README, your project looks **professional**, **clear**, and **visitor-friendly**—whether you're sharing with clients, stakeholders, or the open-source community. If you'd like, I can help add a roadmap or additional visuals to make it even more engaging.
+::contentReference[oaicite:0]{index=0}
