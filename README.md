@@ -1,6 +1,7 @@
 #  SupplyFi Horeca — منصة التوريد الذكية B2B
 
-![Platform Screenshot](./assets/demo-screenshot.png)  
+<img width="1901" height="944" alt="image" src="https://github.com/user-attachments/assets/d0c8250d-837f-4b0b-a918-0a6d1a15687f" />
+
 *SupplyFi Horeca brings supply requests, quotes, and procurement into one seamless digital experience.*
 
 ---
@@ -35,27 +36,34 @@ SupplyFi Horeca is a smart B2B sourcing platform that streamlines procurement. I
 Kickstart your exploration from the modern landing page to discover how the journey flows from requesting quotes to getting matched with suppliers.
 
 ---
+## 🛠️ Getting Started
 
-###  4. Demo / Visual Walkthrough   
-See the platform in action:
-
-- **Homepage:** Sleek modern branding, hero with value props, categories, and pricing plans  
-- **Supplier Listings:** Explore verified providers with smart filters like category, name, and location  
-- **Easy Onboarding:** Scroll-friendly entry points for account creation and login
-
-*(Consider adding GIFs or images in the `assets/` folder and referencing them here)*  
+Follow these steps to run the project locally on your machine.
 
 ---
 
-###  5. License & Credits  
-- **License:** MIT — free to use and adapt with proper attribution  
-- **Built by:** The SupplyFi Dev Team — bringing modern B2B procurement to life
+### 📦 Frontend (Next.js)
 
----
+#### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/supplyfi-horeca.git
+cd supplyfi-horeca
+```
+#### 2. Install dependencies
+```bash
+pnpm install
+```
+#### 3. Set up environment variables
+Create a .local file in the root of the project and add the following:
+```bash
+pnpm install
+```
 
-> **Next Steps (Optional):** Add interactive versions of key features (Forms, Supplier Reviews, Order Flow) using sandbox environments or video walkthroughs for deeper demonstrations.
+#### 4. Run the development server
+```bash
+npm run dev
+```
 
----
 
-With this README, your project looks **professional**, **clear**, and **visitor-friendly**—whether you're sharing with clients, stakeholders, or the open-source community. If you'd like, I can help add a roadmap or additional visuals to make it even more engaging.
-::contentReference[oaicite:0]{index=0}
+
+
