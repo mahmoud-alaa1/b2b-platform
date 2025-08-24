@@ -3,8 +3,6 @@ import { routing } from "@/i18n/routing";
 import { defaultMetadata } from "@/config/metadata";
 import { Cairo } from "next/font/google";
 import Providers from "@/providers/Providers";
-import { Toaster } from "@/components/ui/sonner";
-import RouterInit from "@/components/RouterInit";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 const cairo = Cairo({
@@ -35,8 +33,6 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
-        <Toaster />
-        <RouterInit />
       </body>
     </html>
   );
