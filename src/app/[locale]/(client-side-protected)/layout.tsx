@@ -2,7 +2,8 @@
 import { useEffect } from "react";
 import useAuth from "@/store/authStore";
 import Loading from "../(main)/loading";
-import { useRouter } from "@/i18n/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import path from "path";
 
 export default function ProtectedLayout({
   children,
@@ -11,20 +12,26 @@ export default function ProtectedLayout({
 }) {
   const auth = useAuth();
   const router = useRouter();
-
+  const pathname = usePathname();
   useEffect(() => {
     if (auth.hasHydrated) {
       if (!auth.user) {
         router.replace("/login");
       } else {
-        if (auth.user?.role === "Suppliers") {
+        if (
+          auth.user?.role === "Suppliers" &&
+          pathname.includes("/clients-dashboard")
+        ) {
           router.replace("/suppliers-dashboard/orders");
-        } else {
+        } else if (
+          auth.user?.role === "Clients" &&
+          pathname.includes("/clients-dashboard")
+        ) {
           router.replace("/clients-dashboard/overview");
         }
       }
     }
-  }, [auth.hasHydrated, auth.user, router]);
+  }, [auth.hasHydrated, auth.user, router, pathname]);
 
   if (!auth.hasHydrated) {
     return <Loading />;
