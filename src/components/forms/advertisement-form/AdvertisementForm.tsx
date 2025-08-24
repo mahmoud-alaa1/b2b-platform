@@ -8,14 +8,16 @@ import AdvertisementPreview from "@/components/AdvertisementPreview";
 import { Button } from "@/components/ui/button";
 import usePostAdvertisement from "@/hooks/advertisements/usePostAdvertisement";
 import Spinner from "@/components/ui/spinner";
+import useGetSupplierQuota from "@/hooks/quotas/useGetSupplierQuota";
 
 export default function AdvertisementForm() {
   const { mutate, isPending } = usePostAdvertisement();
+  const { data: quotaData } = useGetSupplierQuota();
   const form = useForm<advertisementSchema>({
     resolver: zodResolver(advertisementSchema),
     defaultValues: {
       Title: "",
-      TargetUrl:"",
+      TargetUrl: "",
       ImageFile: undefined,
     },
   });
@@ -31,11 +33,14 @@ export default function AdvertisementForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
           <h3 className="text-xl font-bold text-gray-800 mb-6">
-            طلب إضافة إعلان
+            متبقي لك: {quotaData?.data.ads} اعلانات
           </h3>
+         
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <fieldset disabled={isPending} className="space-y-6">
+            <fieldset
+              disabled={isPending || !quotaData?.data.ads}
+              className="space-y-6">
               <FormInput
                 placeholder="عنوان الإعلان"
                 label="عنوان الإعلان"

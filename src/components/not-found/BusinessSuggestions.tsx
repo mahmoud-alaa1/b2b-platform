@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { Card, CardContent } from '../ui/card';
 import { ArrowLeft,  Package, Search } from 'lucide-react';
 

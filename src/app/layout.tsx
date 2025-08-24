@@ -1,64 +1,40 @@
 import "../styles/globals.css";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-import type { Metadata } from "next";
+import { routing } from "@/i18n/routing";
+import { defaultMetadata } from "@/config/metadata";
 import { Cairo } from "next/font/google";
 import Providers from "@/providers/Providers";
 import { Toaster } from "@/components/ui/sonner";
 import RouterInit from "@/components/RouterInit";
-
+import { NextIntlClientProvider } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 const cairo = Cairo({
   variable: "--font-cairo",
   subsets: ["latin", "arabic"],
   weight: ["200", "300", "400", "500", "600", "700", "800", "900", "1000"],
   display: "swap",
 });
+export const metadata = defaultMetadata;
 
-export const metadata: Metadata = {
-  title: "منصة Supplify | تسهيل الأعمال التجارية بين الشركات",
-  description:
-    "منصة Supplify هي منصة متكاملة لتسهيل الأعمال التجارية بين الشركات (B2B)، حيث يمكن للشركات العثور على الموردين والعملاء بسهولة وسرعة.",
-  keywords: [
-    "منصة B2B",
-    "تجارة بين الشركات",
-    "Supplify",
-    "موردين",
-    "عملاء",
-    "بيع بالجملة",
-    "استيراد وتصدير",
-  ],
-  robots: {
-    index: true,
-    follow: true,
-  },
-  openGraph: {
-    type: "website",
-    locale: "ar_AR",
-    siteName: "منصة Supplify",
-    title: "منصة Supplify | تسهيل الأعمال التجارية بين الشركات",
-    description:
-      "منصة متكاملة لربط الموردين والعملاء، وتسهيل عمليات البيع والشراء بين الشركات.",
-    images: [
-      {
-        url: "/placeholder.webp",
-        width: 1200,
-        height: 630,
-        alt: "منصة Supplify",
-      },
-    ],
-  },
-};
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <html lang="ar" dir="rtl">
-
       <body className={`${cairo.variable} ${cairo.className} antialiased`}>
-        <Providers>{children}</Providers>
+        <NextIntlClientProvider>
+          <Providers>{children}</Providers>
+        </NextIntlClientProvider>
         <Toaster />
         <RouterInit />
       </body>

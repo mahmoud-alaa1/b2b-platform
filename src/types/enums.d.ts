@@ -1,6 +1,6 @@
 enum EDealStatus {
   Pending,
-  ClientInitiated,
+  ClientConfirmed,
   SupplierConfirmed,
   Confirmed,
   Refused,

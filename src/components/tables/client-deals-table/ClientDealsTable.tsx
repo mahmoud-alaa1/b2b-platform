@@ -3,7 +3,7 @@
 import ReusableTable from "@/components/reusable-table/ReusableTable";
 import { CLIENT_DEALS_TABLE_NAME } from "@/lib/constants";
 import ClientDealsTableRow from "./ClientDealsTableRow";
-import useGetClientDeals from "@/hooks/deals/useGetClientDeals";
+import useGetClientDeals from "@/hooks/deals/clients/useGetClientDeals";
 
 const TABLE_HEADERS: string[] = [
   "رقم الصفقة",

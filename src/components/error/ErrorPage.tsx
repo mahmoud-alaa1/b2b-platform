@@ -2,10 +2,10 @@
 import { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code } from "lucide-react";
-import Link from "next/link";
 import { getErrorInfo } from "@/utils/errorInfo";
 import BusinessMessage from "./BusinessMessage";
 import ErrorQuickActions from "./ErrorQuickActions";
+import { Link } from "@/i18n/navigation";
 
 export default function ErrorPage({ error, reset }: ErrorProps) {
   const errorInfo = getErrorInfo(error);

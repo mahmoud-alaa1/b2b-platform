@@ -12,7 +12,6 @@ import { MenuIcon, X } from "lucide-react";
 import MainHeaderNav from "./MainHeaderNav";
 import { Button } from "../ui/button";
 import { useState } from "react";
-import UserDropdown from "../UserDropdown";
 import AuthButtonts from "./AuthButtonts";
 export default function MobileHeaderNav() {
   let Icon = <MenuIcon />;
@@ -35,9 +34,6 @@ export default function MobileHeaderNav() {
           <SheetDescription className="sr-only">
             استخدم القائمة أدناه للتنقل في التطبيق.
           </SheetDescription>
-          <div className="mb-3">
-            <UserDropdown />
-          </div>
           <MainHeaderNav closeSheet={() => setOpen(false)} />
           <AuthButtonts />
         </SheetHeader>

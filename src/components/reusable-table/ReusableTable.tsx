@@ -44,7 +44,7 @@ export default function ReusableTable<T>({
       <TableHeader>
         <TableRow dir="rtl">
           {headers.map((header) => (
-            <TableHead key={header} className="text-right text-xs sm:text-sm">
+            <TableHead key={header} className="text-start text-xs sm:text-sm">
               {header}
             </TableHead>
           ))}

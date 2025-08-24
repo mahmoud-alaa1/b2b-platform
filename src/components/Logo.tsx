@@ -1,6 +1,6 @@
 import Image from "next/image";
 import LogoImage from "../../public/Logo.webp";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export default function Logo({ size = 50 }: { size?: number }) {
   return (

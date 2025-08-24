@@ -1,13 +1,9 @@
-"use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Button } from "../ui/button";
 import { LogIn, UserPlus } from "lucide-react";
-import useAuth from "@/store/authStore";
 
 export default function AuthButtonts() {
-  const auth = useAuth();
-  if (auth.user) return null;
 
   return (
     <div className="flex md:flex-row flex-col md:items-center gap-4">

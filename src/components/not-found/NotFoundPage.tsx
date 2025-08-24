@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Home,  Target } from "lucide-react";
-import Link from "next/link";
 import BusinessSuggestions from "./BusinessSuggestions";
+import MainHeader from "../main-header/MainHeader";
+import { Link } from "@/i18n/navigation";
 
 export default function NotFoundPage() {
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-auto"
       dir="rtl">
+        <MainHeader/>
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-12">
         {/* Top badge */}
         <div className="mb-8">

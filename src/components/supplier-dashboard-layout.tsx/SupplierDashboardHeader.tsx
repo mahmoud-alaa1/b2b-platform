@@ -1,3 +1,4 @@
+import Logo from "../Logo";
 import UserDropdown from "../UserDropdown";
 import SupplierDashboardSidebarV2 from "./SupplierDashboardSidebarV2";
 
@@ -10,9 +11,7 @@ export default function SupplierDashboardHeader() {
             <SupplierDashboardSidebarV2 />
           </div>
 
-          <h1 className="text-2xl font-bold text-gray-800">
-            مرحباً، أحمد محمد
-          </h1>
+          <Logo/>
         </div>
 
         <div className="flex items-center gap-4">

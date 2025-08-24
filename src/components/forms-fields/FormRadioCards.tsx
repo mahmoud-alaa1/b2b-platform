@@ -34,6 +34,7 @@ interface FormRadioCardsProps<TFormValues extends FieldValues> {
   direction?: "horizontal" | "vertical";
   cardSize?: "sm" | "md" | "lg";
   showCheckmark?: boolean;
+  constainerClassName?: string;
 }
 
 export default function FormRadioCards<TFormValues extends FieldValues>({
@@ -46,6 +47,7 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
   direction = "vertical",
   cardSize = "md",
   showCheckmark = true,
+  constainerClassName,
 }: FormRadioCardsProps<TFormValues>) {
   const cardSizes = {
     sm: "p-4",
@@ -69,10 +71,10 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
               onValueChange={field.onChange}
               value={field.value}
               className={cn(
-                "flex gap-4",
+                "flex gap-4 flex-wrap",
                 direction === "horizontal" ? "" : "flex-col",
-              )}
-            >
+                constainerClassName
+              )}>
               {options.map((option, index) => {
                 const isSelected = field.value === option.value;
                 const isDisabled = option.disabled;
@@ -83,8 +85,7 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="relative"
-                  >
+                    className="relative ">
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
                         <RadioGroupItem
@@ -105,9 +106,8 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
                           isDisabled
                             ? "opacity-50 cursor-not-allowed"
                             : "hover:scale-[1.02] hover:-translate-y-1",
-                          "focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2",
-                        )}
-                      >
+                          "focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2"
+                        )}>
                         {/* Selection Indicator */}
                         <AnimatePresence>
                           {isSelected && showCheckmark && (
@@ -116,8 +116,7 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
                               animate={{ scale: 1, opacity: 1 }}
                               exit={{ scale: 0, opacity: 0 }}
                               transition={{ duration: 0.2, type: "spring" }}
-                              className="absolute top-4 right-4 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center z-10"
-                            >
+                              className="absolute top-4 right-4 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center z-10">
                               <Check className="w-4 h-4 text-white" />
                             </motion.div>
                           )}
@@ -137,17 +136,15 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
                           <div
                             className={cn(
                               "flex items-center justify-center mb-4",
-                              option.badge ? "mt-6" : "mt-0",
-                            )}
-                          >
+                              option.badge ? "mt-6" : "mt-0"
+                            )}>
                             <div
                               className={cn(
                                 "transition-transform duration-300",
                                 isSelected
                                   ? "scale-110"
-                                  : "group-hover:scale-105",
-                              )}
-                            >
+                                  : "group-hover:scale-105"
+                              )}>
                               {option.icon}
                             </div>
                           </div>
@@ -161,10 +158,9 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
                               cardSize === "sm"
                                 ? "text-sm"
                                 : cardSize === "md"
-                                  ? "text-base"
-                                  : "text-lg",
-                            )}
-                          >
+                                ? "text-base"
+                                : "text-lg"
+                            )}>
                             {option.label}
                           </div>
 
@@ -172,9 +168,8 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
                             <p
                               className={cn(
                                 "text-gray-600 leading-relaxed",
-                                cardSize === "sm" ? "text-xs" : "text-sm",
-                              )}
-                            >
+                                cardSize === "sm" ? "text-xs" : "text-sm"
+                              )}>
                               {option.description}
                             </p>
                           )}
@@ -188,9 +183,8 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
                                 "w-5 h-5 rounded-full border-2 transition-all duration-300",
                                 isSelected
                                   ? "border-blue-500 bg-blue-500"
-                                  : "border-gray-300 group-hover:border-gray-400",
-                              )}
-                            >
+                                  : "border-gray-300 group-hover:border-gray-400"
+                              )}>
                               {isSelected && (
                                 <motion.div
                                   initial={{ scale: 0 }}
@@ -208,7 +202,7 @@ export default function FormRadioCards<TFormValues extends FieldValues>({
                             "absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none",
                             isSelected
                               ? "bg-blue-500 opacity-5"
-                              : "bg-gray-900 opacity-0 group-hover:opacity-5",
+                              : "bg-gray-900 opacity-0 group-hover:opacity-5"
                           )}
                         />
                       </FormLabel>

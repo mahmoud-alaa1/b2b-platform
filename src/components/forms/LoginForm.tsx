@@ -7,10 +7,10 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Mail } from "lucide-react";
 import FormPassword from "../forms-fields/FormPassword";
-import Link from "next/link";
 import { loginSchema } from "@/schemas/authSchema";
 import Spinner from "../ui/spinner";
 import useLogin from "@/hooks/auth/useLogin";
+import { Link } from "@/i18n/navigation";
 
 export default function LoginForm() {
   const { mutate, isPending } = useLogin();

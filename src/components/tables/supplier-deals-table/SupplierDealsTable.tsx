@@ -11,7 +11,7 @@ const TABLE_HEADERS: string[] = [
   "تفاصيل الصفقة",
   "شخص الاتصال",
   "حالة الصفقة", 
-  "حالة الطلب",
+  "الاجراءات",
 ];
 
 export default function SupplierDealsTable() {

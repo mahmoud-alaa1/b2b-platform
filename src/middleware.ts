@@ -1,41 +1,47 @@
 import { NextResponse, NextRequest } from "next/server";
-import { verifyToken } from "./lib/verifyToken";
-
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
 const PROTECTED_ROUTES = ["/clients-dashboard", "/suppliers-dashboard"];
-const AUTH_ROUTES = ["/login", "/register", "/forgot-password","/reset-password"];
+const AUTH_ROUTES = [
+  "/login",
+  "/register",
+  "/forgot-password",
+  "/reset-password",
+];
 
 function isProtectedRoute(pathname: string) {
-  return PROTECTED_ROUTES.some((route) => pathname.startsWith(route));
+  return PROTECTED_ROUTES.some((route) => pathname.includes(route));
 }
 
 function isAuthorizedRoute(pathname: string) {
-  return AUTH_ROUTES.some((route) => pathname.startsWith(route));
+  return AUTH_ROUTES.some((route) => pathname.includes(route));
 }
 
-export async function middleware(request: NextRequest) {
-  const isProtected = isProtectedRoute(request.nextUrl.pathname);
+const intlMiddleware = createMiddleware(routing);
+
+export default async function middleware(request: NextRequest) {
+  // Step 1: run intl
+  let response = intlMiddleware(request) ?? NextResponse.next();
+
+  // Step 2: run auth checks
+  const pathname = request.nextUrl.pathname;
   const token = request.cookies.get("token")?.value;
-  const verifiedToken = await verifyToken(token);
-  console.log("here\n");
-  console.log(verifiedToken);
-  if (isProtected && !verifiedToken) {
-    return NextResponse.redirect(new URL("/login", request.url));
+
+  if (isProtectedRoute(pathname) && !token) {
+    response = NextResponse.redirect(new URL("/login", request.url));
   }
-  if (isAuthorizedRoute(request.nextUrl.pathname) && verifiedToken) {
-    return NextResponse.redirect(new URL("/", request.url));
+
+  if (isAuthorizedRoute(pathname) && token) {
+    response = NextResponse.redirect(
+      new URL("/suppliers-dashboard/orders", request.url)
+    );
   }
+
+
+  return response;
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-  ],
+  matcher: ["/((?!api|trpc|_next|_vercel|.*\\..*).*)"],
 };

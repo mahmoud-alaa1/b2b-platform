@@ -1,8 +1,8 @@
+import { useRouter } from "@/i18n/navigation";
 import { registerService } from "@/services/authServices";
 import { ApiError } from "@/utils/handleApiError";
 import { useMutation } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export default function useRegister() {

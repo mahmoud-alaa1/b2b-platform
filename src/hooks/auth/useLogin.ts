@@ -2,7 +2,7 @@ import { loginService } from "@/services/authServices";
 import useAuth from "@/store/authStore";
 import { ApiError } from "@/utils/handleApiError";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { toast } from "sonner";
 
 export default function useLogin() {

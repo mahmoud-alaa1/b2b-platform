@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 
 import { ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
 import Spinner from "@/components/ui/spinner";
-import usePostOrder from "@/hooks/usePostOrder";
+import usePostOrder from "@/hooks/deals/clients/usePostOrder";
 import {
   CompleteOrderInput,
   CompleteOrderOutput,
@@ -95,8 +95,7 @@ export function OrdersFormV2() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full rounded-2xl">
           {/* Main Content Card */}
-          <motion.div
-            className="bg-white rounded-2xl shadow-2xl ">
+          <motion.div className="bg-white rounded-2xl shadow-2xl ">
             <fieldset disabled={isPending} className="space-y-8 w-full">
               <div className="relative overflow-hidden ">
                 <AnimatePresence custom={directionRef.current} mode="wait">

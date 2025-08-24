@@ -3,8 +3,8 @@ import { useFormContext } from "react-hook-form";
 import { Users, Building2, CheckCircle, Star, ArrowLeft } from "lucide-react";
 import { motion } from "motion/react";
 import { conditionalRegisterSchemaType } from "@/schemas/authSchema";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
 
 export function Step1Type() {
   const { control } = useFormContext<conditionalRegisterSchemaType>();
@@ -64,8 +64,9 @@ export function Step1Type() {
             },
           ]}
           direction="horizontal"
-          cardSize="lg"
+          cardSize="md"
           showCheckmark={true}
+          constainerClassName="grid sm:grid-cols-2"
         />
       </motion.div>
 

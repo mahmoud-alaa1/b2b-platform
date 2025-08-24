@@ -3,7 +3,6 @@ import Logo from "../Logo";
 import MainHeaderNav from "./MainHeaderNav";
 import MobileHeaderNav from "./MobileHeaderNav";
 import AuthButtonts from "./AuthButtonts";
-import UserDropdown from "../UserDropdown";
 
 export default function MainHeader() {
   return (
@@ -18,7 +17,6 @@ export default function MainHeader() {
           <div className="md:flex gap-6  hidden ">
             <MainHeaderNav />
 
-            <UserDropdown />
             <AuthButtonts />
           </div>
 

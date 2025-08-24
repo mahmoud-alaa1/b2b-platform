@@ -15,10 +15,10 @@ import {
 import { format } from "date-fns";
 import { ar } from "date-fns/locale";
 import TextTooltip from "@/components/TextTooltip";
-import useClientCancelDeal from "@/hooks/deals/useClientCancelDeal";
+import useClientCancelDeal from "@/hooks/deals/clients/useClientCancelDeal";
 import { AreYouSureDeleteing } from "@/components/AreYouSureDeleteing";
 import { Button } from "@/components/ui/button";
-import { ConfirmDeal } from "@/app/(client-side-protected)/clients-dashboard/overview/_components/ConfirmDeal";
+import { ConfirmDeal } from "@/app/[locale]/(client-side-protected)/clients-dashboard/overview/_components/ConfirmDeal";
 
 export default function ClientDealsTableRow({
   deal,

@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import useClientCancelDeal from "@/hooks/deals/useClientCancelDeal";
+import useClientCancelDeal from "@/hooks/deals/clients/useClientCancelDeal";
 import { EllipsisVertical, X } from "lucide-react";
 import {
   Popover,
@@ -30,9 +30,7 @@ export default function ClientDealActions({
           <EllipsisVertical />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-48 flex flex-col gap-4">
-       
-      </PopoverContent>
+      <PopoverContent className="w-48 flex flex-col gap-4"></PopoverContent>
     </Popover>
   );
 }

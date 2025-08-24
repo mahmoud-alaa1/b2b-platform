@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
 import { UseFormReturn } from "react-hook-form";
 import useDebounce from "./useDebounce";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 interface UseFilterFormOptions<T extends Record<string, any>> {
   form: UseFormReturn<T>;

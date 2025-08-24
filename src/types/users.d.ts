@@ -17,3 +17,15 @@ declare interface IPendingUser {
   pdfURL: string;
   categories: string[];
 }
+
+interface ISupplierProfile {
+  id: number;
+  name: string;
+  email: string;
+  logoURL: string;
+  categories: string[];
+  locations: string[];
+  planName: string;
+  phoneNumber: string;
+  description: string;
+}

@@ -35,6 +35,7 @@ export async function clientCancelDeal({ id }: { id: string | number }) {
     throw handleApiError(error);
   }
 }
+
 export async function clientConfirmDeal({ id }: { id: string | number }) {
   try {
     const response = await api.patch<IApiResponse<{ message: string }>>(

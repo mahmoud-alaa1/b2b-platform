@@ -1,6 +1,5 @@
 "use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 
 type NavLinkProps = {
   children: React.ReactNode;
@@ -21,7 +20,7 @@ const NavLink = ({
   const pathname = usePathname();
 
   // detect active route
-  const isActive = pathname === href || pathname.startsWith(href + "/");
+  const isActive = pathname === href || pathname.includes(href + "/");
 
   const newClassName = `${isActive ? activeClassName : nonActiveClassName} ${
     className ?? ""

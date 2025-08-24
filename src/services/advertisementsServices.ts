@@ -19,6 +19,7 @@ export async function fetchAdvertisements() {
     throw handleApiError(error);
   }
 }
+
 export async function postAdvertisements(data: FormData) {
   try {
     const response = await api.post<IApiResponse<IPostAdvertisement>>(

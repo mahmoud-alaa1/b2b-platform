@@ -1,6 +1,7 @@
 "use client";
 
-import SupplierReview from "@/app/(client-side-protected)/suppliers-dashboard/orders/_components/SupplierReview";
+import OrderDetails from "@/app/[locale]/(client-side-protected)/suppliers-dashboard/orders/_components/OrderDetails";
+import SupplierReview from "@/app/[locale]/(client-side-protected)/suppliers-dashboard/orders/_components/SupplierReview";
 import { Badge } from "@/components/ui/badge";
 import { TableCell, TableRow } from "@/components/ui/table";
 
@@ -18,37 +19,10 @@ import {
   CheckCircle,
   XCircle,
   Clock,
-  Package,
   UserCheck,
   ShieldCheck,
-  AlertCircle,
+  MailIcon,
 } from "lucide-react";
-
-const getOrderStatusConfig = (status: string) => {
-  const configs: Record<string, any> = {
-    Active: {
-      label: "نشط",
-      icon: <AlertCircle className="w-3 h-3" />,
-      color: "bg-emerald-100 text-emerald-800 border-emerald-200",
-    },
-    InProgress: {
-      label: "قيد التنفيذ",
-      icon: <Package className="w-3 h-3" />,
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    Completed: {
-      label: "مكتمل",
-      icon: <CheckCircle className="w-3 h-3" />,
-      color: "bg-green-100 text-green-800 border-green-200",
-    },
-    Canceled: {
-      label: "ملغي",
-      icon: <XCircle className="w-3 h-3" />,
-      color: "bg-red-100 text-red-800 border-red-200",
-    },
-  };
-  return configs[status] || configs["Active"];
-};
 
 const getDealStatusConfig = (status: string) => {
   const configs: Record<string, any> = {
@@ -57,7 +31,7 @@ const getDealStatusConfig = (status: string) => {
       icon: <Clock className="w-3 h-3" />,
       color: "bg-yellow-100 text-yellow-800 border-yellow-200",
     },
-    ClientInitiated: {
+    ClientConfirmed: {
       label: "اكد العميل",
       icon: <UserCheck className="w-3 h-3" />,
       color: "bg-blue-100 text-blue-800 border-blue-200",
@@ -87,12 +61,11 @@ export default function SupplierDealsTableRow({
   deal: ISupplierDeal;
 }) {
   const dealStatusConfig = getDealStatusConfig(deal.dealStatus);
-  const orderStatusConfig = getOrderStatusConfig(deal.OrderStatus);
 
   return (
     <TableRow className="border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30 transition-all duration-300 group">
       {/* Deal ID */}
-      <TableCell className=" py-4">
+      <TableCell>
         <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
           <span className="text-white text-sm font-bold">
             {String(deal.dealId).slice(-2)}
@@ -101,7 +74,7 @@ export default function SupplierDealsTableRow({
       </TableCell>
 
       {/* Company Info */}
-      <TableCell className=" py-4">
+      <TableCell>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Building2 className="w-4 h-4 text-indigo-600" />
@@ -109,23 +82,11 @@ export default function SupplierDealsTableRow({
               {deal.CompanyName}
             </span>
           </div>
-          <div className="grid grid-cols-1 gap-1">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="flex items-center gap-1 text-xs text-gray-500 hover:text-indigo-600 transition-colors cursor-pointer">
-                    <Mail className="w-3 h-3" />
-                    <span className="truncate max-w-[120px]">
-                      {deal.CompanyEmail}
-                    </span>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{deal.CompanyEmail}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
+          <div>
+            <div className="flex items-center gap-1 text-xs text-gray-500">
+              <MailIcon className="w-3 h-3" />
+              <span> {deal.CompanyEmail}</span>
+            </div>
             <div className="flex items-center gap-1 text-xs text-gray-500">
               <Phone className="w-3 h-3" />
               <span>{deal.CompanyPhone}</span>
@@ -135,23 +96,14 @@ export default function SupplierDealsTableRow({
       </TableCell>
 
       {/* Description */}
-      <TableCell className=" py-4 max-w-64">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <p className="text-sm text-gray-900 line-clamp-2 leading-relaxed font-medium">
-                {deal.description}
-              </p>
-            </TooltipTrigger>
-            <TooltipContent className="max-w-xs">
-              <p className="whitespace-normal break-all">{deal.description}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+      <TableCell>
+        <p className="text-sm max-w-44 text-gray-900 font-medium truncate">
+          {deal.description}
+        </p>
       </TableCell>
 
       {/* Contact Person */}
-      <TableCell className=" py-4">
+      <TableCell>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <User className="w-4 h-4 text-green-600" />
@@ -167,26 +119,19 @@ export default function SupplierDealsTableRow({
       </TableCell>
 
       {/* Deal Status */}
-      <TableCell className=" py-4">
+      <TableCell>
         <Badge
           className={`${dealStatusConfig.color} border font-medium shadow-sm`}
           variant="outline">
           {dealStatusConfig.icon}
           <span className="mr-1">{dealStatusConfig.label}</span>
         </Badge>
-        {deal.dealStatus === "ClientInitiated" && (
-          <SupplierReview id={deal.dealId} />
-        )}
       </TableCell>
-
-      {/* Order Status */}
-      <TableCell className=" py-4">
-        <Badge
-          className={`${orderStatusConfig.color} border font-medium shadow-sm`}
-          variant="outline">
-          {orderStatusConfig.icon}
-          <span className="mr-1">{orderStatusConfig.label}</span>
-        </Badge>
+      <TableCell className="flex gap-2 flex-wrap ">
+        {deal.dealStatus == "ClientConfirmed" ? (
+          <SupplierReview id={deal.dealId} />
+        ) : null}
+        <OrderDetails deal={deal} />
       </TableCell>
     </TableRow>
   );

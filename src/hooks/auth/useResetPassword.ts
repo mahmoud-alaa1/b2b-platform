@@ -1,8 +1,9 @@
+import { useRouter } from "@/i18n/navigation";
 import { resetPasswordSchema } from "@/schemas/authSchema";
 import { resetPasswordService } from "@/services/authServices";
 import { ApiError } from "@/utils/handleApiError";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 export default function useResetPassword() {

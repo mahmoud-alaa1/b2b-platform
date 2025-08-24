@@ -14,7 +14,7 @@ export async function getSupplierSelfProducts() {
 }
 export async function postProduct(data: FormData) {
   try {
-    const res = await api.post(`/product`, data, {
+    const res = await api.post(`/supplier/product`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

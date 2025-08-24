@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Link } from "@/i18n/navigation";
 import useAuth from "@/store/authStore";
 import {
   Building2,
@@ -19,7 +20,6 @@ import {
   ChevronDown,
   Settings,
 } from "lucide-react";
-import Link from "next/link";
 
 export default function UserDropdown() {
   const auth = useAuth();

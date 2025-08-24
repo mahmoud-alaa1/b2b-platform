@@ -1,4 +1,4 @@
-interface ISupplierDeal {
+interface  ISupplierDeal {
   dealId: number | string;
   description: string;
   CompanyName: string;

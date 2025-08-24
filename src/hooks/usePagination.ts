@@ -1,4 +1,5 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 
 export function usePagination(table: string): [number, (page: number) => void] {
   const searchParams = useSearchParams();

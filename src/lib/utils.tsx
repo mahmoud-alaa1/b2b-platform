@@ -67,3 +67,8 @@ export const formatMonths = (months: number): string => {
   if (months % 12 === 0) return `${months / 12} سنوات`;
   return `${months} شهر`;
 };
+
+
+export const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text);
+};

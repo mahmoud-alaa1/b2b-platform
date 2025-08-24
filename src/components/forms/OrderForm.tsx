@@ -10,7 +10,7 @@ import {
   orderSchemaInput,
   orderSchemaOutput,
 } from "@/schemas/orderSchema";
-import usePostOrder from "@/hooks/usePostOrder";
+import usePostOrder from "@/hooks/deals/clients/usePostOrder";
 import { format } from "date-fns";
 import FormDatePicker from "../forms-fields/FormDatePicker";
 import FormTextArea from "../forms-fields/FormTextArea";

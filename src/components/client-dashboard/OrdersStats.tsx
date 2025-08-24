@@ -1,7 +1,7 @@
 "use client";
 import { FileText, Handshake, ShoppingCart, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
-import useGetClientDeals from "@/hooks/deals/useGetClientDeals";
+import useGetClientDeals from "@/hooks/deals/clients/useGetClientDeals";
 import ErrorState from "../ErrorState";
 import StatCardSkeleton from "./orders-stats/StatCardSkeleton";
 
