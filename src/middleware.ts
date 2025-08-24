@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
+import { verifyToken } from "./lib/verifyToken";
 
 const PROTECTED_ROUTES = ["/clients-dashboard", "/suppliers-dashboard"];
 const AUTH_ROUTES = [
@@ -26,7 +27,7 @@ export default async function middleware(request: NextRequest) {
 
   // Step 2: run auth checks
   const pathname = request.nextUrl.pathname;
-  const token = request.cookies.get("token")?.value;
+  const token = await verifyToken(request.cookies.get("token")?.value);
 
   if (isProtectedRoute(pathname) && !token) {
     response = NextResponse.redirect(new URL("/login", request.url));
@@ -37,7 +38,6 @@ export default async function middleware(request: NextRequest) {
       new URL("/suppliers-dashboard/orders", request.url)
     );
   }
-
 
   return response;
 }
