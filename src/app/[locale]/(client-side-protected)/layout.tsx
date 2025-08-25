@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import useAuth from "@/store/authStore";
 import Loading from "../(main)/loading";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import path from "path";
 
 export default function ProtectedLayout({
   children,

@@ -19,8 +19,6 @@ import {
 } from "lucide-react";
 import { copyToClipboard } from "@/lib/utils";
 
-
-
 const getDealStatusConfig = (status: string) => {
   switch (status?.toLowerCase()) {
     case "Pending":
@@ -86,8 +84,6 @@ const getOrderStatusConfig = (status: string) => {
       };
   }
 };
-
-
 
 export default function DealDetails({ deal }: { deal: ISupplierDeal }) {
   const dealStatusConfig = getDealStatusConfig(deal.dealStatus);
@@ -159,7 +155,7 @@ export default function DealDetails({ deal }: { deal: ISupplierDeal }) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-7 w-7 p-0 opacity-0 group-hover:opacity-100"
+                    className="h-7 w-7 p-0"
                     onClick={() => copyToClipboard(deal.CompanyEmail)}>
                     <Copy className="w-3 h-3" />
                   </Button>
@@ -182,7 +178,7 @@ export default function DealDetails({ deal }: { deal: ISupplierDeal }) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-7 w-7 p-0 opacity-0 group-hover:opacity-100"
+                    className="h-7 w-7 p-0"
                     onClick={() => copyToClipboard(deal.CompanyPhone)}>
                     <Copy className="w-3 h-3" />
                   </Button>
@@ -239,7 +235,7 @@ export default function DealDetails({ deal }: { deal: ISupplierDeal }) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-7 w-7 p-0 opacity-0 group-hover:opacity-100"
+                    className="h-7 w-7 p-0"
                     onClick={() => copyToClipboard(deal.contactPersonPhone)}>
                     <Copy className="w-3 h-3" />
                   </Button>
