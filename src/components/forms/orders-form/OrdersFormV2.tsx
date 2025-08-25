@@ -89,7 +89,7 @@ export function OrdersFormV2() {
   }
 
   return (
-    <div className="w-full border rounded-2xl " dir="rtl">
+    <div className="w-full border rounded-2xl " >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
