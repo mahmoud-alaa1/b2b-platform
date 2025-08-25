@@ -27,6 +27,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import FormInfiniteCombobox from "../forms-fields/FormInfiniteCombobox";
+import { setFormErrors } from "@/utils/handleApiError";
 
 const defaultValues = {
   contactPersonName: "",
@@ -105,6 +106,9 @@ export default function OrderForm() {
         onSuccess: () => {
           form.reset();
           setCurrentStep(1);
+        },
+        onError: (err) => {
+          setFormErrors(form, err);
         },
       }
     );

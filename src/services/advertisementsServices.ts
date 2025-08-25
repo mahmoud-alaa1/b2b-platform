@@ -23,7 +23,7 @@ export async function fetchAdvertisements() {
 export async function postAdvertisements(data: FormData) {
   try {
     const response = await api.post<IApiResponse<IPostAdvertisement>>(
-      "/admin-supplier/advertisement",
+      "/supplier/advertisement",
       data
     );
     return response.data;

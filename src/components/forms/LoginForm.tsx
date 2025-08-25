@@ -11,6 +11,7 @@ import { loginSchema } from "@/schemas/authSchema";
 import Spinner from "../ui/spinner";
 import useLogin from "@/hooks/auth/useLogin";
 import { Link } from "@/i18n/navigation";
+import { setFormErrors } from "@/utils/handleApiError";
 
 export default function LoginForm() {
   const { mutate, isPending } = useLogin();
@@ -24,7 +25,11 @@ export default function LoginForm() {
     },
   });
   function onSubmit(values: loginSchema) {
-    mutate(values);
+    mutate(values, {
+      onError: (err) => {
+        setFormErrors(form, err);
+      },
+    });
   }
 
   return (
@@ -51,15 +56,13 @@ export default function LoginForm() {
           />
           <Link
             href="/forgot-password"
-            className="text-indigo-500 hover:underline"
-          >
+            className="text-indigo-500 hover:underline">
             نسيت كلمة المرور؟
           </Link>
         </div>
         <Button
           disabled={isPending}
-          className="w-full text-white py-2 transition rounded-2xl"
-        >
+          className="w-full text-white py-2 transition rounded-2xl">
           {isPending ? <Spinner /> : "تسجيل الدخول"}
         </Button>
       </form>

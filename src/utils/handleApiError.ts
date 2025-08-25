@@ -1,4 +1,6 @@
 import { isAxiosError } from "axios";
+import { FieldValues, Path, UseFormReturn } from "react-hook-form";
+
 export class ApiError extends Error {
   details?: Record<string, string>;
 
@@ -39,4 +41,20 @@ export function handleApiError(error: unknown): ApiError {
   }
 
   return new ApiError("حدث خطأ غير متوقع", {});
+}
+
+export function setFormErrors<T extends FieldValues>(
+  form: UseFormReturn<T>,
+  err: unknown
+) {
+  if (err instanceof ApiError) {
+    if (err.details) {
+      Object.entries(err.details).forEach(([field, message]) => {
+        form.setError(field as Path<T>, {
+          type: "server",
+          message,
+        });
+      });
+    }
+  }
 }

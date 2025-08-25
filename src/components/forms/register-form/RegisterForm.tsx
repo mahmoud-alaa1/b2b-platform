@@ -24,12 +24,12 @@ import { ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
 import Spinner from "@/components/ui/spinner";
 import useRegister from "@/hooks/auth/useRegister";
 import { SLIDER_VARIANTS } from "@/lib/constants";
-
+import { setFormErrors } from "@/utils/handleApiError";
 
 export function MultiStepForm() {
   const [step, setStep] = useState<number>(0);
   const directionRef = useRef<"next" | "back">("next");
-  const { mutate, isPending, error } = useRegister();
+  const { mutate, isPending } = useRegister();
 
   const form = useForm<conditionalRegisterSchemaType>({
     resolver: zodResolver(conditionalRegisterSchema),
@@ -57,7 +57,7 @@ export function MultiStepForm() {
 
   async function handleNext() {
     const currentStepFields = Object.keys(
-      stepSchemas[step].shape,
+      stepSchemas[step].shape
     ) as (keyof conditionalRegisterSchemaType)[];
 
     const isStepValid = await form.trigger(currentStepFields);
@@ -90,14 +90,10 @@ export function MultiStepForm() {
       formData.append("locations", values.location || "no location");
     }
 
-    mutate(formData);
-  }
-
-  if (error) {
-    Object.entries(error.details || {}).forEach(([key, value]) => {
-      form.setError(key as keyof conditionalRegisterSchemaType, {
-        message: value,
-      });
+    mutate(formData, {
+      onError: (err) => {
+        setFormErrors(form, err);
+      },
     });
   }
 

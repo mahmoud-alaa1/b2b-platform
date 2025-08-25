@@ -28,6 +28,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import FormRating from "@/components/forms-fields/FormRating";
+import { setFormErrors } from "@/utils/handleApiError";
 
 export default function ClientReviewForm({ orderId }: { orderId: string | number }) {
   const form = useForm<
@@ -55,6 +56,9 @@ export default function ClientReviewForm({ orderId }: { orderId: string | number
     postClientReview(values, {
       onSuccess: () => {
         form.reset();
+      },
+      onError: (err) => {
+        setFormErrors(form, err);
       },
     });
   }

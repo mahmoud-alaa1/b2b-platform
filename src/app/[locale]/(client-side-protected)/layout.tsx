@@ -24,7 +24,7 @@ export default function ProtectedLayout({
           router.replace("/suppliers-dashboard/orders");
         } else if (
           auth.user?.role === "Clients" &&
-          pathname.includes("/clients-dashboard")
+          pathname.includes("/suppliers-dashboard")
         ) {
           router.replace("/clients-dashboard/overview");
         }

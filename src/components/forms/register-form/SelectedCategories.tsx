@@ -4,8 +4,6 @@ import { allCachedCategories } from "@/lib/categories";
 import { conditionalRegisterSchemaType } from "@/schemas/authSchema";
 import { Tag, X } from "lucide-react";
 import { motion } from "motion/react";
-import { queryClient } from "@/providers/ReactQueryProvider";
-import { InfiniteData } from "@tanstack/react-query";
 
 import { useFormContext } from "react-hook-form";
 const getCategoryNameById = (
@@ -14,14 +12,6 @@ const getCategoryNameById = (
 ): string => {
   const category = allCategories?.find((cat) => cat.categoryId == categoryId);
 
-  const cachedCats = queryClient
-    .getQueryCache()
-    .findAll({ queryKey: ["categories"] })
-    .map(
-      (query) => query.state.data as InfiniteData<IPaginatedResponse<ICategory>>
-    )
-    .filter(Boolean);
-  console.log("here: ", cachedCats);
 
   return category?.categoryName || `Category ${categoryId}`;
 };

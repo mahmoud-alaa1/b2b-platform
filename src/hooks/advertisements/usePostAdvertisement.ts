@@ -1,3 +1,4 @@
+import { queryClient } from "@/providers/ReactQueryProvider";
 import { advertisementSchema } from "@/schemas/advertisementSchema";
 import { postAdvertisements } from "@/services/advertisementsServices";
 import { ApiError } from "@/utils/handleApiError";
@@ -24,6 +25,7 @@ export default function usePostAdvertisement() {
           position: "top-center",
         }
       );
+      queryClient.invalidateQueries({ queryKey: ["supplier-quota"] });
     },
     onError: (error) => {
       toast.error(error.message, {

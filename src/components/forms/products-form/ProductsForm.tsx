@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import Spinner from "@/components/ui/spinner";
 import usePostProduct from "@/hooks/products/usePostProduct";
+import { setFormErrors } from "@/utils/handleApiError";
 
 export default function ProductsForm() {
   const form = useForm<
@@ -53,7 +54,14 @@ export default function ProductsForm() {
 
   function onSubmit(values: addProductSchemaOutput) {
     console.log(values);
-    postProduct(values);
+    postProduct(values, {
+      onSuccess: () => {
+        form.reset();
+      },
+      onError: (err) => {
+        setFormErrors(form, err);
+      },
+    });
   }
 
   return (

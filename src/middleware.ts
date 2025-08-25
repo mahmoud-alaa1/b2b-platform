@@ -45,3 +45,13 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   matcher: ["/((?!api|trpc|_next|_vercel|.*\\..*).*)"],
 };
+
+
+/*
+
+1. pay 100USD what equals in EGP
+
+********** الحساب التوفير والجاري ليهم مصاريف تشغيلية 50 جنيه 
+*********** الحساب الدولاري كل سنة 15 دولار
+***********  كل حوالة ليها رسوم 5 - 15 دولار
+*/

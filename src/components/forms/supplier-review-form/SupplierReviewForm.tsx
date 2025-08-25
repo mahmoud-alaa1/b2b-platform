@@ -26,8 +26,13 @@ import {
 } from "lucide-react";
 import useSupplierReview from "@/hooks/reviews/useSupplierReview";
 import FormRating from "@/components/forms-fields/FormRating";
+import { setFormErrors } from "@/utils/handleApiError";
 
-export default function SupplierReviewForm({ dealId }: { dealId: string | number }) {
+export default function SupplierReviewForm({
+  dealId,
+}: {
+  dealId: string | number;
+}) {
   const { mutate: submitReview, isPending } = useSupplierReview({
     dealId,
   });
@@ -55,7 +60,14 @@ export default function SupplierReviewForm({ dealId }: { dealId: string | number
 
   async function onSubmit(values: supplierReviewSchemaOutput) {
     console.log(values);
-    submitReview(values);
+    submitReview(values, {
+      onSuccess: () => {
+        form.reset();
+      },
+      onError: (err) => {
+        setFormErrors(form, err);
+      },
+    });
   }
 
   return (

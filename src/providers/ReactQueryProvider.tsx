@@ -10,6 +10,11 @@ export const queryClient = new QueryClient({
       retry: 2,
       staleTime: 1000 * 60 * 5,
     },
+    mutations: {
+      onError: (error) => {
+        console.error("Mutation error:", error);
+      },
+    },
   },
 });
 export default function ReactQueryProvider({

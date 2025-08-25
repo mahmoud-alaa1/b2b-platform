@@ -7,6 +7,7 @@ import { resetPasswordSchema } from "@/schemas/authSchema";
 import Spinner from "../ui/spinner";
 import useResetPassword from "@/hooks/auth/useResetPassword";
 import FormPassword from "../forms-fields/FormPassword";
+import { setFormErrors } from "@/utils/handleApiError";
 
 export default function ResetPasswordForm() {
   const { mutate, isPending } = useResetPassword();
@@ -19,7 +20,11 @@ export default function ResetPasswordForm() {
   });
 
   function onSubmit(values: resetPasswordSchema) {
-    mutate(values);
+    mutate(values, {
+      onError: (err) => {
+        setFormErrors(form, err);
+      },
+    });
   }
 
   return (
@@ -35,8 +40,7 @@ export default function ResetPasswordForm() {
 
         <Button
           disabled={isPending}
-          className="w-full text-white py-2 transition rounded-2xl"
-        >
+          className="w-full text-white py-2 transition rounded-2xl">
           {isPending ? <Spinner /> : "استعادة كلمة المرور"}
         </Button>
       </form>
