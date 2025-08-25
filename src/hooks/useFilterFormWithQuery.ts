@@ -3,8 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo } from "react";
 import { UseFormReturn } from "react-hook-form";
 import useDebounce from "./useDebounce";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "@/i18n/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface UseFilterFormOptions<T extends Record<string, any>> {
   form: UseFormReturn<T>;
