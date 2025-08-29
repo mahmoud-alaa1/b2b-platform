@@ -34,16 +34,16 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({
               <div className="h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent w-24"></div>
             </div>
 
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-slate-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent mb-2 leading-tight">
+            <h2 className="text-4xl md:text-4xl lg:text-4xl font-bold bg-gradient-to-r from-slate-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent mb-2 leading-tight">
               عروض حصرية
             </h2>
           </div>
         </div>
 
         {/* Carousel Container with Modern Frame */}
-        <div className="relative mx-4 lg:mx-8 xl:mx-12">
+        <div className="relative mx-auto md:max-w-5xl">
           {/* Glass Border Effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-cyan-500/20 rounded-2xl blur-sm"></div>
+          <div className="absolute -inset-1  bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-cyan-500/20 rounded-2xl blur-sm"></div>
 
           {/* Main Carousel Container */}
           <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-white/20">

@@ -3,6 +3,7 @@ import { navigateTo } from "@/utils/navigationHelper";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import Cookies from "js-cookie";
 import { clearState } from "./utils";
+import useAuth from "@/store/authStore";
 
 interface ICustomAxiosInternalConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
@@ -10,6 +11,7 @@ interface ICustomAxiosInternalConfig extends InternalAxiosRequestConfig {
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true,
 });
 
 api.interceptors.request.use((config) => {
@@ -19,7 +21,7 @@ api.interceptors.request.use((config) => {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
   }
-  
+
   return config;
 });
 
@@ -28,9 +30,14 @@ api.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest: ICustomAxiosInternalConfig | undefined =
       error.config;
-    if (originalRequest?.url?.includes("/login")) {
+
+    if (
+      originalRequest?.url?.includes("/login") ||
+      originalRequest?.url?.includes("/refresh")
+    ) {
       return Promise.reject(error);
     }
+
     if (
       error.response?.status === 401 &&
       originalRequest &&
@@ -38,17 +45,16 @@ api.interceptors.response.use(
     ) {
       originalRequest._retry = true;
       try {
-        const response = await refreshTokenService();
-        const accessToken = response.data.accessToken;
-
-        api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+        const accessToken = await refreshTokenService();
 
         Cookies.set("token", accessToken);
+
+        originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
 
         return api(originalRequest);
       } catch (refreshError) {
         console.error("Token refresh failed:", refreshError);
-        clearState()
+        useAuth.getState().logout();
         navigateTo("/login");
         return Promise.reject(refreshError);
       }

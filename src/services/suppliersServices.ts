@@ -37,8 +37,12 @@ export async function fetchSuppliers(params?: ISuppliersFilters) {
 // function to get the products and reviews for each supplier
 export async function getSupplierProductsAndReviews(supplierId: number) {
   try {
-    const response = await api.get<IApiResponse<ISupplierProductsAndReviews>>(
-      `/productPage/${supplierId}`
+    const response = await fetchData<IApiResponse<ISupplierProductsAndReviews>>(
+      `/productPage/${supplierId}`,
+      {
+        cache: "force-cache",
+        next: { revalidate: 3600 },
+      }
     );
     return response.data;
   } catch (error) {

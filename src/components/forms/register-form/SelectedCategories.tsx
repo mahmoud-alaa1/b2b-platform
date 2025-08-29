@@ -52,7 +52,7 @@ export default function SelectedCategories() {
               <Badge variant="default" className="p-2 text-indigo-50">
                 <Tag className="w-3 h-3" />
                 <span className="font-medium">
-                  {getCategoryNameById(categoryId, allCachedCategories)}
+                  {getCategoryNameById(categoryId, allCachedCategories())}
                 </span>
                 <Button
                   type="button"

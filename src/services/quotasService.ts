@@ -44,3 +44,5 @@ export async function postSupplierAdsQuota(data: { amount: number }) {
     throw handleApiError(error);
   }
 }
+
+

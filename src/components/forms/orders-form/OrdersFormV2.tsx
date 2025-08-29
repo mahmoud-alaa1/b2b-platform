@@ -147,7 +147,7 @@ export function OrdersFormV2() {
                       </>
                     ) : (
                       <>
-                        إنشاء الحساب
+                        إنشاء الطلب
                         <CheckCircle className="w-4 h-4" />
                       </>
                     )}

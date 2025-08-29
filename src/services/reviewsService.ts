@@ -24,27 +24,32 @@ export async function postClientReview(
     throw handleApiError(error);
   }
 }
-export async function getSupplierRatingSummary({
-  supplierId,
-}: {
-  supplierId: string | number;
-}) {
+
+export async function getSupplierRatingSummary(userId: number) {
   try {
     const res = await api.get<IApiResponse<IRatingSummary>>(
-      `/ratings/summary/${supplierId}`
+      `/ratings/summary/${userId}`
     );
     return res.data;
   } catch (error) {
     throw handleApiError(error);
   }
 }
-export async function getSupplierRatingReviews({
-  supplierId,
-}: {
-  supplierId: string | number;
-}) {
+export async function getSupplierRatingReviews(
+  userId: number,
+  page: number,
+  pageSize: number
+) {
   try {
-    const res = await api.get(`/ratings/reviews/${supplierId}`);
+    const res = await api.get<IPaginatedResponse<IReview>>(
+      `/ratings/reviews/${userId}`,
+      {
+        params: {
+          page,
+          pageSize,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     throw handleApiError(error);

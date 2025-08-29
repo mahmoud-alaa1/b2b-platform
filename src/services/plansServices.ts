@@ -28,3 +28,5 @@ export async function subscribeToPlan(planId: string | number) {
     throw handleApiError(error);
   }
 }
+
+// funcation to get plans

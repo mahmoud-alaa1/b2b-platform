@@ -1,7 +1,10 @@
 interface IRatingSummary {
-    totalRatings: number;
-    distribution: number[]; 
+  totalRatings: number;
+  Distribution: number[];
 }
 
-
-
+interface IReview {
+  reviewerName: string;
+  comment: string;
+  rating: number;
+}

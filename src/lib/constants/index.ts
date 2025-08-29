@@ -22,6 +22,8 @@ export const SUPPLIERS_BASE_KEY = "suppliers";
 export const TABLE_ROWS = 10;
 export const SUPPLIER_DEALS_TABLE_NAME = "supplier-deals";
 export const CLIENT_DEALS_TABLE_NAME = "client-deals";
+export const REVIEWS_PAGE_SIZE = 5;
+export const REVIEWS_BASE_KEY = "reviews";
 
 export const SLIDER_VARIANTS = {
   enter: (dir: "next" | "back") => ({

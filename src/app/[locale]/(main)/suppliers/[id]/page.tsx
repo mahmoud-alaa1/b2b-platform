@@ -2,16 +2,13 @@ import React from "react";
 import SupplierHero from "./_components/SupplierHero";
 import SupplierSidebar from "./_components/SupplierSidebar";
 import { getSupplierInfo } from "@/services/accountSettingServices";
-import {
-  getSupplierProductsAndReviews,
-} from "@/services/suppliersServices";
+import { getSupplierProductsAndReviews } from "@/services/suppliersServices";
 import { notFound } from "next/navigation";
 import ProductList from "./_components/ProductList";
 import SupplierReviews from "./_components/SupplierReviews";
 import { Metadata } from "next";
 
 export const revalidate = 3600;
-
 
 export async function generateMetadata({
   params,
@@ -21,7 +18,7 @@ export async function generateMetadata({
   try {
     const supplier = await getSupplierInfo(Number((await params).id));
 
-    if (!supplier || !supplier.data) {
+    if (!supplier) {
       return {
         title: "مورد غير موجود | SupplyFi Horeca",
         description: "لم يتم العثور على المورد المطلوب.",
@@ -30,12 +27,12 @@ export async function generateMetadata({
     }
 
     return {
-      title: `${supplier.data.name} | SupplyFi Horeca`,
-      description: `اكتشف منتجات وخدمات المورد ${supplier.data.name} مع تقييمات حقيقية من العملاء.`,
-      keywords: `${supplier.data.name}, موردين, SupplyFi, Horeca`,
+      title: `${supplier.name} | SupplyFi Horeca`,
+      description: `اكتشف منتجات وخدمات المورد ${supplier.name} مع تقييمات حقيقية من العملاء.`,
+      keywords: `${supplier.name}, موردين, SupplyFi, Horeca`,
       openGraph: {
-        title: `${supplier.data.name} | SupplyFi Horeca`,
-        description: `صفحة المورد ${supplier.data.name} مع المنتجات والتقييمات.`,
+        title: `${supplier.name} | SupplyFi Horeca`,
+        description: `صفحة المورد ${supplier.name} مع المنتجات والتقييمات.`,
         type: "profile",
         locale: "ar_SA",
       },
@@ -63,15 +60,9 @@ export default async function Page({
 }) {
   const { id } = await params;
 
-  let supplier;
-  try {
-    supplier = await getSupplierInfo(Number(id));
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
-    notFound();
-  }
+  const supplier = await getSupplierInfo(Number(id));
 
-  if (!supplier || !supplier.data) {
+  if (!supplier) {
     notFound();
   }
 
@@ -83,24 +74,24 @@ export default async function Page({
     <>
       <main className="mb-10 bg-white/70 backdrop-blur-sm shadow-xl border border-white/20 min-h-full relative overflow-hidden">
         <div className="flex flex-col gap-8">
-          <SupplierHero supplier={supplier.data} />
+          <SupplierHero supplier={supplier} />
         </div>
       </main>
 
       <div className="container flex flex-col md:flex-row gap-6 mt-8 px-4 md:px-16">
         <div className="flex-1">
-          <ProductList products={supplierProductsAndReviews.data.products} />
+          <ProductList products={supplierProductsAndReviews.products} />
           <SupplierReviews
-            allReviews={supplierProductsAndReviews.data.allReviews}
+            allReviews={supplierProductsAndReviews.allReviews}
           />
 
           <div className="block md:hidden mt-6">
-            <SupplierSidebar supplier={supplier.data} />
+            <SupplierSidebar supplier={supplier} />
           </div>
         </div>
 
         <div className="hidden md:block w-80 flex-shrink-0 self-start sticky top-20">
-          <SupplierSidebar supplier={supplier.data} />
+          <SupplierSidebar supplier={supplier} />
         </div>
       </div>
     </>

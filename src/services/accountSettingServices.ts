@@ -1,4 +1,5 @@
 import api from "@/lib/axios";
+import { fetchData } from "@/lib/fetchApi";
 import { editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
 import { IAccountInfoPatchResponse, ISupplierInfo } from "@/types/supplier";
 import { handleApiError } from "@/utils/handleApiError";
@@ -6,10 +7,14 @@ import { handleApiError } from "@/utils/handleApiError";
 // fetch supplier info function
 export async function getSupplierInfo(supplierId: number) {
   try {
-    const response = await api.get<IApiResponse<ISupplierInfo>>(
+    const response = await fetchData<IApiResponse<ISupplierInfo>>(
       `/supplier-info/${supplierId}`,
+      {
+        cache: "force-cache",
+        next: { revalidate: 3600 },
+      }
     );
-    return response?.data;
+    return response.data;
   } catch (error) {
     throw handleApiError(error);
   }

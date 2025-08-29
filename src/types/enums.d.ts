@@ -2,8 +2,8 @@ enum EDealStatus {
   Pending,
   ClientConfirmed,
   SupplierConfirmed,
-  Confirmed,
-  Refused,
+  AdminConfirmed,
+  AdminRefused,
 }
 enum EOrderStatus {
   Active,
@@ -14,3 +14,5 @@ enum EOrderStatus {
 
 type TDealStatus = keyof typeof EDealStatus;
 type TOrderStatus = keyof typeof EOrderStatus;
+
+

@@ -33,6 +33,10 @@ export const orderSchema = z.object({
     }),
   deadline: z.coerce.date().min(new Date(), {
     message: "موعد التسليم يجب أن يكون في المستقبل.",
+  }).refine((val)=>{
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return val >= today
   }),
   description: z
     .string()

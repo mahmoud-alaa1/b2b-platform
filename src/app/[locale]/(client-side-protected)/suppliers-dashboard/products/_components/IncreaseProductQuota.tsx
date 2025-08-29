@@ -1,7 +1,6 @@
 "use client";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ProductsForm from "@/components/forms/products-form/ProductsForm";
 import { ResponsiveModal } from "@/components/ResponsiveModal";
 import SupplierProductQuotaForm from "@/components/forms/supplier-quotas/SupplierProductQuotaForm";
 

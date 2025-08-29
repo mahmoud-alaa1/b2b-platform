@@ -15,6 +15,7 @@ export default function useDeleteProduct() {
       queryClient.invalidateQueries({
         queryKey: ["supplier-self-products"],
       });
+      queryClient.invalidateQueries({ queryKey: ["supplier-quota"] });
     },
   });
 }

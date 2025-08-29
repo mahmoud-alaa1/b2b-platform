@@ -23,6 +23,7 @@ export default function usePostProduct() {
       queryClient.invalidateQueries({
         queryKey: ["supplier-self-products"],
       });
+      queryClient.invalidateQueries({ queryKey: ["supplier-quota"] });
     },
     onError: (error) => {
       console.error("Mutation error:", error);

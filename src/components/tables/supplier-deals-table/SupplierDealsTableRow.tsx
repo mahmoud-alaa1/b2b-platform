@@ -5,16 +5,10 @@ import SupplierReview from "@/app/[locale]/(client-side-protected)/suppliers-das
 import { Badge } from "@/components/ui/badge";
 import { TableCell, TableRow } from "@/components/ui/table";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+
 import {
   Building2,
   Phone,
-  Mail,
   User,
   CheckCircle,
   XCircle,
@@ -41,12 +35,12 @@ const getDealStatusConfig = (status: string) => {
       icon: <ShieldCheck className="w-3 h-3" />,
       color: "bg-indigo-100 text-indigo-800 border-indigo-200",
     },
-    Confirmed: {
+    AdminConfirmed: {
       label: "مؤكدة",
       icon: <CheckCircle className="w-3 h-3" />,
       color: "bg-green-100 text-green-800 border-green-200",
     },
-    Refused: {
+    AdminRefused: {
       label: "مرفوضة",
       icon: <XCircle className="w-3 h-3" />,
       color: "bg-red-100 text-red-800 border-red-200",

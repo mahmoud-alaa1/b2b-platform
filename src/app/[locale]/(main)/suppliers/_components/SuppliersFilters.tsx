@@ -27,7 +27,7 @@ export default function SuppliersFilters() {
       <FormInput
         control={form.control}
         name="location"
-        placeholder="موقع المورد"
+        placeholder="ابحث بموقع المورد "
         label="الموقع"
       />
       <FormSelect

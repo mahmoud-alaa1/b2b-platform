@@ -18,7 +18,6 @@ import {
   Package,
   DollarSign,
   MessageSquare,
-  MapPin,
   Hash,
   Send,
   Award,
@@ -44,7 +43,7 @@ export default function SupplierReviewForm({
   >({
     resolver: zodResolver(supplierReviewSchema),
     defaultValues: {
-      dealDoneAt: "",
+      dealDoneAt: new Date(),
       quantity: 1,
       price: 1,
       dateOfDelivered: new Date(),
@@ -105,13 +104,12 @@ export default function SupplierReviewForm({
                 </div>
 
                 <div className="grid gap-6 ">
-                  <FormInput
+                  <FormDatePicker
                     control={form.control}
                     name="dealDoneAt"
-                    label="مكان إتمام الصفقة"
-                    placeholder="مثال: سوهاج شارع 15"
-                    Icon={<MapPin className="w-4 h-4" />}
-                    description="أدخل المكان الذي تمت فيه الصفقة"
+                    label="تاريخ إتمام الصفقة"
+                    placeholder="اختر تاريخ الصفقة"
+                    description="أدخل التاريخ الذي تمت فيه الصفقة"
                     className="bg-white"
                   />
 
@@ -120,6 +118,8 @@ export default function SupplierReviewForm({
                     name="dateOfDelivered"
                     label="تاريخ التسليم"
                     placeholder="اختر تاريخ التسليم"
+                    description="أدخل التاريخ الذي تم التسليم فيه"
+                    className="bg-white"
                   />
 
                   <FormInput
@@ -216,7 +216,8 @@ export default function SupplierReviewForm({
             <div className="flex justify-center pt-6">
               <Button
                 type="submit"
-                className="bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 hover:from-blue-600 hover:via-purple-600 hover:to-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 min-w-[200px]">
+                className="bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 hover:from-blue-600 hover:via-purple-600 hover:to-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 min-w-[200px]"
+              >
                 {isPending ? (
                   <>
                     <div className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin" />

@@ -2,8 +2,14 @@ import z from "zod";
 
 export const clientReviewSchema = z.object({
   dealDoneAt: z.coerce
-    .date({
-      error: "يجب ادخال تاريخ اتمام الصفقة",
+    .date()
+    .min(new Date(), {
+      message: "موعد التسليم يجب أن يكون في المستقبل.",
+    })
+    .refine((val) => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return val >= today;
     })
     .transform((d) => d.toISOString()),
   quantity: z.coerce.number().min(1, "يجب ادخال الكمية").max(2147483647),
@@ -20,7 +26,7 @@ export const clientReviewSchema = z.object({
     })
     .min(10, "يجب أن يتكون التعليق من 10 أحرف على الأقل")
     .max(500, "يجب أن يتكون التعليق من 500 حرف كحد أقصى"),
-  supplierId: z.string({
+  userId: z.string({
     error: "يجب ادخال المورد",
   }),
 });

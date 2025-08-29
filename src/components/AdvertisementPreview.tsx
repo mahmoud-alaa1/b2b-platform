@@ -48,7 +48,8 @@ const AdvertisementPreview: React.FC<AdvertisementPreviewProps> = ({
             </div>
 
             <h2
-              className={`font-bold bg-gradient-to-r from-slate-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent leading-tight text-2xl md:text-3xl`}>
+              className={`font-bold bg-gradient-to-r from-slate-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent leading-tight text-2xl md:text-3xl`}
+            >
               عروض حصرية
             </h2>
           </div>
@@ -63,7 +64,8 @@ const AdvertisementPreview: React.FC<AdvertisementPreviewProps> = ({
               <div className="relative">
                 {/* Advertisement Image */}
                 <div
-                  className={`relative w-full h-48 md:h-64 bg-gray-100 flex items-center justify-center`}>
+                  className={`relative w-full h-48 md:h-64 bg-gray-100 flex items-center justify-center`}
+                >
                   {imagePreviewUrl ? (
                     <Image
                       src={imagePreviewUrl}
@@ -139,7 +141,7 @@ const AdvertisementPreview: React.FC<AdvertisementPreviewProps> = ({
       </div>
 
       {/* Preview Container */}
-      <div className="border border-gray-200 rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 via-white to-indigo-50/30 p-4">
+      <div className="border border-gray-200 rounded-xl overflow-hidden bg-gradient p-4">
         <div className="text-center mb-3">
           <span className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
             <Monitor className="w-4 h-4" />
