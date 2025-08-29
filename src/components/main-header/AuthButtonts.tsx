@@ -8,7 +8,8 @@ export default function AuthButtonts() {
       <Button
         variant="ghost"
         className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium transition-all duration-200"
-        asChild>
+        asChild
+      >
         <Link href="/login" className="flex items-center gap-2">
           <LogIn className="w-4 h-4" />
           تسجيل الدخول
@@ -16,10 +17,11 @@ export default function AuthButtonts() {
       </Button>
       <Button
         className="  font-medium px-6 py-2 rounded-xl shadow-lg hover:shadow-xl text-white transition-all duration-200 transform "
-        asChild>
+        asChild
+      >
         <Link href="/register" className="flex items-center gap-2">
           <UserPlus className="w-4 h-4" />
-          تقديم الطلب
+          انشاء حساب
         </Link>
       </Button>
     </div>

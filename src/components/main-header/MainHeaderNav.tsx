@@ -5,6 +5,7 @@ const HEADER_LINKS = [
   { href: "/suppliers", label: "الموردين" },
   { href: "/about-us", label: "من نحن" },
   { href: "/contact-us", label: "اتصل بنا" },
+  { href: "/terms", label: " الشروط والاحكام" },
 ];
 export default function MainHeaderNav({
   closeSheet,
@@ -13,7 +14,7 @@ export default function MainHeaderNav({
 }) {
   return (
     <div className="md:flex justify-between  gap-4" onClick={closeSheet}>
-      <nav className="flex md:mb-0 mb-4 md:flex-row flex-col md:items-center gap-6">
+      <nav className="flex md:mb-0 mb-4  md:flex-row flex-col md:items-center gap-6">
         {HEADER_LINKS.map((link) => (
           <Link
             onClick={closeSheet}
