@@ -30,7 +30,11 @@ import {
 import FormRating from "@/components/forms-fields/FormRating";
 import { setFormErrors } from "@/utils/handleApiError";
 
-export default function ClientReviewForm({ orderId }: { orderId: string | number }) {
+export default function ClientReviewForm({
+  orderId,
+}: {
+  orderId: string | number;
+}) {
   const form = useForm<
     clientReviewSchemaInput,
     undefined,
@@ -52,7 +56,6 @@ export default function ClientReviewForm({ orderId }: { orderId: string | number
   });
 
   function onSubmit(values: clientReviewSchemaOutput) {
-    console.log(values);
     postClientReview(values, {
       onSuccess: () => {
         form.reset();
@@ -61,6 +64,7 @@ export default function ClientReviewForm({ orderId }: { orderId: string | number
         setFormErrors(form, err);
       },
     });
+
   }
 
   return (

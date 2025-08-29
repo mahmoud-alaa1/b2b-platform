@@ -1,4 +1,4 @@
-import { supplierReviewSchemaOutput } from "@/schemas/supplierReviewsSchema";
+import { clientReviewSchemaOutput } from "@/schemas/clientReviewSchema";
 import { postClientReview } from "@/services/reviewsService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -6,10 +6,9 @@ import { toast } from "sonner";
 export default function useClientReview({ orderId }: { orderId: string | number }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: supplierReviewSchemaOutput) =>
+    mutationFn: (data: clientReviewSchemaOutput) =>
       postClientReview({ ...data, orderId }),
-    onSuccess: (data) => {
-      console.log("Review submitted successfully:", data);
+    onSuccess: () => {
       toast.success("تم إرسال المراجعة بنجاح");
       queryClient.invalidateQueries({ queryKey: ["client-deals"] });
     },

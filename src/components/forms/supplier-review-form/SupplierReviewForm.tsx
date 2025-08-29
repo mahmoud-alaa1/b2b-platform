@@ -58,7 +58,6 @@ export default function SupplierReviewForm({
   const totalValue = watchedPrice * watchedQuantity;
 
   async function onSubmit(values: supplierReviewSchemaOutput) {
-    console.log(values);
     submitReview(values, {
       onSuccess: () => {
         form.reset();
@@ -111,6 +110,7 @@ export default function SupplierReviewForm({
                     placeholder="اختر تاريخ الصفقة"
                     description="أدخل التاريخ الذي تمت فيه الصفقة"
                     className="bg-white"
+                    type="datetime-local"
                   />
 
                   <FormDatePicker
@@ -120,6 +120,7 @@ export default function SupplierReviewForm({
                     placeholder="اختر تاريخ التسليم"
                     description="أدخل التاريخ الذي تم التسليم فيه"
                     className="bg-white"
+                    type="datetime-local"
                   />
 
                   <FormInput
@@ -216,8 +217,7 @@ export default function SupplierReviewForm({
             <div className="flex justify-center pt-6">
               <Button
                 type="submit"
-                className="bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 hover:from-blue-600 hover:via-purple-600 hover:to-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 min-w-[200px]"
-              >
+                className="bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 hover:from-blue-600 hover:via-purple-600 hover:to-green-600 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 min-w-[200px]">
                 {isPending ? (
                   <>
                     <div className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin" />

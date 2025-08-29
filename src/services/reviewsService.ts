@@ -1,4 +1,5 @@
 import api from "@/lib/axios";
+import { clientReviewSchemaOutput } from "@/schemas/clientReviewSchema";
 import { supplierReviewSchemaOutput } from "@/schemas/supplierReviewsSchema";
 
 import { handleApiError } from "@/utils/handleApiError";
@@ -15,7 +16,7 @@ export async function postSupplierReview(
 }
 
 export async function postClientReview(
-  data: supplierReviewSchemaOutput & { orderId: string | number }
+  data: clientReviewSchemaOutput & { orderId: string | number }
 ) {
   try {
     const res = await api.post(`/client/review`, data);

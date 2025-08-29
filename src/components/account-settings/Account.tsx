@@ -22,7 +22,7 @@ export default function Account() {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
 
-  const { data, isPending } = useGetSupplierInfo();
+  const { data: supplier, isPending } = useGetSupplierInfo();
   const { mutate, isPending: isUpdating } = usePatchSupplierInfo();
   const { mutate: patchLogo, isPending: isUploadingLogo } =
     usePatchSupplierLogo();
@@ -38,8 +38,6 @@ export default function Account() {
     //@ts-expect-error i know this is a string array
     name: "locations",
   });
-
-  const supplier = data?.data;
 
   const resetFormWithSupplier = useCallback(() => {
     form.reset({

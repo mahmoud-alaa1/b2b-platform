@@ -12,8 +12,7 @@ export default function useSupplierReview({
   return useMutation({
     mutationFn: (data: supplierReviewSchemaOutput) =>
       postSupplierReview({ ...data, dealId }),
-    onSuccess: (data) => {
-      console.log("Review submitted successfully:", data);
+    onSuccess: () => {
       toast.success("تم إرسال المراجعة بنجاح");
       queryClient.invalidateQueries({ queryKey: ["supplier-deals"] });
     },

@@ -3,21 +3,31 @@ import z from "zod";
 export const clientReviewSchema = z.object({
   dealDoneAt: z.coerce
     .date()
-    .min(new Date(), {
-      message: "موعد التسليم يجب أن يكون في المستقبل.",
-    })
-    .refine((val) => {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      return val >= today;
-    })
+    .refine(
+      (val) => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return val >= today;
+      },
+      {
+        error: "موعد إتمام الصفقة يجب أن يكون في المستقبل.",
+      }
+    )
     .transform((d) => d.toISOString()),
   quantity: z.coerce.number().min(1, "يجب ادخال الكمية").max(2147483647),
   price: z.coerce.number().min(0, "يجب ادخال السعر").max(2147483647),
   dateOfDelivered: z.coerce
-    .date({
-      error: "يجب ادخال تاريخ اتمام الصفقة",
-    })
+    .date()
+    .refine(
+      (val) => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return val >= today;
+      },
+      {
+        error: "موعد تسليم الصفقة يجب أن يكون في المستقبل.",
+      }
+    )
     .transform((d) => d.toISOString()),
   rating: z.coerce.number().min(1).max(5),
   comment: z
