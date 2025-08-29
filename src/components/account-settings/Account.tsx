@@ -1,35 +1,45 @@
 "use client";
-import useGetSupplierInfo from "@/hooks/supplier-profile/useGetSupplierInfo";
 import usePatchSupplierInfo from "@/hooks/supplier-profile/usePatchSupplierInfo";
 import usePatchSupplierLogo from "@/hooks/supplier-profile/usePatchSupplierLogo";
 import {
   editSupplierInfoSchema,
-  editSupplierInfoSchemaType,
+  editSupplierInfoSchemaInput,
+  editSupplierInfoSchemaOutput,
 } from "@/schemas/accountSettingSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Form } from "../ui/form";
-import AccountHeader from "./AccountHeader";
+import AccountHeader from "./account-header/AccountHeader";
 import AccountContactInfo from "./AccountContactInfo";
 import AccountDescription from "./AccountDescription";
 import AccountLocations from "./AccountLocations";
 import AccountCategories from "./AccountCategories";
 import AccountActions from "./AccountActions";
 import { useCallback, useEffect, useState } from "react";
-import { Building2 } from "lucide-react";
+import AccountHeaderSkeleton from "./account-header/AccountHeaderSkeleton";
+import useGetSupplierProfile from "@/hooks/supplier-profile/useGetSupplierProfile";
 
 export default function Account() {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
 
-  const { data: supplier, isPending } = useGetSupplierInfo();
+  const { data: supplier, isPending } = useGetSupplierProfile();
   const { mutate, isPending: isUpdating } = usePatchSupplierInfo();
   const { mutate: patchLogo, isPending: isUploadingLogo } =
     usePatchSupplierLogo();
 
-  const form = useForm<editSupplierInfoSchemaType>({
+  const form = useForm<
+    editSupplierInfoSchemaInput,
+    undefined,
+    editSupplierInfoSchemaOutput
+  >({
     resolver: zodResolver(editSupplierInfoSchema),
-    defaultValues: { description: "", locations: [], logoUrl: null },
+    defaultValues: {
+      description: "",
+      locations: [],
+      logoUrl: null,
+      CategoryIds: [],
+    },
     mode: "all",
   });
 
@@ -41,9 +51,10 @@ export default function Account() {
 
   const resetFormWithSupplier = useCallback(() => {
     form.reset({
-      description: supplier?.description ?? "",
-      locations: supplier?.locations?.filter(Boolean) ?? [],
-      logoUrl: supplier?.logoUrl ?? null,
+      description: supplier?.data.description ?? "",
+      locations: supplier?.data.locations?.filter(Boolean) ?? [],
+      logoUrl: supplier?.data.logoURL ?? null,
+      CategoryIds: supplier?.data.categories ?? [],
     });
   }, [supplier, form]);
 
@@ -51,7 +62,7 @@ export default function Account() {
     if (supplier) resetFormWithSupplier();
   }, [supplier, resetFormWithSupplier]);
 
-  const onSubmit = (values: editSupplierInfoSchemaType) => {
+  const onSubmit = (values: editSupplierInfoSchemaOutput) => {
     mutate(values, {
       onSuccess() {
         setIsEditMode(false);
@@ -59,67 +70,73 @@ export default function Account() {
       },
     });
   };
+  if (!supplier || isPending) {
+    return <AccountHeaderSkeleton />;
+  }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 pb-10" dir="rtl">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
-          <Building2 className="w-12 h-12 text-indigo-600" />
-          <div>
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
-              ملف شركتك
-            </h2>
-            <p className="text-sm text-gray-500 mt-1">
-              نظرة عامة ومعلومات عن شركتك
-            </p>
-          </div>
-        </div>
+    <div className="min-h-screen">
+      <div className=" mx-auto">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="space-y-8">
+              <div>
+                <AccountHeader
+                  supplier={supplier.data}
+                  isPending={isPending}
+                  logoPreview={logoPreview}
+                  setLogoPreview={setLogoPreview}
+                  patchLogo={patchLogo}
+                  isUploadingLogo={isUploadingLogo}
+                />
+              </div>
+
+              <div>
+                <AccountContactInfo
+                  supplier={supplier.data}
+                  isPending={isPending}
+                />
+              </div>
+
+              <div>
+                <AccountDescription
+                  supplier={supplier.data}
+                  isPending={isPending}
+                  isEditMode={isEditMode}
+                />
+              </div>
+
+              <div>
+                <AccountLocations
+                  supplier={supplier.data}
+                  isPending={isPending}
+                  isEditMode={isEditMode}
+                  fields={fields}
+                  append={append}
+                  remove={remove}
+                />
+              </div>
+
+              <div>
+                <AccountCategories
+                  isEditMode={isEditMode}
+                  isPending={isPending}
+                />
+              </div>
+
+              <div>
+                <AccountActions
+                  isEditMode={isEditMode}
+                  setIsEditMode={setIsEditMode}
+                  isUpdating={isUpdating}
+                  isPending={isPending}
+                  resetFormWithSupplier={resetFormWithSupplier}
+                />
+              </div>
+            </div>
+          </form>
+        </Form>
       </div>
-
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <AccountHeader
-            supplier={supplier}
-            isPending={isPending}
-            logoPreview={logoPreview}
-            setLogoPreview={setLogoPreview}
-            patchLogo={patchLogo}
-            isUploadingLogo={isUploadingLogo}
-          />
-
-          {/* <AccountStats supplier={supplier} /> */}
-
-          <AccountContactInfo supplier={supplier} isPending={isPending} />
-
-          <AccountDescription
-            form={form}
-            supplier={supplier}
-            isPending={isPending}
-            isEditMode={isEditMode}
-          />
-
-          <AccountLocations
-            form={form}
-            supplier={supplier}
-            isPending={isPending}
-            isEditMode={isEditMode}
-            fields={fields}
-            append={append}
-            remove={remove}
-          />
-
-          <AccountCategories supplier={supplier} isPending={isPending} />
-
-          <AccountActions
-            isEditMode={isEditMode}
-            setIsEditMode={setIsEditMode}
-            form={form}
-            isUpdating={isUpdating}
-            isPending={isPending}
-            resetFormWithSupplier={resetFormWithSupplier}
-          />
-        </form>
-      </Form>
     </div>
   );
 }

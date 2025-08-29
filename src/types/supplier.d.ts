@@ -16,6 +16,7 @@ interface IAccountInfoPatchResponse {
   id: number | string;
   description: string;
   locations: string[];
+  CategoryIds: (string | number)[];
 }
 
 interface IAccountLogoPatchResponse {

@@ -17,7 +17,6 @@ import FormTextArea from "../forms-fields/FormTextArea";
 import { getCategories } from "@/services/categoriesServices";
 import { useState, useEffect } from "react";
 import {
-  Package,
   MapPin,
   Phone,
   User,
@@ -32,7 +31,6 @@ import { setFormErrors } from "@/utils/handleApiError";
 const defaultValues = {
   contactPersonName: "",
   contactPersonPhone: "",
-  quantity: 0,
   deadline: new Date(),
   description: "",
   numSuppliersDesired: 0,
@@ -239,15 +237,7 @@ export default function OrderForm() {
                         />
                       </div>
 
-                      <FormInput<orderSchemaInput>
-                        control={form.control}
-                        name="quantity"
-                        placeholder="أدخل الكمية..."
-                        type="number"
-                        label="الكمية المطلوبة"
-                        Icon={<Package className="w-5 h-5" />}
-                        min={1}
-                      />
+                   
                       <FormInput<orderSchemaInput>
                         control={form.control}
                         name="numSuppliersDesired"

@@ -18,10 +18,8 @@ import {
   Package,
   DollarSign,
   MessageSquare,
-  Hash,
   Send,
   Award,
-  TrendingUp,
 } from "lucide-react";
 import useSupplierReview from "@/hooks/reviews/useSupplierReview";
 import FormRating from "@/components/forms-fields/FormRating";
@@ -44,18 +42,12 @@ export default function SupplierReviewForm({
     resolver: zodResolver(supplierReviewSchema),
     defaultValues: {
       dealDoneAt: new Date(),
-      quantity: 1,
       price: 1,
       dateOfDelivered: new Date(),
       rating: 5,
       comment: "",
     },
   });
-
-  const watchedPrice = Number(form.watch("price"));
-  const watchedQuantity = Number(form.watch("quantity"));
-
-  const totalValue = watchedPrice * watchedQuantity;
 
   async function onSubmit(values: supplierReviewSchemaOutput) {
     submitReview(values, {
@@ -125,19 +117,6 @@ export default function SupplierReviewForm({
 
                   <FormInput
                     control={form.control}
-                    name="quantity"
-                    label="الكمية"
-                    placeholder="1"
-                    type="number"
-                    Icon={<Hash className="w-4 h-4" />}
-                    description="عدد الوحدات المطلوبة"
-                    className="bg-white"
-                    min={1}
-                    max={2147483647}
-                  />
-
-                  <FormInput
-                    control={form.control}
                     name="price"
                     label="السعر للوحدة الواحدة (ج.م)"
                     placeholder="0.00"
@@ -149,22 +128,12 @@ export default function SupplierReviewForm({
                     max={2147483647}
                   />
                 </div>
-
-                {totalValue > 0 && (
-                  <div className="mt-6 p-4 bg-white rounded-xl border border-blue-200">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">
-                        إجمالي قيمة الصفقة:
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-green-500" />
-                        <span className="text-lg font-bold text-green-600">
-                          {totalValue.toLocaleString("ar-SA")} ج.م
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <FormTextArea<supplierReviewSchemaInput>
+                  name="description"
+                  placeholder="أدخل وصفًا تفصيليًا للصفقة..."
+                  label="الوصف"
+                  rows={4}
+                />
               </CardContent>
             </Card>
 

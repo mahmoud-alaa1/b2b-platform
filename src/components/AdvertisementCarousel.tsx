@@ -49,12 +49,12 @@ const AdvertisementCarousel: React.FC<AdvertisementCarouselProps> = ({
 
   const renderSlide = (advertisement: IAdvertisement) => {
     const slideContent = (
-      <div className="relative  w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[300px] xl:h-[600px]">
+      <div className="relative aspect-[8/3.5]">
         <Image
           src={advertisement.imageUrl}
           alt={`إعلان ${advertisement.id}`}
           fill
-          className="object-cover "
+          className="object-cover"
           priority
         />
       </div>

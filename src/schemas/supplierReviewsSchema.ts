@@ -14,7 +14,6 @@ export const supplierReviewSchema = z.object({
       }
     )
     .transform((d) => d.toISOString()),
-  quantity: z.coerce.number().min(1, "يجب ادخال الكمية").max(2147483647),
   price: z.coerce.number().min(0, "يجب ادخال السعر").max(2147483647),
   dateOfDelivered: z.coerce
     .date()
@@ -36,6 +35,12 @@ export const supplierReviewSchema = z.object({
     })
     .min(10, "يجب أن يتكون التعليق من 10 أحرف على الأقل")
     .max(500, "يجب أن يتكون التعليق من 500 حرف كحد أقصى"),
+  description: z
+    .string({
+      error: "يجب ادخال وصف",
+    })
+    .min(10, "يجب أن يتكون الوصف من 10 أحرف على الأقل")
+    .max(500, "يجب أن يتكون الوصف من 500 حرف كحد أقصى"),
 });
 
 export type supplierReviewSchemaInput = z.input<typeof supplierReviewSchema>;

@@ -5,9 +5,11 @@ interface ISupplierInfo {
   phoneNumber: string;
   logoUrl: string;
   description: string;
-  locations: (string | null)[];
+  locations: string[];
   countOfOrderAccepted: number;
   categories: string[];
+  averageRating: number;
+  productCount: number;
 }
 
 interface ISuppliersFilters {
@@ -36,6 +38,7 @@ interface IAccountInfoPatchResponse {
   id: number | string;
   description: string;
   locations: string[];
+  CategoryIds: (string | number)[];
 }
 
 interface IAccountLogoPatchResponse {

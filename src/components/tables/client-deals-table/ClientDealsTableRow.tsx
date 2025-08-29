@@ -86,10 +86,7 @@ export default function ClientDealsTableRow({
                 <Building2 className="w-3 h-3 text-blue-500" />
                 <span className="font-medium">{deal.numSuppliersDesired}</span>
               </TextTooltip>
-              <TextTooltip content={`الكمية`}>
-                <Package className="w-3 h-3 text-blue-500" />
-                <span className="font-medium">{deal.quantity}</span>
-              </TextTooltip>
+  
               <TextTooltip content={`مكان التسليم`}>
                 <MapPin className="w-3 h-3 text-green-500" />
                 <span className="truncate ">{deal.requiredLocation}</span>

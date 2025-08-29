@@ -114,7 +114,7 @@ export function Step3TypeInfo() {
               getOptionValue={(item) => item.categoryId}
             />
 
-            <SelectedCategories />
+            <SelectedCategories<conditionalRegisterSchemaType> name="categories" />
           </div>
         </motion.div>
 

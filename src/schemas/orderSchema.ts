@@ -20,17 +20,7 @@ export const orderSchema = z.object({
         "رقم الهاتف يجب أن يبدأ بـ 010 أو 011 أو 012 أو 015 ويحتوي على 11 رقمًا.",
     })
     .trim(),
-  quantity: z.coerce
-    .number()
-    .int({
-      message: "الكمية يجب أن تكون رقمًا صحيحًا (بدون كسور).",
-    })
-    .min(1, {
-      message: "الكمية يجب أن تكون على الأقل 1.",
-    })
-    .max(10000, {
-      message: "الكمية يجب ألا تتجاوز 10000.",
-    }),
+
   deadline: z.coerce.date().min(new Date(), {
     message: "موعد التسليم يجب أن يكون في المستقبل.",
   }).refine((val)=>{
@@ -85,7 +75,6 @@ export const productDetailsSchema = z.object({
     error: "يجب اختيار فئة المنتج",
   }),
   description: z.string().min(10, "الوصف يجب أن يكون 10 أحرف على الأقل").trim(),
-  quantity: z.coerce.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
   numSuppliersDesired: z.coerce.number().min(1, "عدد الموردين يجب أن يكون أكبر من صفر"),
 });
 export type productDetailsOutput = z.output<typeof productDetailsSchema>;

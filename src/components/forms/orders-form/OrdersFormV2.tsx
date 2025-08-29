@@ -27,7 +27,6 @@ import { SLIDER_VARIANTS } from "@/lib/constants";
 const defaultValues = {
   categoryId: undefined,
   description: "",
-  quantity: 1,
   numSuppliersDesired: 1,
   requiredLocation: "",
   deadline: new Date(),

@@ -13,7 +13,7 @@ const CarouselSection: React.FC<CarouselSectionProps> = ({
   }
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden p-4">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 opacity-5"></div>
 

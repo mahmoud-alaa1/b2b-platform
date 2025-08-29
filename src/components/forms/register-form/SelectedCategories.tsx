@@ -1,30 +1,34 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { allCachedCategories } from "@/lib/categories";
-import { conditionalRegisterSchemaType } from "@/schemas/authSchema";
 import { Tag, X } from "lucide-react";
 import { motion } from "motion/react";
 
-import { useFormContext } from "react-hook-form";
+import { FieldValues, Path, PathValue, useFormContext } from "react-hook-form";
 const getCategoryNameById = (
   categoryId: string | number,
   allCategories: ICategory[]
 ): string => {
   const category = allCategories?.find((cat) => cat.categoryId == categoryId);
 
-
   return category?.categoryName || `Category ${categoryId}`;
 };
 
-export default function SelectedCategories() {
-  const { watch, setValue } = useFormContext<conditionalRegisterSchemaType>();
-  const selectedCategoryIds = watch("categories") || [];
+interface ISelectedCategoriesProps<TFormValues extends FieldValues> {
+  name: Path<TFormValues>;
+}
+
+export default function SelectedCategories<TFormValues extends FieldValues>({
+  name,
+}: ISelectedCategoriesProps<TFormValues>) {
+  const { watch, setValue } = useFormContext<TFormValues>();
+  const selectedCategoryIds = (watch(name) as (string | number)[]) || [];
 
   const removeCategory = (categoryIdToRemove: string | number) => {
     const updatedCategories = selectedCategoryIds.filter(
-      (id: string | number) => id !== categoryIdToRemove
+      (id) => id !== categoryIdToRemove
     );
-    setValue("categories", updatedCategories, {
+    setValue(name, updatedCategories as PathValue<TFormValues, typeof name>, {
       shouldValidate: true,
       shouldDirty: true,
     });
@@ -73,7 +77,7 @@ export default function SelectedCategories() {
           variant="destructive"
           size="sm"
           onClick={() =>
-            setValue("categories", [], {
+            setValue(name, [] as PathValue<TFormValues, typeof name>, {
               shouldValidate: true,
             })
           }>

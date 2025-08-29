@@ -1,11 +1,9 @@
 import { MapPin, PlusCircleIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import SkeletonItem from "./SkeletonItem";
-import { editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
-import { UseFormReturn } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 export default function AccountLocations({
-  form,
   supplier,
   isPending,
   isEditMode,
@@ -13,14 +11,14 @@ export default function AccountLocations({
   append,
   remove,
 }: {
-  form: UseFormReturn<editSupplierInfoSchemaType>;
-  supplier?: ISupplierInfo;
+  supplier?: ISupplierProfile;
   isPending: boolean;
   isEditMode: boolean;
   fields: { id: string }[];
   append: (v: string) => void;
   remove: (index: number) => void;
 }) {
+  const form = useFormContext();
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
       <div className="flex items-center justify-between mb-4">
@@ -30,8 +28,7 @@ export default function AccountLocations({
             type="button"
             variant="outline"
             onClick={() => append("")}
-            className="mt-2"
-          >
+            className="mt-2">
             <PlusCircleIcon size={16} /> إضافة موقع
           </Button>
         )}
@@ -44,8 +41,7 @@ export default function AccountLocations({
           fields.map((field, index) => (
             <div
               key={field.id}
-              className="flex items-center gap-3 text-sm text-gray-700"
-            >
+              className="flex items-center gap-3 text-sm text-gray-700">
               <MapPin size={18} className="text-gray-400 flex-shrink-0 mt-1" />
 
               {isEditMode ? (
@@ -59,8 +55,7 @@ export default function AccountLocations({
                     type="button"
                     variant="destructive"
                     onClick={() => remove(index)}
-                    className="ml-2"
-                  >
+                    className="ml-2">
                     حذف
                   </Button>
                 </>

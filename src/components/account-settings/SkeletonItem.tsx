@@ -1,21 +1,29 @@
-import { LucideIcon } from "lucide-react";
-import { Skeleton } from "../ui/skeleton";
+import { cn } from "@/lib/utils";
+
 interface SkeletonItemProps {
-  icon?: LucideIcon;
   className?: string;
 }
 
-export default function SkeletonItem({
-  icon: Icon,
-  className,
-}: SkeletonItemProps) {
+export default function SkeletonItem({ className }: SkeletonItemProps) {
   return (
-    <div className={`flex flex-col gap-1 text-sm ${className}`}>
-      <div className="flex items-center gap-2 rounded-md p-1.5 font-medium">
-        <Skeleton className="h-4 w-24" />
-        {Icon && <Icon size={16} className="opacity-50" />}
-      </div>
-      <Skeleton className="h-14 w-full rounded-md" />
-    </div>
+    <div
+      className={cn(
+        "animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%] rounded-2xl",
+        "animate-[shimmer_1.5s_ease-in-out_infinite]",
+        className
+      )}
+    />
   );
 }
+
+// Add this to your globals.css
+/*
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+*/

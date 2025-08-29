@@ -14,7 +14,6 @@ export const clientReviewSchema = z.object({
       }
     )
     .transform((d) => d.toISOString()),
-  quantity: z.coerce.number().min(1, "يجب ادخال الكمية").max(2147483647),
   price: z.coerce.number().min(0, "يجب ادخال السعر").max(2147483647),
   dateOfDelivered: z.coerce
     .date()
@@ -39,6 +38,11 @@ export const clientReviewSchema = z.object({
   userId: z.string({
     error: "يجب ادخال المورد",
   }),
+  description: z
+    .string({
+      error: "يجب ادخال وصف",
+    })
+    .max(1000, "يجب أن يتكون الوصف من 1000 حرف كحد أقصى"),
 });
 
 export type clientReviewSchemaInput = z.input<typeof clientReviewSchema>;

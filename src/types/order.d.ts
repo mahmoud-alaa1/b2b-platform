@@ -5,7 +5,6 @@ declare interface IOrder {
   deadline: Date | string;
   description: string;
   numSuppliersDesired: number | string;
-  quantity: number | string;
   requiredLocation: string;
 }
 
@@ -13,7 +12,6 @@ interface IGetOrderResponse {
   orderId: string | number;
   categoryId: number;
   description: string;
-  quantity: number;
   requiredLocation: string;
   deadline: string;
   numSuppliersDesired: number;

@@ -6,8 +6,10 @@ interface ISupplierProfile {
   logoURL: string;
   description: string;
   locations: string[];
-  categories: string[];
+  categories: number[];
   planName: string;
   subscriptionStartDate: string;
   subscriptionEndDate: string;
+  averageRating: number;
+  productCount: number;
 }

@@ -44,15 +44,7 @@ export default function ProductDetailsStep() {
           />
         </div>
 
-        <FormInput<CompleteOrderInput>
-          control={control}
-          name="quantity"
-          placeholder="أدخل الكمية..."
-          type="number"
-          label="الكمية المطلوبة"
-          Icon={<Package className="w-5 h-5" />}
-          min={1}
-        />
+    
 
         <FormInput<CompleteOrderInput>
           control={control}

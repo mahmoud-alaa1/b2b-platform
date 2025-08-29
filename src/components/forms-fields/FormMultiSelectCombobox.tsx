@@ -6,7 +6,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Control, FieldValues, Path } from "react-hook-form";
+import { Control, FieldValues, Path, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import {
   Command,
@@ -40,7 +40,7 @@ interface FormInfiniteMultiComboboxProps<
   ) => Promise<IPaginatedResponse<TData>>;
   getOptionLabel: (item: TData) => string;
   getOptionValue: (item: TData) => string | number;
-  control: Control<TFormValues>;
+  control?: Control<TFormValues>;
   name: Path<TFormValues>;
   maxDisplayItems?: number;
   showCount?: boolean;
@@ -72,6 +72,8 @@ export default function FormInfiniteMultiCombobox<
     fetchFn: (pageNumber) => fetchFn(pageNumber, debouncedSearchTerm),
   });
 
+  const form = useFormContext<TFormValues>();
+
   const options = useMemo(
     () => data?.pages.flatMap((page) => page.data) ?? [],
     [data]
@@ -88,13 +90,6 @@ export default function FormInfiniteMultiCombobox<
       onOptionsChange(options);
     }
   }, [options, onOptionsChange]);
-
-  // // Helper function to get selected options
-  // const getSelectedOptions = (selectedValues: (string | number)[]) => {
-  //   return options.filter((option) =>
-  //     selectedValues.includes(getOptionValue(option))
-  //   );
-  // };
 
   // Helper function to format display text
   const getDisplayText = (selectedValues: (string | number)[]) => {
@@ -120,7 +115,7 @@ export default function FormInfiniteMultiCombobox<
 
   return (
     <FormField
-      control={control}
+      control={control ?? form.control}
       name={name}
       render={({ field }) => {
         const selectedValues: (string | number)[] = Array.isArray(field.value)
@@ -167,39 +162,47 @@ export default function FormInfiniteMultiCombobox<
                     />
                     <CommandEmpty>لا توجد نتائج</CommandEmpty>
                     <CommandGroup className="h-60 overflow-auto">
-                      {options.map((item) => {
-                        const value = getOptionValue(item).toString();
-                        const label = getOptionLabel(item);
-                        const isSelected = selectedValues.includes(value);
+                      {options
+                        .filter(
+                          (item) =>
+                            !selectedValues.includes(getOptionValue(item))
+                        )
+                        .map((item) => {
+                          const value = getOptionValue(item).toString();
+                          const label = getOptionLabel(item);
+                      const isSelected = selectedValues.some(
+                        (v) => v.toString() === value
+                      );
 
-                        return (
-                          <CommandItem
-                            key={label}
-                            value={label}
-                            onSelect={() => {
-                              toggleOption(
-                                value,
-                                selectedValues,
-                                field.onChange
-                              );
-                            }}
-                            className={cn(
-                              "flex items-center justify-between cursor-pointer",
-                              isSelected && "bg-accent"
-                            )}>
-                            <span className="flex-1 text-right">{label}</span>
-                            <div
+
+                          return (
+                            <CommandItem
+                              key={label}
+                              value={label}
+                              onSelect={() => {
+                                toggleOption(
+                                  value,
+                                  selectedValues,
+                                  field.onChange
+                                );
+                              }}
                               className={cn(
-                                "flex h-5 w-5 items-center justify-center rounded-sm border border-primary",
-                                isSelected
-                                  ? "bg-primary text-primary"
-                                  : "opacity-50 [&_svg]:invisible"
+                                "flex items-center justify-between cursor-pointer",
+                                isSelected && "bg-accent"
                               )}>
-                              <Check className="h-3 w-3 text-white" />
-                            </div>
-                          </CommandItem>
-                        );
-                      })}
+                              <span className="flex-1 text-right">{label}</span>
+                              <div
+                                className={cn(
+                                  "flex h-5 w-5 items-center justify-center rounded-sm border border-primary",
+                                  isSelected
+                                    ? "bg-primary text-primary"
+                                    : "opacity-50 [&_svg]:invisible"
+                                )}>
+                                <Check className="h-3 w-3 text-white" />
+                              </div>
+                            </CommandItem>
+                          );
+                        })}
                       {isFetching && (
                         <div className="flex justify-center py-2">
                           <Spinner />

@@ -43,7 +43,6 @@ export default function ClientReviewForm({
     resolver: zodResolver(clientReviewSchema),
     defaultValues: {
       rating: 1,
-      quantity: 1,
       price: 1,
       comment: "",
       dealDoneAt: new Date(),
@@ -64,7 +63,6 @@ export default function ClientReviewForm({
         setFormErrors(form, err);
       },
     });
-
   }
 
   return (
@@ -148,15 +146,6 @@ export default function ClientReviewForm({
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <FormInput<clientReviewSchemaInput>
                           control={form.control}
-                          name="quantity"
-                          type="number"
-                          placeholder="أدخل الكمية..."
-                          label="الكمية"
-                          Icon={<Package className="w-5 h-5" />}
-                        />
-
-                        <FormInput<clientReviewSchemaInput>
-                          control={form.control}
                           name="price"
                           type="number"
                           placeholder="أدخل السعر..."
@@ -179,6 +168,12 @@ export default function ClientReviewForm({
                           type="datetime-local"
                         />
                       </div>
+                      <FormTextArea<clientReviewSchemaInput>
+                        name="description"
+                        placeholder="أدخل وصفًا تفصيليًا للصفقة..."
+                        label="الوصف"
+                        rows={4}
+                      />
                     </div>
 
                     {/* Rating Section */}
@@ -283,11 +278,9 @@ export default function ClientReviewForm({
 
         <div className="text-center  space-y-4">
           <div className="flex justify-center items-center gap-3 text-gray-500">
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
             <span className="text-lg">
               تقييمك يساعد المجتمع في اتخاذ قرارات أفضل
             </span>
-            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-100"></div>
           </div>
         </div>
       </div>

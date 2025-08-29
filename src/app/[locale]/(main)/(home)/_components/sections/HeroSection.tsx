@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, CheckCircle, Search, TrendingUp, Zap } from "lucide-react";
+import { ArrowLeft, CheckCircle, Search,  Zap } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/i18n/navigation";
@@ -36,22 +36,20 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link href="/suppliers">
+            <Link href="#pricing">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group">
                 <span>جرّب المنصة مجانًا</span>
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
 
-            <Link href="/suppliers">
+            <Link href="/register">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-indigo-200 hover:border-indigo-300 text-indigo-700 hover:bg-indigo-50 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
-              >
+                className="border-2 border-indigo-200 hover:border-indigo-300 text-indigo-700 hover:bg-indigo-50 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300">
                 <Search className="w-5 h-5 ml-2" />
                 <span>سجل واطلب الآن</span>
               </Button>
@@ -62,13 +60,13 @@ export default function HeroSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <Card className="shadow-lg hover:scale-105 transition">
               <CardHeader className="flex items-center justify-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 bg-gradient-to-br from-green-100 to-green-100 rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
                 </div>
-                <div className="text-3xl font-bold text-slate-900">40%</div>
+                <div className="text-3xl font-bold text-slate-900">100%</div>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-600 font-medium">أسرع في الاستجابة</p>
+                <p className="text-slate-600 font-medium">موردين متوثقين</p>
               </CardContent>
             </Card>
             <Card className="shadow-lg hover:scale-105 transition">
@@ -76,7 +74,9 @@ export default function HeroSection() {
                 <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-violet-100 rounded-full flex items-center justify-center">
                   <Zap className="w-5 h-5 text-purple-600" />
                 </div>
-                <div className="text-3xl font-bold text-slate-900">5 دقائق</div>
+                <div className="text-3xl font-bold text-slate-900">
+                  15 دقائق
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-slate-600 font-medium">
@@ -102,7 +102,7 @@ export default function HeroSection() {
             <span className="text-slate-400">•</span>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-green-500" />
-              <span className="text-sm">ضمان استرداد المال</span>
+              <span className="text-sm">التجربة مجانًا بلا التزام</span>
             </div>
           </div>
         </div>

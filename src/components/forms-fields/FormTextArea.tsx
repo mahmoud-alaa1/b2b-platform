@@ -16,7 +16,7 @@ interface FormInputProps<TFormValues extends FieldValues>
     TextareaHTMLAttributes<HTMLTextAreaElement>,
     "name" | "defaultValue"
   > {
-  control: Control<TFormValues>;
+  control?: Control<TFormValues>;
   name: Path<TFormValues>;
   label?: string;
   description?: string;

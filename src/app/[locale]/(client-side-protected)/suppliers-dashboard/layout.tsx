@@ -15,7 +15,7 @@ export default function SupplierLayout({
       </div>
       <div className="lg:col-span-10">
         <SupplierDashboardHeader />
-        <main className="p-4">{children}</main>
+        <main className="p-4 space-y-4">{children}</main>
       </div>
     </div>
   );

@@ -1,23 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import {
-  ArrowLeft,
-  Sparkles,
-  Clock,
-  TrendingUp,
-  CheckCircle,
-  Zap,
-} from "lucide-react";
+import { ArrowLeft, Sparkles, CheckCircle, Zap } from "lucide-react";
 
 const benefits = [
   "تسجيل مجاني خلال دقيقتين",
   "عروض أسعار خلال 15 دقيقة",
   "دعم فني 24/7",
-];
-
-const stats = [
-  { icon: Clock, value: "75%", label: "توفير في الوقت" },
-  { icon: TrendingUp, value: "30%", label: "توفير في التكاليف" },
 ];
 
 export default function CTASection() {
@@ -77,35 +65,12 @@ export default function CTASection() {
             <Link href="/register">
               <Button
                 size="lg"
-                className="bg-white text-indigo-700 hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-white/25 transition-all duration-300 group"
-              >
+                className="bg-white text-indigo-700 hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-white/25 transition-all duration-300 group">
                 <Zap className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
                 <span>ابدأ مجاناً الآن</span>
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 justify-center md:grid-cols-2 gap-6">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300"
-              >
-                <div className="flex items-center justify-center gap-3 mb-2">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                    <stat.icon className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="text-3xl font-bold text-white">
-                    {stat.value}
-                  </div>
-                </div>
-                <p className="text-indigo-100 font-medium text-center">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
 

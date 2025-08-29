@@ -1,6 +1,6 @@
 import api from "@/lib/axios";
 import { fetchData } from "@/lib/fetchApi";
-import { editSupplierInfoSchemaType } from "@/schemas/accountSettingSchema";
+import { editSupplierInfoSchemaOutput } from "@/schemas/accountSettingSchema";
 import { IAccountInfoPatchResponse, ISupplierInfo } from "@/types/supplier";
 import { handleApiError } from "@/utils/handleApiError";
 
@@ -23,7 +23,7 @@ export async function getSupplierInfo(supplierId: number) {
 // function to patch supplier info
 export async function patchSupplierInfo(
   id: number | string,
-  data: editSupplierInfoSchemaType,
+  data: editSupplierInfoSchemaOutput,
 ) {
   try {
     const response = await api.patch<IAccountInfoPatchResponse>(
