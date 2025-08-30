@@ -18,6 +18,7 @@ import AccountActions from "./AccountActions";
 import { useCallback, useEffect, useState } from "react";
 import AccountHeaderSkeleton from "./account-header/AccountHeaderSkeleton";
 import useGetSupplierProfile from "@/hooks/supplier-profile/useGetSupplierProfile";
+import SuggestCategoryInput from "./SuggestCategoryInput";
 
 export default function Account() {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
@@ -117,11 +118,13 @@ export default function Account() {
                 />
               </div>
 
-              <div>
+              <div className="grid gird-cols-1 md:grid-cols-2 gap-6">
                 <AccountCategories
                   isEditMode={isEditMode}
                   isPending={isPending}
                 />
+
+                <SuggestCategoryInput />
               </div>
 
               <div>
