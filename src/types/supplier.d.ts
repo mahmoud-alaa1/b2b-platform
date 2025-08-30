@@ -5,7 +5,7 @@ declare interface ISupplierInfo {
   phoneNumber: string;
   logoUrl: string;
   description: string;
-  locations: (string | null)[];
+  locations: string[];
   countOfOrderAccepted: number;
   categories: string[];
   averageRating: number;

@@ -1,11 +1,15 @@
 import api from "@/lib/axios";
 import { fetchData } from "@/lib/fetchApi";
+import { buildQueryString } from "@/lib/utils";
 import { handleApiError } from "@/utils/handleApiError";
 
-export async function fetchAdvertisements() {
+export async function fetchAdvertisements(searchParams?: {
+  userId: string | number;
+}) {
+  const query = buildQueryString(searchParams);
   try {
     const response = await fetchData<IApiResponse<IAdvertisement[]>>(
-      "/advertisment-client",
+      "/advertisment-client?" + query,
       {
         next: {
           revalidate: 3600,
