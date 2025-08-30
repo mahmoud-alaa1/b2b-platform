@@ -1,4 +1,4 @@
-declare interface IUser {
+interface IUser {
   userId: number;
   companyName: string;
   email: string;
@@ -8,7 +8,7 @@ declare interface IUser {
   joinDate: string;
 }
 
-declare interface IPendingUser {
+interface IPendingUser {
   id: number;
   name: string;
   email: string;

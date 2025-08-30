@@ -1,5 +1,5 @@
-declare interface ISupplierInfo {
-  id: number | string;
+interface ISupplierInfo {
+  id: number ;
   name: string;
   email: string;
   phoneNumber: string;
@@ -25,7 +25,7 @@ interface IAccountLogoPatchResponse {
 }
 
 // interface for supplier Product and reviews
-declare interface ISupplierProductsAndReviews {
+interface ISupplierProductsAndReviews {
   products: ISupplierProducts[];
   allReviews: ISupplierReviews[];
   companyName: string;
@@ -42,10 +42,14 @@ export interface ISupplierProducts {
   isSpecial: boolean;
 }
 
-declare interface ISupplierReviews {
+interface ISupplierReviews {
   reviewerName: string;
   rating: number;
   comment: string;
+}
+
+interface ISupplierAnalytics {
+  message: string;
 }
 
 interface ISupplierDeal {
