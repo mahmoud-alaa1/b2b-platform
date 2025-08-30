@@ -62,69 +62,67 @@ export default function SuggestCategoryInput() {
               </div>
             ) : (
               <div key="form" className="space-y-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Input Field */}
-                  <div className="space-y-3">
-                    <label className="block text-lg font-semibold text-gray-900">
-                      اسم الفئة المقترحة
-                    </label>
+                {/* Input Field */}
+                <div className="space-y-3">
+                  <label className="block text-lg font-semibold text-gray-900">
+                    اسم الفئة المقترحة
+                  </label>
 
-                    <div className="relative">
-                      <Input
-                        value={categoryName}
-                        onChange={(e) => setCategoryName(e.target.value)}
-                        placeholder="مثال: الأجهزة الذكية، مستحضرات التجميل..."
-                        className="text-lg py-6 pr-6 pl-16 rounded-2xl border-gray-200 focus:border-amber-300 focus:ring-amber-300 bg-white/80 backdrop-blur-sm"
-                        maxLength={maxLength}
-                        disabled={isPending}
-                      />
+                  <div className="relative">
+                    <Input
+                      value={categoryName}
+                      onChange={(e) => setCategoryName(e.target.value)}
+                      placeholder="مثال: الأجهزة الذكية، مستحضرات التجميل..."
+                      className="text-lg py-6 pr-6 pl-16 rounded-2xl border-gray-200 focus:border-amber-300 focus:ring-amber-300 bg-white/80 backdrop-blur-sm"
+                      maxLength={maxLength}
+                      disabled={isPending}
+                    />
 
-                      {/* Character Counter */}
-                      <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                        <Badge
-                          variant="outline"
-                          className={`text-xs ${
-                            charCount > maxLength * 0.8
-                              ? "border-amber-300 text-amber-700"
-                              : "border-gray-300 text-gray-600"
-                          }`}>
-                          {charCount}/{maxLength}
-                        </Badge>
-                      </div>
+                    {/* Character Counter */}
+                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+                      <Badge
+                        variant="outline"
+                        className={`text-xs ${
+                          charCount > maxLength * 0.8
+                            ? "border-amber-300 text-amber-700"
+                            : "border-gray-300 text-gray-600"
+                        }`}>
+                        {charCount}/{maxLength}
+                      </Badge>
                     </div>
-
-                    {/* Validation Message */}
-                    <AnimatePresence>
-                      {categoryName && !isValid && (
-                        <div className="flex items-center gap-2 text-amber-600">
-                          <AlertCircle className="w-4 h-4" />
-                          <span className="text-sm">
-                            يجب أن يحتوي الاسم على حرفين على الأقل
-                          </span>
-                        </div>
-                      )}
-                    </AnimatePresence>
                   </div>
 
-                  {/* Submit Button */}
-                  <Button
-                    onClick={handleSubmit}
-                    type="button"
-                    disabled={!isValid || isPending}
-                    variant="gradient-indigo">
-                    {isPending ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin ml-2" />
-                        جاري الإرسال...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5 ml-2" />
-                        إرسال الاقتراح
-                      </>
+                  {/* Validation Message */}
+                  <AnimatePresence>
+                    {categoryName && !isValid && (
+                      <div className="flex items-center gap-2 text-amber-600">
+                        <AlertCircle className="w-4 h-4" />
+                        <span className="text-sm">
+                          يجب أن يحتوي الاسم على حرفين على الأقل
+                        </span>
+                      </div>
                     )}
-                  </Button>
-                </form>
+                  </AnimatePresence>
+                </div>
+
+                {/* Submit Button */}
+                <Button
+                  onClick={handleSubmit}
+                  type="button"
+                  disabled={!isValid || isPending}
+                  variant="gradient-indigo">
+                  {isPending ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin ml-2" />
+                      جاري الإرسال...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 ml-2" />
+                      إرسال الاقتراح
+                    </>
+                  )}
+                </Button>
 
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6">
                   <div className="flex items-start gap-3">
