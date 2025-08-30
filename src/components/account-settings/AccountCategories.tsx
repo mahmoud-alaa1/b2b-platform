@@ -15,7 +15,7 @@ export default function CategoryAccount({
 }: CategoryAccountProps) {
   return (
     <div className="bg-white relative rounded-lg border border-gray-200 shadow-sm p-6">
-      {!isEditMode && <div className="inset-0 absolute bg-gray-200 opacity-30"></div>}
+      {!isEditMode && <div className="inset-0 absolute  opacity-30"></div>}
 
       <div className=" ">
         <FormInfiniteMultiCombobox<editSupplierInfoSchemaInput, ICategory>
@@ -28,7 +28,6 @@ export default function CategoryAccount({
               search,
             })
           }
-          
           getOptionLabel={(item) => item.categoryName}
           getOptionValue={(item) => Number(item.categoryId)}
         />

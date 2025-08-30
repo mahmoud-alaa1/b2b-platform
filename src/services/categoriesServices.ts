@@ -12,7 +12,7 @@ export async function getCategories(params?: ICategoryFilters) {
           ...params,
           pageSize: CATEGORIES_PAGE_SIZE,
         },
-      },
+      }
     );
     return response.data;
   } catch (error) {
@@ -27,8 +27,21 @@ export async function getCategoriesServer(params?: ICategoryFilters) {
         method: "GET",
         cache: "force-cache",
         next: { revalidate: 60 * 60 },
-      },
+      }
     );
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+}
+
+export async function postSuggestCategory(data: { name: string }) {
+  try {
+    const response = await api.post<
+      IApiResponse<{
+        message: string;
+      }>
+    >("/categories/suggest", data);
     return response.data;
   } catch (error) {
     throw handleApiError(error);
