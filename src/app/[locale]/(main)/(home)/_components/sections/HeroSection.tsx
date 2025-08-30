@@ -66,7 +66,7 @@ export default function HeroSection() {
                 <div className="text-3xl font-bold text-slate-900">100%</div>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-600 font-medium">موردين متوثقين</p>
+                <p className="text-slate-600 font-medium">موردين موثوقين</p>
               </CardContent>
             </Card>
             <Card className="shadow-lg hover:scale-105 transition">
