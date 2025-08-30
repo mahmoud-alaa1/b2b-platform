@@ -2,7 +2,10 @@ import api from "@/lib/axios";
 import { SUPPLIERS_BASE_KEY, SUPPLIERS_PAGE_SIZE } from "@/lib/constants";
 import { fetchData } from "@/lib/fetchApi";
 import { buildQueryString, buildQueryStringWithBase } from "@/lib/utils";
-import { ISupplierProductsAndReviews } from "@/types/supplier";
+import {
+  ISupplierAnalytics,
+  ISupplierProductsAndReviews,
+} from "@/types/supplier";
 import { handleApiError } from "@/utils/handleApiError";
 
 export async function getSuppliers(params?: ISuppliersFilters) {
@@ -45,6 +48,18 @@ export async function getSupplierProductsAndReviews(supplierId: number) {
       }
     );
     return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+}
+
+// funcation to get getSupplierViewsApi
+export async function getSupplierViews(supplierId: number) {
+  try {
+    const response = await api.get<IApiResponse<ISupplierAnalytics>>(
+      `/analytics/suppliers/views/${supplierId}`
+    );
+    return response?.data;
   } catch (error) {
     throw handleApiError(error);
   }

@@ -1,6 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import useGetSupplierViews from "@/hooks/suppliers/useGetSupplierViews";
 import { ISupplierInfo } from "@/types/supplier";
 import { Box, CheckCircle, Eye, Star } from "lucide-react";
 import { motion } from "motion/react";
@@ -10,6 +11,11 @@ export default function SupplierSidebar({
 }: {
   supplier: ISupplierInfo;
 }) {
+  const supplierId = supplier.id; // أو لو الاسم مختلف عدلها
+
+  const { data, isLoading, isError } = useGetSupplierViews(supplierId);
+
+  const visitors = Number(data?.data?.message ?? 0);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -22,17 +28,16 @@ export default function SupplierSidebar({
       </div>
 
       <div className="space-y-6 text-gray-700 dark:text-gray-300">
-        {/* Visitors */}
         <motion.div
           whileHover={{ scale: 1.03 }}
-          className="flex items-center justify-between p-3  rounded-lg shadow-sm transition"
+          className="flex items-center justify-between p-3 rounded-lg shadow-sm transition"
         >
           <div className="flex items-center space-x-2">
             <Eye className="w-6 h-6 text-primary" />
             <p className="font-semibold text-lg">عدد الزوار</p>
           </div>
           <Badge className="px-3 py-1 text-md animate-pulse" variant="default">
-            25
+            {isLoading ? "..." : isError ? "-" : visitors}
           </Badge>
         </motion.div>
 

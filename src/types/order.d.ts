@@ -1,4 +1,4 @@
-declare interface IOrder {
+interface IOrder {
   categoryId: string | number;
   contactPersonName: string;
   contactPersonPhone: string;

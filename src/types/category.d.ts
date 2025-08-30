@@ -1,4 +1,4 @@
-declare interface ICategory {
+interface ICategory {
   categoryId: number | string;
   categoryName: string;
   imageURL: string | null;
