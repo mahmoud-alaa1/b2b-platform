@@ -25,7 +25,11 @@ export default function ContactUsForm() {
 
   const onSubmit = (data: contactSchema) => {
     console.log("Contact form submitted:", data);
-    mutate(data);
+    mutate(data, {
+      onSuccess: () => {
+        form.reset();
+      },
+    });
   };
   return (
     <Form {...form}>
@@ -58,7 +62,7 @@ export default function ContactUsForm() {
           <Button
             type="submit"
             size="lg"
-            className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-4 rounded-xl text-lg font-medium shadow-lg hover:shadow-xl transition-all">
+            className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-4 rounded-xl text-lg font-medium shadow-lg hover:shadow-xl transition-all mt-4">
             {isPending ? (
               <>
                 <Spinner />

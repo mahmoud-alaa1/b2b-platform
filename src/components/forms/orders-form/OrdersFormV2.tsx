@@ -23,6 +23,7 @@ import ProductDetailsStep from "./ProductDetailsStep";
 import DeliveryDetailsStep from "./DeliveryDetailsStep";
 import ContactInfoStep from "./ContactInfoStep";
 import { SLIDER_VARIANTS } from "@/lib/constants";
+import { setFormErrors } from "@/utils/handleApiError";
 
 const defaultValues = {
   categoryId: undefined,
@@ -37,7 +38,7 @@ const defaultValues = {
 export function OrdersFormV2() {
   const [step, setStep] = useState<number>(0);
   const directionRef = useRef<"next" | "back">("next");
-  const { mutate, isPending, error } = usePostOrder();
+  const { mutate, isPending } = usePostOrder();
 
   const form = useForm<CompleteOrderInput, undefined, CompleteOrderOutput>({
     resolver: zodResolver(completeOrderSchema),
@@ -57,7 +58,19 @@ export function OrdersFormV2() {
       stepSchemas[step].shape
     ) as (keyof CompleteOrderOutput)[];
 
-    const isStepValid = await form.trigger(currentStepFields);
+    let isStepValid = await form.trigger(currentStepFields);
+
+    if (
+      currentStepFields.includes("numSuppliersDesired") &&
+      (Number(form.getValues("numSuppliersDesired")) < 1 ||
+        Number(form.getValues("numSuppliersDesired")) > 50)
+    ) {
+      isStepValid = false;
+      form.setError("numSuppliersDesired", {
+        type: "manual",
+        message: "عدد الموردين يجب أن يكون بين 1 و 50",
+      });
+    }
     if (isStepValid) {
       directionRef.current = "next";
       setStep((prev) => prev + 1);
@@ -76,19 +89,15 @@ export function OrdersFormV2() {
         form.reset();
         setStep(0);
       },
-    });
-  }
-
-  if (error) {
-    Object.entries(error.details || {}).forEach(([key, value]) => {
-      form.setError(key as keyof CompleteOrderOutput, {
-        message: value,
-      });
+      onError: (err) => {
+        //@ts-expect-error I know it works
+        setFormErrors(form, err);
+      },
     });
   }
 
   return (
-    <div className="w-full border rounded-2xl " >
+    <div className="w-full border rounded-2xl ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

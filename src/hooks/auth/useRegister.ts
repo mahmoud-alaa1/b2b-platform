@@ -11,15 +11,16 @@ export default function useRegister() {
   return useMutation<IApiResponse<IRegisterResponse>, ApiError, FormData>({
     mutationFn: registerService,
     onSuccess: (data) => {
-      toast.success("تم تسجيل بنجاح!");
+      toast.success(data.data.message || "تم إنشاء الحساب بنجاح");
       router.push("/login");
-
-      console.log(data);
     },
     onError: (error) => {
       if (isAxiosError(error)) {
         toast.error(
-          `${error.response?.data?.data.message || "فشل تسجيل الحساب بسبب خطأ في الخادم"}`,
+          `${
+            error.response?.data?.data.message ||
+            "فشل تسجيل الحساب بسبب خطأ في الخادم"
+          }`
         );
       }
     },

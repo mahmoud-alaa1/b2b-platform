@@ -21,13 +21,16 @@ export const orderSchema = z.object({
     })
     .trim(),
 
-  deadline: z.coerce.date().min(new Date(), {
-    message: "موعد التسليم يجب أن يكون في المستقبل.",
-  }).refine((val)=>{
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return val >= today
-  }),
+  deadline: z.coerce
+    .date()
+    .min(new Date(), {
+      message: "موعد التسليم يجب أن يكون في المستقبل.",
+    })
+    .refine((val) => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return val >= today;
+    }),
   description: z
     .string()
     .min(10, {
@@ -54,17 +57,16 @@ export const orderSchema = z.object({
   numSuppliersDesired: z.coerce
     .number()
     .int({
-      message: "عدد الموردين يجب أن يكون رقمًا صحيحًا (بدون كسور).",
+      error: "عدد الموردين يجب أن يكون رقمًا صحيحًا (بدون كسور).",
     })
     .min(1, {
-      message: "عدد الموردين يجب أن يكون على الأقل 1.",
+      error: "عدد الموردين يجب أن يكون على الأقل 1.",
     })
-    .max(40, {
-      message: "عدد الموردين يجب ألا يتجاوز 40.",
+    .max(50, {
+      error: "عدد الموردين يجب ألا يتجاوز 40.",
     }),
 });
 
-export type orderSchema = z.infer<typeof orderSchema>;
 
 export type orderSchemaInput = z.input<typeof orderSchema>;
 export type orderSchemaOutput = z.output<typeof orderSchema>;

@@ -7,8 +7,7 @@ export default function Loading() {
         className="min-h-screen flex items-center justify-center relative overflow-hidden"
         role="status"
         aria-live="polite"
-        aria-label="جاري تحميل الصفحة"
-      >
+        aria-label="جاري تحميل الصفحة">
         {/* Animated Background */}
         <div className="absolute inset-0 gradient-bg" />
 
@@ -55,7 +54,7 @@ export default function Loading() {
 
           <div className="mb-8">
             <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-700 via-purple-600 to-violet-700 bg-clip-text text-transparent mb-3 font-['Cairo',sans-serif]">
-              SupplyFi Horeca
+              SupplifyHub
             </h1>
             <p className="text-slate-600 text-xl font-medium font-['Cairo',sans-serif]">
               منصة التوريد الذكية
@@ -72,8 +71,7 @@ export default function Loading() {
 
           <p
             className="text-slate-500 text-lg font-medium font-['Cairo',sans-serif]"
-            dir="rtl"
-          >
+            dir="rtl">
             يرجى الانتظار بينما نحضر لك أفضل تجربة ...
           </p>
 

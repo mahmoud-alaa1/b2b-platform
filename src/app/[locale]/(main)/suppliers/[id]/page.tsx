@@ -29,16 +29,16 @@ export default async function Page({
   const advertisements = await fetchAdvertisements({ userId: Number(id) });
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-100">
+    <div className="relative min-h-screen pt-10 bg-gradient-to-b from-gray-50 via-white to-gray-100">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-10 w-60 h-60 bg-indigo-100 rounded-full blur-3xl opacity-40" />
         <div className="absolute bottom-20 left-10 w-72 h-72 bg-purple-100 rounded-full blur-3xl opacity-40" />
       </div>
 
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-40 rounded-xl">
+      <div className="relative z-10 containermx-auto px-4 sm:px-6 lg:px-40 rounded-xl">
         <SupplierAdvertisements advertisements={advertisements} />
-      </section>
-      <section className="relative z-10">
+      </div>
+      <section className="relative z-10 lg:px-30">
         <SupplierHero supplier={supplier} />
       </section>
 

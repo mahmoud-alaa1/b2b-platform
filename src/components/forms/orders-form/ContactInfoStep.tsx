@@ -34,8 +34,9 @@ export default function ContactInfoStep() {
           control={control}
           name="contactPersonPhone"
           placeholder="01234567890"
-          type="tel"
           label="رقم الهاتف"
+          type="tel"
+          dir="ltr"
           Icon={<Phone className="w-5 h-5" />}
         />
       </div>

@@ -36,7 +36,7 @@ export default function AboutUsPage() {
             <div className="space-y-8">
               <div className="space-y-6">
                 <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent leading-tight">
-                  نحن SupplyFi Horeca
+                  نحن SupplifyHub
                 </h1>
                 <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                   <p>
