@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import ProductPreview from "./ProductPreview";
 // import { Button } from "@/components/ui/button";
@@ -15,8 +17,7 @@ export default function ProductList({
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden"
-      >
+        className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 rounded-3xl"></div>
         <div className="relative p-8">
           <EmptyState
