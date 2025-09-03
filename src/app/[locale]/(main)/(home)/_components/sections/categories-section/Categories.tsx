@@ -11,10 +11,11 @@ function Categories({ categories }: { categories: ICategory[] }) {
       {/* Minimal Header */}
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-          اكتشف التصنيفات
+          ابحث في مجموعة متنوعة من التصنيفات للوصول إلى الموردين المناسبين
         </h2>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          ابحث في مجموعة متنوعة من التصنيفات للعثور على ما تحتاجه بسهولة
+          ابحث في مجموعة متنوعة من التصنيفات للوصول إلى الموردين وعروض الأسعار
+          المناسبة
         </p>
       </div>
 
@@ -23,7 +24,8 @@ function Categories({ categories }: { categories: ICategory[] }) {
         {categories.map((category) => (
           <Link
             key={category.categoryId}
-            href={`/suppliers?suppliers-category=${category.categoryId}`}>
+            href={`/suppliers?suppliers-category=${category.categoryId}`}
+          >
             <div className="group cursor-pointer">
               {/* Card Container */}
               <div
@@ -34,7 +36,8 @@ function Categories({ categories }: { categories: ICategory[] }) {
               hover:scale-[1.02]
               hover:border-indigo-200/50
               h-full overflow-hidden
-            ">
+            "
+              >
                 {/* Image Section */}
                 <div className="relative h-40 overflow-hidden">
                   {category.imageURL ? (
@@ -57,7 +60,8 @@ function Categories({ categories }: { categories: ICategory[] }) {
                     flex items-center justify-center
                     transition-all duration-300
                     group-hover:from-indigo-50 group-hover:to-purple-50
-                  ">
+                  "
+                    >
                       <Globe />
                     </div>
                   )}
@@ -83,7 +87,8 @@ function Categories({ categories }: { categories: ICategory[] }) {
                   line-clamp-2 leading-snug
                   group-hover:text-indigo-700
                   transition-colors duration-200
-                ">
+                "
+                  >
                     {category.categoryName}
                   </h3>
 

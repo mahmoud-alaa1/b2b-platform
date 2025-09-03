@@ -4,8 +4,8 @@ import { ArrowLeft, Sparkles, CheckCircle, Zap } from "lucide-react";
 
 const benefits = [
   "تسجيل مجاني خلال دقيقتين",
-  "عروض أسعار خلال 15 دقيقة",
-  "دعم فني 24/7",
+  "استلم عروض أسعار في غضون 15 دقيقة",
+  "دعم فني موثوق دائمًا",
 ];
 
 export default function CTASection() {
@@ -39,13 +39,13 @@ export default function CTASection() {
             جاهز لثورة في التوريد؟
             <br />
             <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-              ابدأ مجانا اليوم
+              جرّب المنصة مجانًا
             </span>
           </h2>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-indigo-100 mb-12 max-w-2xl mx-auto leading-relaxed">
-            انضم لآلاف الشركات التي تستخدم SupplyFi وابدأ في توفير الوقت والمال
+            انضم لآلاف الشركات التي تستخدم Supplifyhub وابدأ في توفير الوقت والمال
             من أول طلب
           </p>
 
@@ -65,7 +65,8 @@ export default function CTASection() {
             <Link href="/register">
               <Button
                 size="lg"
-                className="bg-white text-indigo-700 hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-white/25 transition-all duration-300 group">
+                className="bg-white text-indigo-700 hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-white/25 transition-all duration-300 group"
+              >
                 <Zap className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
                 <span>ابدأ مجاناً الآن</span>
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />

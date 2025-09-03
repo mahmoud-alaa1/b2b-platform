@@ -129,7 +129,8 @@ export default function OrderForm() {
       <div
         className={`max-w-4xl mx-auto transition-all duration-1000 ease-out ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}>
+        }`}
+      >
         {/* Header Section */}
 
         {/* Progress Bar */}
@@ -157,7 +158,8 @@ export default function OrderForm() {
                   key={step.id}
                   className={`flex items-center ${
                     index < formSteps.length - 1 ? "flex-1" : ""
-                  }`}>
+                  }`}
+                >
                   <div
                     className={`
                     w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-300
@@ -166,7 +168,8 @@ export default function OrderForm() {
                         ? "bg-indigo-500 border-indigo-500 text-white"
                         : "bg-white border-gray-300 text-gray-400"
                     }
-                  `}>
+                  `}
+                  >
                     {currentStep > step.id ? (
                       <CheckCircle className="w-5 h-5" />
                     ) : (
@@ -179,7 +182,8 @@ export default function OrderForm() {
                         currentStep >= step.id
                           ? "text-indigo-600"
                           : "text-gray-400"
-                      }`}>
+                      }`}
+                    >
                       {step.title}
                     </p>
                   </div>
@@ -237,13 +241,12 @@ export default function OrderForm() {
                         />
                       </div>
 
-                   
                       <FormInput<orderSchemaInput>
                         control={form.control}
                         name="numSuppliersDesired"
                         placeholder="عدد الموردين..."
                         type="number"
-                        label="عدد الموردين المطلوب"
+                        label="عدد الموردين المطلوب للتواصل"
                         Icon={<Users className="w-5 h-5" />}
                         min={1}
                       />
@@ -335,7 +338,8 @@ export default function OrderForm() {
                       currentStep === 1
                         ? "opacity-50 cursor-not-allowed"
                         : "hover:bg-gray-50 hover:border-gray-300"
-                    }`}>
+                    }`}
+                  >
                     السابق
                   </Button>
 
@@ -348,7 +352,8 @@ export default function OrderForm() {
                         isCurrentStepComplete
                           ? "bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105"
                           : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                      }`}>
+                      }`}
+                    >
                       التالي
                       <ArrowRight className="w-5 h-5 mr-2" />
                     </Button>
@@ -356,7 +361,8 @@ export default function OrderForm() {
                     <Button
                       type="submit"
                       disabled={isPending || !isCurrentStepComplete}
-                      className="px-8 py-3 rounded-xl font-semibold bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                      className="px-8 py-3 rounded-xl font-semibold bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    >
                       {isPending ? (
                         <div className="flex items-center gap-2">
                           <Spinner />

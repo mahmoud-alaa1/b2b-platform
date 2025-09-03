@@ -36,7 +36,7 @@ export default function DeliveryDetailsStep() {
           control={control}
           name="deadline"
           placeholder="اختر تاريخ ووقت التسليم..."
-          label="موعد التسليم النهائي"
+          label="تاريخ التسليم المطلوب"
           type="datetime-local"
         />
       </div>
