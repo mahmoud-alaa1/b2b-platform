@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Link } from "@/i18n/navigation";
 const faqs = [
   {
     question: "ما هي SupplyFi وكيف تعمل؟",
@@ -71,8 +72,7 @@ export default function FAQSection() {
               <AccordionItem
                 className="bg-white p-4 hover:outline rounded-2xl shadow-md hover:shadow-lg transition"
                 key={`item-${index}`}
-                value={`item-${index}`}
-              >
+                value={`item-${index}`}>
                 <AccordionTrigger>{faq.question}</AccordionTrigger>
                 <AccordionContent>{faq.answer}</AccordionContent>
               </AccordionItem>
@@ -89,22 +89,24 @@ export default function FAQSection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-3 rounded-full font-semibold"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  دردشة واتساب
-                </Button>
+                <Link href="https://wa.me/201014563940">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-3 rounded-full font-semibold">
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    دردشة واتساب  
+                  </Button>
+                </Link>
 
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-slate-300 hover:border-indigo-300 hover:bg-indigo-50 px-6 py-3 rounded-full font-semibold"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  اتصال هاتفي
-                </Button>
+                <Link href="tel:+20 101 456 3940">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-slate-300 hover:border-indigo-300 hover:bg-indigo-50 px-6 py-3 rounded-full font-semibold">
+                    <Phone className="w-5 h-5 mr-2" />
+                    اتصال هاتفي
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

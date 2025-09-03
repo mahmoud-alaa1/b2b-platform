@@ -2,7 +2,6 @@ import { TableRow, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import {
   Building2,
-  Package,
   MapPin,
   Calendar,
   Phone,
@@ -27,10 +26,10 @@ export default function ClientDealsTableRow({
 }) {
   const { mutate: cancelDeal } = useClientCancelDeal();
 
-  const getDealStatusBadge = (status: string) => {
-    switch (status?.toLowerCase()) {
-      case "pending":
-      case "قيد الانتظار":
+  const getDealStatusBadge = (status: keyof typeof EDealStatus) => {
+    switch (status) {
+      case "Pending":
+      case "Pending":
         return {
           variant: "secondary" as const,
           className:
@@ -38,22 +37,28 @@ export default function ClientDealsTableRow({
           icon: <Clock className="w-3 h-3" />,
           text: "قيد الانتظار",
         };
-      case "confirmed":
-      case "مؤكد":
+      case "ClientConfirmed":
         return {
           variant: "default" as const,
           className:
             "bg-green-100 text-green-800 border-green-200 hover:bg-green-200",
           icon: <CheckCircle className="w-3 h-3" />,
-          text: "مؤكد",
+          text: "اكد العميل",
         };
-      case "rejected":
-      case "مرفوض":
+      case "AdminRefused":
         return {
           variant: "destructive" as const,
           className: "bg-red-100 text-red-800 border-red-200 hover:bg-red-200",
           icon: <XCircle className="w-3 h-3" />,
-          text: "مرفوض",
+          text: "رفض المسؤول",
+        };
+      case "SupplierConfirmed":
+        return {
+          variant: "default" as const,
+          className:
+            "bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200",
+          icon: <CheckCircle className="w-3 h-3" />,
+          text: "المورد اكد",
         };
       default:
         return {
@@ -86,7 +91,7 @@ export default function ClientDealsTableRow({
                 <Building2 className="w-3 h-3 text-blue-500" />
                 <span className="font-medium">{deal.numSuppliersDesired}</span>
               </TextTooltip>
-  
+
               <TextTooltip content={`مكان التسليم`}>
                 <MapPin className="w-3 h-3 text-green-500" />
                 <span className="truncate ">{deal.requiredLocation}</span>

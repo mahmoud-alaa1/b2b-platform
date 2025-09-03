@@ -9,20 +9,9 @@ export default function ContactUsPage() {
   return (
     <div
       className="min-h-screen bg-gradient-to-b from-gray-50 to-white"
-      dir="rtl"
-    >
+      dir="rtl">
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-purple-600/15 to-blue-600/20" />
-          {/* Animated geometric shapes */}
-          <div className="absolute top-10 right-10 w-72 h-72 bg-gradient-to-r from-indigo-400/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-r from-purple-400/15 to-pink-500/15 rounded-full blur-3xl animate-pulse delay-1000" />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-blue-400/10 to-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500" />
-        </div>
-
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-5xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-6 py-3 mb-8">
@@ -53,7 +42,7 @@ export default function ContactUsPage() {
                 <span>. تواصل معنا واكتشف كيف يمكن لـ</span>
                 <span className="relative">
                   <span className="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent font-semibold">
-                    SupplyFi Horeca
+                    SupplifyHub
                   </span>
                   <span className="absolute block bottom-0 left-0 h-0.5 bg-gradient-to-r from-purple-500/50 to-indigo-500/50" />
                 </span>
@@ -63,9 +52,6 @@ export default function ContactUsPage() {
             </div>
           </div>
         </div>
-
-        {/* Bottom wave decoration */}
-        <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-white to-transparent" />
       </section>
 
       {/* Contact Form & Info */}
@@ -92,7 +78,7 @@ export default function ContactUsPage() {
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  لماذا تختار SupplyFi Horeca؟
+                  لماذا تختار SupplifyHub؟
                 </h3>
                 <div className="space-y-4">
                   {[

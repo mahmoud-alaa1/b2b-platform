@@ -6,21 +6,21 @@ import {
   ArrowRight,
   BarChart3,
   CheckCircle,
-  Clock,
   DollarSign,
   Globe,
   Package,
   Shield,
+  Star,
   TrendingUp,
   Users,
 } from "lucide-react";
 
 const buyerBenefits = [
   {
-    icon: Clock,
-    title: "توفير 40% من الوقت",
-    description: "احصل على عروض أسعار خلال دقائق بدلاً من أسابيع",
-    metric: "40%",
+    icon: Star,
+    title: "100% مجاني",
+    description: "يمكنك الاستفادة من المنصة مجانا بدون قيود",
+    metric: "100%",
     color: "from-blue-500 to-indigo-600",
   },
   {
@@ -95,8 +95,7 @@ function ValuePropositionTabContent({
           {/* Icon with Metric */}
           <div className="relative mb-6">
             <div
-              className={`w-16 h-16 bg-gradient-to-r ${benefit.color} rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg`}
-            >
+              className={`w-16 h-16 bg-gradient-to-r ${benefit.color} rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg`}>
               <benefit.icon className="w-8 h-8 text-white" />
             </div>
             <div className="absolute -top-2 -right-2 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
@@ -133,8 +132,7 @@ export default function ValuePropositionTabs() {
                                 rounded-xl px-8 py-4 transition-all shadow-lg
                                 data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-600 data-[state=active]:to-purple-600 data-[state=active]:text-white
                                 data-[state=inactive]:bg-white data-[state=inactive]:text-slate-700 data-[state=inactive]:border data-[state=inactive]:border-slate-200
-                                hover:data-[state=inactive]:bg-slate-50"
-          >
+                                hover:data-[state=inactive]:bg-slate-50">
             للمشترين
           </Button>
         </TabsTrigger>
@@ -146,16 +144,14 @@ export default function ValuePropositionTabs() {
                                     data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-600 data-[state=active]:to-purple-600 data-[state=active]:text-white
                                     data-[state=inactive]:bg-white data-[state=inactive]:text-slate-700 data-[state=inactive]:border data-[state=inactive]:border-slate-200
                                     hover:data-[state=inactive]:bg-slate-50
-      "
-          >
+      ">
             للموردين
           </Button>
         </TabsTrigger>
       </TabsList>
       <TabsContent
         value="buyers"
-        className=" max-w-7xl mx-auto animate-fade-in "
-      >
+        className=" max-w-7xl mx-auto animate-fade-in ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {buyerBenefits.map((benefit, index) => (
             <ValuePropositionTabContent key={index} benefit={benefit} />
@@ -172,8 +168,7 @@ export default function ValuePropositionTabs() {
             <Link href="/register">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              >
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
                 انضم كعميل
                 <ArrowRight className="w-5 h-5 mr-2" />
               </Button>
@@ -183,8 +178,7 @@ export default function ValuePropositionTabs() {
       </TabsContent>
       <TabsContent
         value="suppliers"
-        className=" max-w-7xl mx-auto animate-fade-in "
-      >
+        className=" max-w-7xl mx-auto animate-fade-in ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {supplierBenefits.map((benefit, index) => (
             <ValuePropositionTabContent key={index} benefit={benefit} />
@@ -201,8 +195,7 @@ export default function ValuePropositionTabs() {
             <Link href="/register">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              >
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
                 انضم كمورد
                 <ArrowRight className="w-5 h-5 mr-2" />
               </Button>

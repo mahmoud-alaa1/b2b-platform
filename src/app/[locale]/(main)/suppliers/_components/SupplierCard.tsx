@@ -102,8 +102,7 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
             <Badge
               key={index}
               className="px-2  py-1 rounded-2xl shadow-lg!"
-              variant="outline"
-            >
+              variant="outline">
               <MapPin className="size-4" />
               {location}
             </Badge>
@@ -120,20 +119,19 @@ export default function SupplierCard({ supplier }: { supplier: ISupplier }) {
         <div className="relative flex flex-col gap-4 mt-auto">
           <Link
             href={`tel:${supplier.phoneNumber}`}
-            className="flex-1 bg-gradient-to-r from-green-50  to-emerald-50 hover:from-green-100 hover:to-emerald-100 text-green-700 px-2 py-2 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 border border-green-200/50 hover:border-green-300/50 shadow-lg hover:shadow-xl hover:shadow-green-500/20 group/btn backdrop-blur-sm"
-          >
+            className="flex-1 bg-gradient-to-r from-green-50  to-emerald-50 hover:from-green-100 hover:to-emerald-100 text-green-700 px-2 py-2 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 border border-green-200/50 hover:border-green-300/50 shadow-lg hover:shadow-xl hover:shadow-green-500/20 group/btn backdrop-blur-sm">
             <Phone className="size-4 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" />
             {supplier.phoneNumber}
           </Link>
-          <Button type="button" variant="gradient-indigo" className="mt-auto">
-            <Link
-              href={`/suppliers/${supplier.id}`}
-              className="flex items-center gap-2"
-            >
+          <Link href={`/suppliers/${supplier.id}`}>
+            <Button
+              type="button"
+              variant="gradient-indigo"
+              className="w-full flex items-center gap-2">
               <User className="size-4 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" />
               عرض الملف الشخصي
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
