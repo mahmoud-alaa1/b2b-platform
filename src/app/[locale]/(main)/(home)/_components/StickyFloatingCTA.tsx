@@ -46,7 +46,7 @@ export default function StickyFloatingCTA() {
                     ابدأ في توفير الوقت والمال اليوم
                   </h3>
                   <p className="text-slate-600 text-sm">
-                    انضم لآلاف الشركات التي تستخدم SupplyFi
+                    انضم لآلاف الشركات التي تستخدم SupplifyHub
                   </p>
                 </div>
 

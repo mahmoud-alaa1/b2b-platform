@@ -7,7 +7,7 @@ export default function page() {
     <div className="bg-white h-fit w-[clamp(300px,95vw,550px)] rounded-2xl p-6 font-medium border shadow-lg">
       <p className="flex justify-center mb-5 text-indigo-500 items-center gap-2 text-2xl ">
         <span className="font-bold ">استعادة كلمة المرور</span>
-        <Lock className="" />
+        <Lock />
       </p>
       <ForgotPasswordForm />
 

@@ -50,8 +50,8 @@ Follow these steps to run the project locally on your machine.
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/supplyfi-horeca.git
-cd supplyfi-horeca
+git clone https://github.com/your-username/SupplifyHub-horeca.git
+cd SupplifyHub-horeca
 ```
 
 #### 2. Install dependencies
