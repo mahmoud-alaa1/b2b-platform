@@ -35,12 +35,15 @@ export const supplierReviewSchema = z.object({
     })
     .min(10, "يجب أن يتكون التعليق من 10 أحرف على الأقل")
     .max(500, "يجب أن يتكون التعليق من 500 حرف كحد أقصى"),
-  description: z
-    .string({
-      error: "يجب ادخال وصف",
-    })
-    .min(10, "يجب أن يتكون الوصف من 10 أحرف على الأقل")
-    .max(500, "يجب أن يتكون الوصف من 500 حرف كحد أقصى"),
+  items: z
+    .array(
+      z.object({
+        name: z.string().min(1, "الاسم مطلوب").trim(),
+        quantity: z.coerce.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
+        notes: z.string().trim().optional(),
+      })
+    )
+    .min(1, "يجب إضافة عنصر واحد على الأقل للوصف"),
 });
 
 export type supplierReviewSchemaInput = z.input<typeof supplierReviewSchema>;

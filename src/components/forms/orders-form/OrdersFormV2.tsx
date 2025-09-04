@@ -8,7 +8,12 @@ import { AnimatePresence, motion } from "motion/react";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
-import { ChevronLeft, ChevronRight, CheckCircle } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 import Spinner from "@/components/ui/spinner";
 import usePostOrder from "@/hooks/deals/clients/usePostOrder";
 import {
@@ -27,7 +32,13 @@ import { setFormErrors } from "@/utils/handleApiError";
 
 const defaultValues = {
   categoryId: undefined,
-  description: "",
+  items: [
+    {
+      name: "",
+      quantity: 1,
+      notes: "",
+    },
+  ],
   numSuppliersDesired: 1,
   requiredLocation: "",
   deadline: new Date(),
@@ -52,6 +63,36 @@ export function OrdersFormV2() {
   const totalSteps = stepSchemas.length;
   const isLastStep = step === totalSteps - 1;
   const isFirstStep = step === 0;
+
+  // Get all form errors
+  const getFormErrors = () => {
+    //@ts-expect-error the errors object exist
+    const errors = form.formState.errors;
+    const errorList: string[] = [];
+
+    const extractErrors = (obj: any, prefix = "") => {
+      Object.entries(obj).forEach(([key, value]) => {
+        if (value && typeof value === "object") {
+          if ("message" in value && typeof value.message === "string") {
+            errorList.push(value.message);
+          } else if (Array.isArray(value)) {
+            value.forEach((item, index) => {
+              if (item && typeof item === "object") {
+                extractErrors(item, `${prefix}${key}[${index}].`);
+              }
+            });
+          } else {
+            extractErrors(value, `${prefix}${key}.`);
+          }
+        }
+      });
+    };
+
+    extractErrors(errors);
+    return errorList;
+  };
+
+  const formErrors = getFormErrors();
 
   async function handleNext() {
     const currentStepFields = Object.keys(
@@ -83,7 +124,6 @@ export function OrdersFormV2() {
   }
 
   async function onSubmit(values: CompleteOrderOutput) {
-    console.log(values);
     mutate(values, {
       onSuccess: () => {
         form.reset();
@@ -126,6 +166,29 @@ export function OrdersFormV2() {
                     {step === 2 && <ContactInfoStep />}
                   </motion.div>
                 </AnimatePresence>
+                {/* Form Errors Box */}
+                {formErrors.length > 0 && (
+                  <div className="mx-8 mb-8 p-4 bg-red-50 border border-red-200 rounded-xl">
+                    <div className="flex items-start gap-3">
+                      <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <h4 className="text-sm font-semibold text-red-800 mb-2">
+                          يرجى تصحيح الأخطاء التالية:
+                        </h4>
+                        <ul className="space-y-1">
+                          {formErrors.map((error, index) => (
+                            <li
+                              key={index}
+                              className="text-sm text-red-700 flex items-start gap-1">
+                              <span className="text-red-500 mt-1">•</span>
+                              <span>{error}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </fieldset>
 

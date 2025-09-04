@@ -30,15 +30,17 @@ export default function ContactInfoStep() {
           type="text"
           Icon={<User className="w-5 h-5" />}
         />
-        <FormInput<CompleteOrderInput>
-          control={control}
-          name="contactPersonPhone"
-          placeholder="01234567890"
-          label="رقم الهاتف"
-          type="tel"
-          dir="ltr"
-          Icon={<Phone className="w-5 h-5" />}
-        />
+        <div dir="ltr">
+          <FormInput<CompleteOrderInput>
+            control={control}
+            name="contactPersonPhone"
+            placeholder="01234567890"
+            label="رقم الهاتف"
+            type="tel"
+            dir="ltr"
+            Icon={<Phone className="w-5 h-5" />}
+          />
+        </div>
       </div>
 
       <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200">

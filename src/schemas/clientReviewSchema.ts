@@ -38,11 +38,15 @@ export const clientReviewSchema = z.object({
   userId: z.string({
     error: "يجب ادخال المورد",
   }),
-  description: z
-    .string({
-      error: "يجب ادخال وصف",
-    })
-    .max(1000, "يجب أن يتكون الوصف من 1000 حرف كحد أقصى"),
+  items: z
+    .array(
+      z.object({
+        name: z.string().min(1, "الاسم مطلوب").trim(),
+        quantity: z.coerce.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
+        notes: z.string().trim().optional(),
+      })
+    )
+    .min(1, "يجب إضافة عنصر واحد على الأقل للوصف"),
 });
 
 export type clientReviewSchemaInput = z.input<typeof clientReviewSchema>;
