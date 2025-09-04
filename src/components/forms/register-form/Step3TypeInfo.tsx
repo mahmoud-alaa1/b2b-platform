@@ -74,6 +74,7 @@ export function Step3TypeInfo() {
           label="المستندات"
           description="اقصى حجم 5MB ,قم بتحميل المستندات الداعمة مثل السجل التجاري، الهوية، وغيرها."
           accept={{ "application/pdf": [".pdf"] }}
+          multiple={false}
         />
 
         {/* Location Input */}

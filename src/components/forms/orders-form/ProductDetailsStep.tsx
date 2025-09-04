@@ -1,11 +1,11 @@
 "use client";
 import { useFormContext } from "react-hook-form";
 import FormInput from "../../forms-fields/FormInput";
-import FormTextArea from "../../forms-fields/FormTextArea";
 import FormInfiniteCombobox from "../../forms-fields/FormInfiniteCombobox";
 import { getCategories } from "@/services/categoriesServices";
-import { Package, Users, Grid3X3 } from "lucide-react";
+import { Users, Grid3X3 } from "lucide-react";
 import { CompleteOrderInput } from "@/schemas/orderSchema";
+import ProductDescription from "./ProductDescription";
 
 export default function ProductDetailsStep() {
   const { control } = useFormContext<CompleteOrderInput>();
@@ -31,20 +31,13 @@ export default function ProductDetailsStep() {
           fetchFn={(page, search) => getCategories({ page, search })}
           getOptionLabel={(item) => item.categoryName}
           getOptionValue={(item) => String(item.categoryId)}
-          label="فئة المنتج"
-          placeholder="اختر فئة المنتج..."
+          label="فئة الطلب"
+          placeholder="اختر فئة الطلب..."
+          description="سيصل طلبك للموردين المشتركين في هذه الفئة فقط"
         />
-        <div className="col-span-2">  
-          <FormTextArea<CompleteOrderInput>
-            control={control}
-            name="description"
-            placeholder="وصف تفصيلي للمنتج المطلوب، المواصفات، الجودة المطلوبة..."
-            label="وصف الطلب"
-            rows={4}
-          />
+        <div className="col-span-2">
+          <ProductDescription />
         </div>
-
-    
 
         <FormInput<CompleteOrderInput>
           control={control}
@@ -55,6 +48,7 @@ export default function ProductDetailsStep() {
           Icon={<Users className="w-5 h-5" />}
           min={1}
           max={50}
+          description="هذا اقصى عدد للموردين الذين سيصلهم اشعار بطلبك (اقل من او يساوي 50)"
         />
       </div>
     </div>

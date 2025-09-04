@@ -67,7 +67,6 @@ export const orderSchema = z.object({
     }),
 });
 
-
 export type orderSchemaInput = z.input<typeof orderSchema>;
 export type orderSchemaOutput = z.output<typeof orderSchema>;
 
@@ -76,8 +75,18 @@ export const productDetailsSchema = z.object({
   categoryId: z.coerce.number({
     error: "يجب اختيار فئة المنتج",
   }),
-  description: z.string().min(10, "الوصف يجب أن يكون 10 أحرف على الأقل").trim(),
-  numSuppliersDesired: z.coerce.number().min(1, "عدد الموردين يجب أن يكون أكبر من صفر"),
+  orderItems: z
+    .array(
+      z.object({
+        name: z.string().min(1, "الاسم مطلوب").trim(),
+        quantity: z.coerce.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
+        notes: z.string().trim().optional(),
+      })
+    )
+    .min(1, "يجب إضافة عنصر واحد على الأقل للوصف"),
+  numSuppliersDesired: z.coerce
+    .number()
+    .min(1, "عدد الموردين يجب أن يكون أكبر من صفر"),
 });
 export type productDetailsOutput = z.output<typeof productDetailsSchema>;
 
