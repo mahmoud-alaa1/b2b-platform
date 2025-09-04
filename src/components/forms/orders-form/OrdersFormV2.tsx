@@ -66,8 +66,8 @@ export function OrdersFormV2() {
 
   // Get all form errors
   const getFormErrors = () => {
-    //@ts-expect-error the errors object exist
-    const errors = form.formState.errors;
+    const errors = form.formState.errors
+    ;
     const errorList: string[] = [];
 
     const extractErrors = (obj: any, prefix = "") => {

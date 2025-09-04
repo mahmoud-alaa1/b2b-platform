@@ -24,7 +24,7 @@ import {
 import useSupplierReview from "@/hooks/reviews/useSupplierReview";
 import FormRating from "@/components/forms-fields/FormRating";
 import { setFormErrors } from "@/utils/handleApiError";
-import ProductDescription from "../orders-form/ProductDescription";
+import SupplierReviewFormDescription from "./SupplierReviewFormDescription";
 
 export default function SupplierReviewForm({
   dealId,
@@ -47,6 +47,13 @@ export default function SupplierReviewForm({
       dateOfDelivered: new Date(),
       rating: 5,
       comment: "",
+      items: [
+        {
+          name: "",
+          quantity: 1,
+          price: 1,
+        },
+      ],
     },
   });
 
@@ -119,7 +126,7 @@ export default function SupplierReviewForm({
                   <FormInput
                     control={form.control}
                     name="price"
-                    label="السعر للوحدة الواحدة (ج.م)"
+                    label="السعر الإجمالي"
                     placeholder="0.00"
                     type="number"
                     Icon={<DollarSign className="w-4 h-4" />}
@@ -129,7 +136,7 @@ export default function SupplierReviewForm({
                     max={2147483647}
                   />
                 </div>
-                <ProductDescription />
+                <SupplierReviewFormDescription />
               </CardContent>
             </Card>
 

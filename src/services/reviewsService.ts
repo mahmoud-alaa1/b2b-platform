@@ -19,7 +19,10 @@ export async function postClientReview(
   data: clientReviewSchemaOutput & { orderId: string | number }
 ) {
   try {
-    const res = await api.post(`/client/review`, data);
+    const res = await api.post<IApiResponse<{ message: string }>>(
+      `/client/review`,
+      data
+    );
     return res.data;
   } catch (error) {
     throw handleApiError(error);

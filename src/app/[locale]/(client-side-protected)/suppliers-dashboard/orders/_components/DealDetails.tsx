@@ -257,8 +257,25 @@ export default function DealDetails({ deal }: { deal: ISupplierDeal }) {
                 </div>
                 <h3 className="font-semibold text-gray-900">تفاصيل الصفقة</h3>
               </div>
-
-              <p>{deal.description}</p>
+              <div className="space-y-2 max-w-xs">
+                {deal.dealItems.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between p-2 bg-gray-50 rounded-lg text-sm">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-gray-900 truncate">
+                        {item.name}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        الكمية: {item.quantity}
+                      </div>
+                    </div>
+                    <div className="text-sm font-semibold text-indigo-600 ml-2">
+                      {item.price}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>

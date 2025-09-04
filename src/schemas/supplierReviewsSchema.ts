@@ -40,7 +40,7 @@ export const supplierReviewSchema = z.object({
       z.object({
         name: z.string().min(1, "الاسم مطلوب").trim(),
         quantity: z.coerce.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
-        notes: z.string().trim().optional(),
+        price: z.coerce.number().min(0, "يجب ادخال السعر"),
       })
     )
     .min(1, "يجب إضافة عنصر واحد على الأقل للوصف"),

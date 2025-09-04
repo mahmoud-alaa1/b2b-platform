@@ -30,6 +30,7 @@ import {
 import FormRating from "@/components/forms-fields/FormRating";
 import { setFormErrors } from "@/utils/handleApiError";
 import ProductDescription from "../orders-form/ProductDescription";
+import OrderDescription from "./OrderDescription";
 
 export default function ClientReviewForm({
   orderId,
@@ -44,11 +45,10 @@ export default function ClientReviewForm({
     resolver: zodResolver(clientReviewSchema),
     defaultValues: {
       rating: 1,
-      price: 1,
       comment: "",
       dealDoneAt: new Date(),
       dateOfDelivered: new Date(),
-      items: [{ name: "", quantity: 1, notes: "" }],
+      items: [{ name: "", quantity: 1, price: 1 }],
     },
   });
 
@@ -146,14 +146,6 @@ export default function ClientReviewForm({
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <FormInput<clientReviewSchemaInput>
-                          control={form.control}
-                          name="price"
-                          type="number"
-                          placeholder="أدخل السعر..."
-                          label="السعر الإجمالي"
-                          Icon={<DollarSign className="w-5 h-5" />}
-                        />
                         <FormDatePicker<clientReviewSchemaInput>
                           control={form.control}
                           name="dealDoneAt"
@@ -170,7 +162,7 @@ export default function ClientReviewForm({
                           type="datetime-local"
                         />
                       </div>
-                      <ProductDescription />
+                      <OrderDescription />
                     </div>
 
                     {/* Rating Section */}

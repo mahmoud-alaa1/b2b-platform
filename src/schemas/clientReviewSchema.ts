@@ -14,7 +14,6 @@ export const clientReviewSchema = z.object({
       }
     )
     .transform((d) => d.toISOString()),
-  price: z.coerce.number().min(0, "يجب ادخال السعر").max(2147483647),
   dateOfDelivered: z.coerce
     .date()
     .refine(
@@ -43,7 +42,7 @@ export const clientReviewSchema = z.object({
       z.object({
         name: z.string().min(1, "الاسم مطلوب").trim(),
         quantity: z.coerce.number().min(1, "الكمية يجب أن تكون أكبر من صفر"),
-        notes: z.string().trim().optional(),
+        price: z.coerce.number().min(1, "يجب ادخال السعر"),
       })
     )
     .min(1, "يجب إضافة عنصر واحد على الأقل للوصف"),

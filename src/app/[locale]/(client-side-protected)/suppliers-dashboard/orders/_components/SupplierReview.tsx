@@ -12,7 +12,6 @@ export default function SupplierReview({ id }: { id: string | number }) {
           <CheckCircle />
         </Button>
       }
-      maxWidth="xl"
       height="90vh"
       scrollable={true}>
       <SupplierReviewForm dealId={id} />

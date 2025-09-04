@@ -5,7 +5,6 @@ import SupplierReview from "@/app/[locale]/(client-side-protected)/suppliers-das
 import { Badge } from "@/components/ui/badge";
 import { TableCell, TableRow } from "@/components/ui/table";
 
-
 import {
   Building2,
   Phone,
@@ -91,9 +90,30 @@ export default function SupplierDealsTableRow({
 
       {/* Description */}
       <TableCell>
-        <p className="text-sm max-w-44 text-gray-900 font-medium truncate">
-          {deal.description}
-        </p>
+        <div className="space-y-2 max-w-xs">
+          {deal.dealItems.slice(0, 2).map((item, index) => (
+            <div
+              key={item.id}
+              className="flex items-center justify-between p-2 bg-gray-50 rounded-lg text-sm">
+              <div className="flex-1 min-w-0">
+                <div className="font-medium text-gray-900 truncate">
+                  {item.name}
+                </div>
+                <div className="text-xs text-gray-500">
+                  الكمية: {item.quantity}
+                </div>
+              </div>
+              <div className="text-sm font-semibold text-indigo-600 ml-2">
+                {item.price}
+              </div>
+            </div>
+          ))}
+          {deal.dealItems.length > 2 && (
+            <div className="text-xs text-center text-gray-500 py-1">
+              +{deal.dealItems.length - 2} منتج آخر
+            </div>
+          )}
+        </div>
       </TableCell>
 
       {/* Contact Person */}

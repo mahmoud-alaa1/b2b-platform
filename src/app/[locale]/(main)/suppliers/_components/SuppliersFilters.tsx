@@ -43,8 +43,7 @@ export default function SuppliersFilters() {
       <Button
         className="w-full"
         type="button"
-        onClick={() => form.reset(defaultSuppliersFiltersValues)}
-      >
+        onClick={() => form.reset(defaultSuppliersFiltersValues)}>
         مسح الفلاتر
       </Button>
     </div>

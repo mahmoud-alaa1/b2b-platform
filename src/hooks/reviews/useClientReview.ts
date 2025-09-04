@@ -3,13 +3,17 @@ import { postClientReview } from "@/services/reviewsService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-export default function useClientReview({ orderId }: { orderId: string | number }) {
+export default function useClientReview({
+  orderId,
+}: {
+  orderId: string | number;
+}) {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: clientReviewSchemaOutput) =>
       postClientReview({ ...data, orderId }),
-    onSuccess: () => {
-      toast.success("تم إرسال المراجعة بنجاح");
+    onSuccess: (data) => {
+      toast.success(data.data.message || "تم إرسال المراجعة بنجاح");
       queryClient.invalidateQueries({ queryKey: ["client-deals"] });
     },
     onError: (error) => {
