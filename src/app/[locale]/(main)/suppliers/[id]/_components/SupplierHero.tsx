@@ -10,7 +10,7 @@ export default function SupplierHero({
   supplier: ISupplierInfo;
 }) {
   return (
-    <div className="relative h-dvh bg-gradient-to-r from-amber-200-50-500/10 to-purple-200/60 text-white">
+    <div className="relative  text-white">
       <div className="max-w-7xl mx-auto px-4 py-20 relative z-10">
         <div className="flex flex-col  md:flex-row items-center justify-between">
           <div className="mb-8 md:mb-0 text-center md:text-right max-w-2xl">

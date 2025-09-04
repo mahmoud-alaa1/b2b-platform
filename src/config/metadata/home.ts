@@ -5,7 +5,7 @@ export const homeMetadata: Metadata = {
   description:
     "منصة B2B متطورة تربط الفنادق والمطاعم والمقاهي بموردين موثوقين. احصل على عروض أسعار فورية، وفّر حتى 40% من الوقت، وزيد كفاءة التوريد.",
   keywords: "B2B, موردين, فنادق, مطاعم, مقاهي, هوريكا, عروض أسعار, RFQ, توريد",
-  authors: [{ name: "SupplyFi Team" }],
+  authors: [{ name: "SupplifyHub Team" }],
   openGraph: {
     title: "منصة SupplifyHub | ثورة في التوريد للضيافة",
     description:

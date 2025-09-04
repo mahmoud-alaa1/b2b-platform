@@ -163,7 +163,7 @@ export default function ValuePropositionTabs() {
               ابدأ في توفير الوقت والمال
             </h3>
             <p className="text-slate-600 mb-6">
-              انضم لآلاف الشركات التي تستخدم SupplyFi لتحسين عمليات التوريد
+              انضم لآلاف الشركات التي تستخدم SupplifyHub لتحسين عمليات التوريد
             </p>
             <Link href="/register">
               <Button

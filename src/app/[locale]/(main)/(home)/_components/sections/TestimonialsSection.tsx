@@ -14,7 +14,7 @@ const testimonials = [
     avatar: "/api/placeholder/64/64",
     rating: 5,
     content:
-      "SupplyFi غيّر طريقة عملنا بالكامل. وفرنا 40% من الوقت و 25% من التكاليف. الموردون موثوقون والخدمة ممتازة.",
+      "SupplifyHub غيّر طريقة عملنا بالكامل. وفرنا 40% من الوقت و 25% من التكاليف. الموردون موثوقون والخدمة ممتازة.",
     metrics: {
       timeSaved: "40%",
       costSaved: "25%",
@@ -30,7 +30,7 @@ const testimonials = [
     avatar: "/api/placeholder/64/64",
     rating: 5,
     content:
-      "كمطعم صغير، كان صعب علينا نحصل على أسعار تنافسية. SupplyFi ساعدنا نوصل لموردين ما كنا نعرفهم وحسّن هوامش ربحنا.",
+      "كمطعم صغير، كان صعب علينا نحصل على أسعار تنافسية. SupplifyHub ساعدنا نوصل لموردين ما كنا نعرفهم وحسّن هوامش ربحنا.",
     metrics: {
       timeSaved: "60%",
       costSaved: "30%",
@@ -97,7 +97,7 @@ export default function TestimonialsSection() {
             ماذا يقول عملاؤنا؟
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            اكتشف كيف ساعدت SupplyFi مئات الشركات في تحسين عمليات التوريد وزيادة
+            اكتشف كيف ساعدت SupplifyHub مئات الشركات في تحسين عمليات التوريد وزيادة
             الأرباح
           </p>
         </motion.div>

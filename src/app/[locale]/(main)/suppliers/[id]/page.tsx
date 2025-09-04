@@ -35,10 +35,10 @@ export default async function Page({
         <div className="absolute bottom-20 left-10 w-72 h-72 bg-purple-100 rounded-full blur-3xl opacity-40" />
       </div>
 
-      <div className="relative z-10 containermx-auto px-4 sm:px-6 lg:px-40 rounded-xl">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-40 rounded-xl">
         <SupplierAdvertisements advertisements={advertisements} />
       </div>
-      <section className="relative z-10 lg:px-30">
+      <section className="relative z-10  lg:px-30">
         <SupplierHero supplier={supplier} />
       </section>
 

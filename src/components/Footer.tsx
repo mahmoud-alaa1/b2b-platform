@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Logo & Vision */}
         <div className="flex flex-col items-center md:items-start gap-2">
-          <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-indigo-200 to-white bg-clip-text text-transparent">
+          <span className="text-2xl font-extrabold tracking-tight  text-white">
             SupplifyHub
           </span>
           <span className="text-xs text-indigo-100 max-w-xs text-center md:text-right">
