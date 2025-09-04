@@ -10,6 +10,7 @@ import SupplierOrdersQuotaForm from "@/components/forms/supplier-quotas/Supplier
 
 export default function OrderQuotaSection() {
   const { data: quotaData, isPending } = useGetSupplierQuota();
+  
 
   if (isPending) {
     return (
@@ -26,6 +27,8 @@ export default function OrderQuotaSection() {
   }
 
   const remainingOrder = quotaData?.data?.orders || 0;
+
+  console.log(quotaData);
 
   return (
     <div className="mb-8 flex">

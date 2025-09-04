@@ -17,10 +17,10 @@ export default function ProductDetailsStep() {
           <Grid3X3 className="w-10 h-10 text-white" />
         </div>
         <h3 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-          تفاصيل المنتج
+          تفاصيل الطلب
         </h3>
         <p className="text-gray-600 text-lg max-w-md mx-auto">
-          حدد نوع المنتج والكمية المطلوبة بدقة
+          تفاصيل المنتج والكمية المطلوبة
         </p>
       </div>
 
@@ -44,7 +44,7 @@ export default function ProductDetailsStep() {
           name="numSuppliersDesired"
           placeholder="عدد الموردين..."
           type="number"
-          label="عدد الموردين المطلوب"
+          label="عدد الموردين المطلوب للتواصل"
           Icon={<Users className="w-5 h-5" />}
           min={1}
           max={50}

@@ -9,7 +9,7 @@ export const defaultMetadata: Metadata = {
   },
   description:
     "منصة متكاملة لتسهيل الأعمال التجارية بين الشركات (B2B)، حيث يمكن للشركات العثور على الموردين والعملاء بسهولة.",
-  keywords: ["B2B", "Supplify", "موردين", "عملاء", "استيراد", "تصدير"],
+  keywords: ["B2B", "SupplifyHub", "موردين", "عملاء", "استيراد", "تصدير"],
   metadataBase: new URL(site.url),
   openGraph: {
     type: "website",
