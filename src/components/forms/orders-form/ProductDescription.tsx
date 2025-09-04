@@ -4,7 +4,6 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Trash2, Plus } from "lucide-react";
 import FormInput from "@/components/forms-fields/FormInput";
-import FormTextArea from "@/components/forms-fields/FormTextArea";
 
 export default function ProductDescription() {
   const form = useFormContext();
@@ -12,7 +11,7 @@ export default function ProductDescription() {
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "orderItems",
+    name: "items",
   });
 
   return (
@@ -38,22 +37,22 @@ export default function ProductDescription() {
             className="flex flex-col md:flex-row gap-3 items-end bg-white/70 backdrop-blur-sm border border-gray-200 shadow-sm rounded-2xl p-4 relative group transition">
             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
               <FormInput
-                name={`orderItems.${index}.name`}
-                placeholder="اسم المنتج"
-                label="اسم المنتج"
+                name={`items.${index}.name`}
+                placeholder="مثلا: ورق A4، حبر طابعة، لابتوب..."
+                label="اسم الصنف"
                 control={control}
               />
               <FormInput
-                name={`orderItems.${index}.quantity`}
-                placeholder="الكمية"
+                name={`items.${index}.quantity`}
+                placeholder="مثلا: 10، 50، 5..."
                 label="الكمية المطلوبة"
                 control={control}
                 type="number"
                 min={1}
               />
               <FormInput
-                name={`orderItems.${index}.notes`}
-                placeholder="ادخل ملاحظات (اختياري)"
+                name={`items.${index}.notes`}
+                placeholder="مثلا: ملاحظات حول الجودة أو المواصفات..."
                 label="ملاحظات (اختياري)"
                 control={control}
               />

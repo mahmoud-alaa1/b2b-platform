@@ -24,6 +24,7 @@ import {
 import useSupplierReview from "@/hooks/reviews/useSupplierReview";
 import FormRating from "@/components/forms-fields/FormRating";
 import { setFormErrors } from "@/utils/handleApiError";
+import ProductDescription from "../orders-form/ProductDescription";
 
 export default function SupplierReviewForm({
   dealId,
@@ -128,12 +129,7 @@ export default function SupplierReviewForm({
                     max={2147483647}
                   />
                 </div>
-                <FormTextArea<supplierReviewSchemaInput>
-                  name="description"
-                  placeholder="أدخل وصفًا تفصيليًا للصفقة..."
-                  label="الوصف"
-                  rows={4}
-                />
+                <ProductDescription />
               </CardContent>
             </Card>
 

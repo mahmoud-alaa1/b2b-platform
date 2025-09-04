@@ -10,13 +10,12 @@ export function ConfirmDeal({dealId}:{
   return (
     <ResponsiveModal
       trigger={
-        <Button variant="gradient-ocean" className="w-fit">
+        <Button variant="gradient-ocean" >
           <Check />
         </Button>
       }
       description="تأكيد الصفقة وإضافتها إلى المتجر"
       title="تأكيد الصفقة"
-      maxWidth="xl"
       height="90vh"
       scrollable={true}>
       <ClientReviewForm orderId={dealId} />

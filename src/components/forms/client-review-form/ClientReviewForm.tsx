@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import FormRating from "@/components/forms-fields/FormRating";
 import { setFormErrors } from "@/utils/handleApiError";
+import ProductDescription from "../orders-form/ProductDescription";
 
 export default function ClientReviewForm({
   orderId,
@@ -47,6 +48,7 @@ export default function ClientReviewForm({
       comment: "",
       dealDoneAt: new Date(),
       dateOfDelivered: new Date(),
+      items: [{ name: "", quantity: 1, notes: "" }],
     },
   });
 
@@ -92,7 +94,7 @@ export default function ClientReviewForm({
         <div>
           <Card className="border-0 shadow-3xl bg-white/90 backdrop-blur-2xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50" />
-            <CardContent className="relative p-4 md:p-12">
+            <CardContent className="relative p-4 ">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -168,12 +170,7 @@ export default function ClientReviewForm({
                           type="datetime-local"
                         />
                       </div>
-                      <FormTextArea<clientReviewSchemaInput>
-                        name="description"
-                        placeholder="أدخل وصفًا تفصيليًا للصفقة..."
-                        label="الوصف"
-                        rows={4}
-                      />
+                      <ProductDescription />
                     </div>
 
                     {/* Rating Section */}

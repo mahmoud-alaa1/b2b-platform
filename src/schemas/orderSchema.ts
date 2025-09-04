@@ -75,7 +75,7 @@ export const productDetailsSchema = z.object({
   categoryId: z.coerce.number({
     error: "يجب اختيار فئة المنتج",
   }),
-  orderItems: z
+  items: z
     .array(
       z.object({
         name: z.string().min(1, "الاسم مطلوب").trim(),

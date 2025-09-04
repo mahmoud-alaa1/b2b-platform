@@ -32,7 +32,7 @@ import { setFormErrors } from "@/utils/handleApiError";
 
 const defaultValues = {
   categoryId: undefined,
-  description: [
+  items: [
     {
       name: "",
       quantity: 1,
