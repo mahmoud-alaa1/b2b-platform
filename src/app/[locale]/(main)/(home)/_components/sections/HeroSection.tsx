@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle, Search, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Link } from "@/i18n/navigation";
 
 export default function HeroSection() {
@@ -17,13 +16,8 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="max-w-5xl mx-auto">
-          <Badge className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-100 to-purple-100 px-4 py-2 rounded-full text-sm font-medium text-indigo-700 mb-8 border border-indigo-200/50">
-            <Zap className="w-4 h-4" />
-            <span>SupplifyHub</span>
-          </Badge>
-
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-slate-900 via-indigo-700 to-purple-600 bg-clip-text text-transparent leading-tight mb-6">
-            SupplifyHub المنصة الذكية للموردين والمشترين - HorecaHub
+          <h1 className="text-6xl md:text-6xl font-bold bg-gradient-to-r from-slate-900 via-indigo-700 to-purple-600 bg-clip-text text-transparent leading-tight mb-6">
+            SupplifyHub
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -60,7 +54,7 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <span>جرّب المنصة مجانًا</span>
+                <span>جرّب المنصة</span>
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -118,11 +112,6 @@ export default function HeroSection() {
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-green-500" />
               <span className="text-sm">دعم فني على مدار الساعة</span>
-            </div>
-            <span className="text-slate-400">•</span>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
-              <span className="text-sm">التجربة مجانًا بلا التزام</span>
             </div>
           </div>
         </div>

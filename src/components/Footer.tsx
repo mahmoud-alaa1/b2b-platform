@@ -3,59 +3,66 @@ import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer
-      dir="rtl"
-      className="bg-gradient-to-tr from-purple-900 via-purple-700 to-purple-500 text-white py-8 px-4  shadow-inner">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Logo & Vision */}
-        <div className="flex flex-col items-center md:items-start gap-2">
-          <span className="text-2xl font-extrabold tracking-tight  text-white">
-            SupplifyHub
-          </span>
-          <span className="text-xs text-indigo-100 max-w-xs text-center md:text-right">
-            منصة رقمية تربط الموردين بأصحاب الأعمال وتدعم نمو قطاع الأعمال B2B
-            بكفاءة واحترافية.
-          </span>
+    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white border-t border-slate-700/50">
+      <div className="container mx-auto px-4 py-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          {/* Logo & Vision */}
+          <div className="flex flex-col items-center md:items-start gap-3">
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              SupplifyHub
+            </span>
+            <p className="text-sm text-slate-300 max-w-sm text-center md:text-right leading-relaxed">
+              منصة رقمية تربط الموردين بأصحاب الأعمال وتدعم نمو قطاع الأعمال B2B بكفاءة واحترافية
+            </p>
+          </div>
+
+          {/* Social Icons */}
+          <div className="flex gap-3">
+            <Link
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="فيسبوك"
+              className="p-3 rounded-xl bg-slate-800 hover:bg-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <Facebook className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تويتر"
+              className="p-3 rounded-xl bg-slate-800 hover:bg-sky-500 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <Twitter className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="انستجرام"
+              className="p-3 rounded-xl bg-slate-800 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <Instagram className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="لينكدإن"
+              className="p-3 rounded-xl bg-slate-800 hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <Linkedin className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
 
-        {/* Social Icons */}
-        <div className="flex gap-4">
-          <Link
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="فيسبوك"
-            className="hover:bg-white/10 p-2 rounded-full transition">
-            <Facebook className="w-5 h-5" />
-          </Link>
-          <Link
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="تويتر"
-            className="hover:bg-white/10 p-2 rounded-full transition">
-            <Twitter className="w-5 h-5" />
-          </Link>
-          <Link
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="انستجرام"
-            className="hover:bg-white/10 p-2 rounded-full transition">
-            <Instagram className="w-5 h-5" />
-          </Link>
-          <Link
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="لينكدإن"
-            className="hover:bg-white/10 p-2 rounded-full transition">
-            <Linkedin className="w-5 h-5" />
-          </Link>
+        {/* Copyright */}
+        <div className="mt-8 pt-6 border-t border-slate-700/50 text-center">
+          <p className="text-sm text-slate-400">
+            © {new Date().getFullYear()} منصة SupplifyHub. جميع الحقوق محفوظة.
+          </p>
         </div>
-      </div>
-      <div className="mt-6 border-t border-indigo-400/20 pt-4 text-lg text-indigo-100 text-center">
-        © {new Date().getFullYear()} منصة SupplifyHub. جميع الحقوق محفوظة.
       </div>
     </footer>
   );

@@ -46,7 +46,11 @@ export function buildQueryStringWithBase(
 export function buildQueryString(params?: Record<string, unknown>) {
   const searchParams = new URLSearchParams();
   for (const key in params) {
-    if (params[key] !== undefined && params[key] !== null) {
+    if (
+      params[key] !== undefined &&
+      params[key] !== null &&
+      params[key] !== ""
+    ) {
       searchParams.append(key, String(params[key]));
     }
   }
@@ -67,7 +71,6 @@ export const formatMonths = (months: number): string => {
   if (months % 12 === 0) return `${months / 12} سنوات`;
   return `${months} شهر`;
 };
-
 
 export const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text);

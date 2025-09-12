@@ -2,11 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft, Sparkles, CheckCircle, Zap } from "lucide-react";
 
-const benefits = [
-  "تسجيل مجاني خلال دقيقتين",
-  "استلم عروض أسعار في غضون 15 دقيقة",
-  "دعم فني موثوق دائمًا",
-];
+const benefits = ["تسجيل مجاني خلال دقيقتين", "دعم فني موثوق دائمًا"];
 
 export default function CTASection() {
   return (
@@ -64,7 +60,7 @@ export default function CTASection() {
                 size="lg"
                 className="bg-white text-indigo-700 hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-white/25 transition-all duration-300 group">
                 <Zap className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
-                <span>جرّب المنصة مجانًا</span>
+                <span>جرّب المنصة </span>
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
