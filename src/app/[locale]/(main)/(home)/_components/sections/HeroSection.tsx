@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, CheckCircle, Search,  Zap } from "lucide-react";
+import { ArrowLeft, CheckCircle, Search, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/i18n/navigation";
@@ -9,7 +9,7 @@ export default function HeroSection() {
     <section className="relative min-h-[80dvh] py-6 flex items-center justify-center overflow-hidden ">
       {/* Animated Background */}
       <div className="absolute inset-0 z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5  to-slate-900/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/5 to-slate-900/5" />
         {/* Floating Geometric Shapes */}
         <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-indigo-400/20 to-purple-500/20 rounded-3xl blur-xl" />
         <div className="absolute bottom-32 left-32 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-indigo-500/20 rounded-full blur-lg" />
@@ -19,23 +19,43 @@ export default function HeroSection() {
         <div className="max-w-5xl mx-auto">
           <Badge className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-100 to-purple-100 px-4 py-2 rounded-full text-sm font-medium text-indigo-700 mb-8 border border-indigo-200/50">
             <Zap className="w-4 h-4" />
-            <span>منصة التوريد الذكية </span>
+            <span>SupplifyHub</span>
           </Badge>
 
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-slate-900 via-indigo-700 to-purple-600 bg-clip-text text-transparent leading-tight mb-6">
-            ثورة في التوريد
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-slate-900 via-indigo-700 to-purple-600 bg-clip-text text-transparent leading-tight mb-6">
+            SupplifyHub المنصة الذكية للموردين والمشترين - HorecaHub
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            احصل على عروض أسعار من موردين موثوقين خلال دقائق، وفّر حتى
-            <span className="font-bold text-indigo-600">
-              {" "}
-              40% من الوقت
-            </span>{" "}
-            وزود كفاءة التوريد
+            منصة ذكية تربط الموردين بأصحاب الأعمال لتبسيط إدارة الطلبات، تعزيز
+            التنافسية، وخلق فرص موثوقة
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          {/* النقاط التوضيحية */}
+          <div className="mt-8 space-y-4 text-slate-700 text-lg font-medium max-w-3xl mx-auto text-right">
+            <div className="flex items-start gap-2">
+              <CheckCircle className="w-5 h-5 text-green-600 mt-1" />
+              <span>
+                منصة رقمية متكاملة لتوفير الوقت والجهد لربط الموردين بالشركات.
+              </span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="w-5 h-5 text-green-600 mt-1" />
+              <span>
+                تعزيز التنافسية يضمن حصول العملاء على عروض متعددة من موردين
+                موثوقين خلال دقائق.
+              </span>
+            </div>
+            <div className="flex items-start gap-2">
+              <CheckCircle className="w-5 h-5 text-green-600 mt-1" />
+              <span>
+                خلق فرص جديدة في بيئة رقمية موثوقة تربط الموردين بأصحاب الأعمال
+                بكفاءة وسلاسة.
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 mt-12">
             <Link href="#pricing">
               <Button
                 size="lg"

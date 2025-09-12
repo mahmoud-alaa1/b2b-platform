@@ -36,17 +36,14 @@ export default function CTASection() {
 
           {/* Headline */}
           <h2 className="text-4xl md:text-6xl font-bold text-white leading-24 mb-6">
-            جاهز لثورة في التوريد؟
+            لا تفوّت الفرصة واكتشف الفرق بنفسك
             <br />
-            <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-              جرّب المنصة مجانًا
-            </span>
           </h2>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-indigo-100 mb-12 max-w-2xl mx-auto leading-relaxed">
-            انضم لآلاف الشركات التي تستخدم Supplifyhub وابدأ في توفير الوقت والمال
-            من أول طلب
+            انضم لآلاف الشركات التي تستخدم Supplifyhub وابدأ في توفير الوقت
+            والمال من أول طلب
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-12">
@@ -65,10 +62,9 @@ export default function CTASection() {
             <Link href="/register">
               <Button
                 size="lg"
-                className="bg-white text-indigo-700 hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-white/25 transition-all duration-300 group"
-              >
+                className="bg-white text-indigo-700 hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-bold shadow-2xl hover:shadow-white/25 transition-all duration-300 group">
                 <Zap className="w-5 h-5 ml-2 group-hover:scale-110 transition-transform" />
-                <span>ابدأ مجاناً الآن</span>
+                <span>جرّب المنصة مجانًا</span>
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
