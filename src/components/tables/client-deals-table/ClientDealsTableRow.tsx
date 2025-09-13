@@ -60,6 +60,14 @@ export default function ClientDealsTableRow({
           icon: <CheckCircle className="w-3 h-3" />,
           text: "المورد اكد",
         };
+      case "AdminConfirmed":
+        return {
+          variant: "default" as const,
+          className:
+            "bg-cyan-100 text-cyan-800 border-cyan-200 hover:bg-cyan-200",
+          icon: <CheckCircle className="w-3 h-3" />,
+          text: "مؤكدة من المسؤول",
+        };
       default:
         return {
           variant: "outline" as const,
@@ -82,7 +90,7 @@ export default function ClientDealsTableRow({
       {/* Deal Details */}
       <TableCell>
         <div className="space-y-2 max-w-xs">
-          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200 ">
             <p className="font-medium text-gray-900 text-sm mb-2 line-clamp-2">
               {deal.description}
             </p>
