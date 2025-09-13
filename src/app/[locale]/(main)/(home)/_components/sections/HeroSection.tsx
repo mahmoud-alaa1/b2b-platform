@@ -54,7 +54,9 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <span>جرّب المنصة</span>
+                <span>
+                  كمورد سجل الان واشترك في الخطة المجانية بدون أي التزام
+                </span>
                 <ArrowLeft className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -65,7 +67,7 @@ export default function HeroSection() {
                 variant="outline"
                 className="border-2 border-indigo-200 hover:border-indigo-300 text-indigo-700 hover:bg-indigo-50 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300">
                 <Search className="w-5 h-5 ml-2" />
-                <span>سجل واطلب الآن</span>
+                <span>كعميل سجل الان واطلب مشترياتك بدون أي التزام</span>
               </Button>
             </Link>
           </div>
