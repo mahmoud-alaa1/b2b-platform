@@ -258,7 +258,7 @@ export default function DealDetails({ deal }: { deal: ISupplierDeal }) {
                 <h3 className="font-semibold text-gray-900">تفاصيل الصفقة</h3>
               </div>
               <div className="space-y-2 max-w-xs">
-                {deal.dealItems.map((item, index) => (
+                {deal.items.map((item) => (
                   <div
                     key={item.id}
                     className="flex items-center justify-between p-2 bg-gray-50 rounded-lg text-sm">

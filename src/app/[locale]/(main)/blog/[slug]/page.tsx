@@ -4,12 +4,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Download, Calendar, Clock, ArrowLeft, BookOpen } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import BlogProgressBar from "./_components/BlogProgressBar";
 import BlogContent from "./_components/BlogContent";
 import BlogCTA from "./_components/BlogCTA";
 import { format, formatDistanceToNow } from "date-fns";
 import { ar } from "date-fns/locale";
+import { Link } from "@/i18n/navigation";
 
 export default async function BlogPostPage({
   params,
@@ -79,10 +79,16 @@ export default async function BlogPostPage({
 
                 {/* PDF Download */}
                 {post.pdfUrl && (
-                  <Button variant="outline" className="rounded-full">
-                    <Download className="w-4 h-4 mr-2" />
-                    تحميل PDF
-                  </Button>
+                  <Link
+                    target="_blank"
+                    href={post.pdfUrl}
+                    download
+                    rel="noopener noreferrer">
+                    <Button variant="outline" className="rounded-full">
+                      <Download className="w-4 h-4 mr-2" />
+                      تحميل PDF
+                    </Button>
+                  </Link>
                 )}
               </div>
 

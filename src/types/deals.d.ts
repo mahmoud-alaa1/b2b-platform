@@ -1,6 +1,6 @@
 interface ISupplierDeal {
   dealId: number | string;
-  dealItems: IDealItems[];
+  items: IDealItems[];
   CompanyName: string;
   CompanyEmail: string;
   CompanyPhone: string;

@@ -91,7 +91,7 @@ export default function SupplierDealsTableRow({
       {/* Description */}
       <TableCell>
         <div className="space-y-2 max-w-xs">
-          {deal.dealItems.slice(0, 2).map((item, index) => (
+          {deal.items.slice(0, 2).map((item) => (
             <div
               key={item.id}
               className="flex items-center justify-between p-2 bg-gray-50 rounded-lg text-sm">
@@ -108,9 +108,9 @@ export default function SupplierDealsTableRow({
               </div>
             </div>
           ))}
-          {deal.dealItems.length > 2 && (
+          {deal.items.length > 2 && (
             <div className="text-xs text-center text-gray-500 py-1">
-              +{deal.dealItems.length - 2} منتج آخر
+              +{deal.items.length - 2} منتج آخر
             </div>
           )}
         </div>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import LogoImage from "../../public/Logo.webp";
 import { Link } from "@/i18n/navigation";
 
-export default function Logo({ size = 50 }: { size?: number }) {
+export default function Logo({ size = 200 }: { size?: number }) {
   return (
     <Link href="/" className="flex items-center">
       <Image

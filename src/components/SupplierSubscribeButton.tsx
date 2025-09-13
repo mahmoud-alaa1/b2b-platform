@@ -16,23 +16,33 @@ export default function SupplierSubscribeButton({
 }) {
   const isDashboard = useIsDashboard();
   const { mutate: subscribe, isPending } = useSubscribeToPlan();
-  if (isFree) return null;
 
   return isDashboard ? (
-    <AreYouSure
-      TriggerButton={
-        <Button
-          variant="gradient-indigo"
-          className="w-full py-3 rounded-xl font-semibold">
-          اشترك الآن
-          <ArrowLeft className="w-4 h-4 mr-2" />
-        </Button>
-      }
-      onAccept={() => subscribe(planId)}
-      description="هل أنت متأكد أنك تريد الاشتراك في هذه الخطة؟"
-      title="تأكيد الاشتراك"
-      isLoading={isPending}
-    />
+    !isFree ? (
+      <AreYouSure
+        TriggerButton={
+          <Button
+            variant="gradient-indigo"
+            className="w-full py-3 rounded-xl font-semibold">
+            اشترك الآن
+            <ArrowLeft className="w-4 h-4 mr-2" />
+          </Button>
+        }
+        onAccept={() => subscribe(planId)}
+        description="هل أنت متأكد أنك تريد الاشتراك في هذه الخطة؟"
+        title="تأكيد الاشتراك"
+        isLoading={isPending}
+      />
+    ) : null
+  ) : isFree ? (
+    <Link href="/register">
+      <Button
+        variant="outline"
+        className="w-full py-3 rounded-xl font-semibold">
+        سجل واشترك كفترة تجربة
+        <ArrowLeft className="w-4 h-4 mr-2" />
+      </Button>
+    </Link>
   ) : (
     <Link href="/register">
       <Button
