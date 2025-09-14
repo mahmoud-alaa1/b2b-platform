@@ -1,12 +1,11 @@
-"use client";
 import { marked } from "marked";
 
 interface BlogContentProps {
   content: string;
 }
 
-export default function BlogContent({ content }: BlogContentProps) {
-  const html = marked(content);
+export default async function BlogContent({ content }: BlogContentProps) {
+  const html = await marked(content);
 
   return (
     <section className="pb-8 animate-slide-up">
