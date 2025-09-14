@@ -38,7 +38,7 @@ export async function fetchBlogPost({ slug }: { slug: string }) {
       "/post?" + query,
       {
         next: {
-          revalidate: 3600,
+          revalidate: process.env.NODE_ENV === "development" ? 0 : 3600,
           tags: ["blog-post", slug],
         },
         cache: "force-cache",
