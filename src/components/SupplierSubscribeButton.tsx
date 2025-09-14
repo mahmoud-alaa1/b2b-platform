@@ -37,7 +37,7 @@ export default function SupplierSubscribeButton({
   ) : isFree ? (
     <Link href="/register">
       <Button
-        variant="outline"
+        variant="gradient-indigo"
         className="w-full py-3 rounded-xl font-semibold">
         سجل واشترك كفترة تجربة
         <ArrowLeft className="w-4 h-4 mr-2" />

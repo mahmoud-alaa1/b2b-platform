@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Zap } from "lucide-react";
-import PlanCardList from "../../../../../../../components/plan-cards/PlanCardList";
+import PlanCardList from "@/components/plan-cards/PlanCardList";
 
 export default function PricingSection() {
   return (
