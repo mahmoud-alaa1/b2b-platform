@@ -1,6 +1,6 @@
 import api from "@/lib/axios";
 import { handleApiError } from "@/utils/handleApiError";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 
 export async function forgotPasswordService(data: { email: string }) {
   try {
@@ -54,14 +54,10 @@ export async function registerService(data: FormData) {
   }
 }
 
-export async function refreshTokenService() {
+export async function refreshToken() {
   try {
-    const response = await axios.post<IRefreshResponse>(
-      `${process.env.NEXT_PUBLIC_API_URL}/refresh`,
-      {},
-      // { withC  redentials: true }
-    );
-    return response.data.accessToken;
+    const response = await api.post<IRefreshResponse>("/refresh");
+    return response.data;
   } catch (error) {
     throw handleApiError(error);
   }

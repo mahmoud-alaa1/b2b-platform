@@ -1,7 +1,7 @@
-import { refreshTokenService } from "@/services/authServices";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import Cookies from "js-cookie";
 import useAuth from "@/store/authStore";
+import { refreshToken } from "@/services/authServices";
 
 interface ICustomAxiosInternalConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
@@ -18,6 +18,7 @@ api.interceptors.request.use((config) => {
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
+    config.headers["Accept-Language"] = "ar";
   }
 
   return config;
@@ -42,16 +43,18 @@ api.interceptors.response.use(
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
+
       try {
-        const accessToken = await refreshTokenService();
+        const accessToken = await refreshToken();
 
-        Cookies.set("token", accessToken);
+        Cookies.set("token", accessToken.token);
 
-        originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+        originalRequest.headers[
+          "Authorization"
+        ] = `Bearer ${accessToken.token}`;
 
         return api(originalRequest);
       } catch (refreshError) {
-        console.error("Token refresh failed:", refreshError);
         useAuth.getState().logout();
         return Promise.reject(refreshError);
       }
