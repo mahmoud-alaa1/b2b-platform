@@ -20,7 +20,8 @@ export default function OrderDescription() {
         <div>
           <h3 className="text-lg font-bold text-gray-900">تفاصيل الطلب</h3>
           <p className="text-xs text-gray-500 mt-1">
-            يرجى تقديم تفاصيل دقيقة حول الطلب للتسهيل على المسؤولين مراجعة الطلب.
+            يرجى تقديم تفاصيل دقيقة حول الطلب للتسهيل على المسؤولين مراجعة
+            الطلب.
           </p>
         </div>
       </div>
@@ -38,7 +39,7 @@ export default function OrderDescription() {
             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
               <FormInput
                 name={`items.${index}.name`}
-                placeholder="مثلا: ورق A4، حبر طابعة، لابتوب..."
+                placeholder="كاسات ورق او معدات مطابخ"
                 label="اسم الصنف"
                 control={control}
               />

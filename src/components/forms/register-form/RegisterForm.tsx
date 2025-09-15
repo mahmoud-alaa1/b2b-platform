@@ -25,16 +25,19 @@ import Spinner from "@/components/ui/spinner";
 import useRegister from "@/hooks/auth/useRegister";
 import { SLIDER_VARIANTS } from "@/lib/constants";
 import { setFormErrors } from "@/utils/handleApiError";
+import { useSearchParams } from "next/navigation";
 
 export function MultiStepForm() {
   const [step, setStep] = useState<number>(0);
   const directionRef = useRef<"next" | "back">("next");
   const { mutate, isPending } = useRegister();
+  const searchParams = useSearchParams();
 
   const form = useForm<conditionalRegisterSchemaType>({
     resolver: zodResolver(conditionalRegisterSchema),
     defaultValues: {
-      accountType: "Clients",
+      accountType:
+        searchParams.get("role") === "suppliers" ? "Suppliers" : "Clients",
       UserName: "",
       email: "",
       password: "",
@@ -84,9 +87,14 @@ export function MultiStepForm() {
       values.categories?.forEach((id) => {
         formData.append("categoriesId", id);
       });
-      values.documents?.forEach((loc) => {
-        formData.append("textNumberPicture", loc);
-      });
+      if (values.documents) {
+        formData.append(
+          "textNumberPicture",
+          Array.isArray(values.documents)
+            ? values.documents[0]
+            : values.documents
+        );
+      }
       formData.append("locations", values.location || "no location");
     }
 
@@ -96,14 +104,12 @@ export function MultiStepForm() {
       },
     });
   }
-
   return (
     <div className="max-w-4xl  p-6" dir="rtl">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full">
-          {/* Main Content Card */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -136,6 +142,35 @@ export function MultiStepForm() {
               </div>
             </fieldset>
 
+            <div className="p-4">
+              {Object.keys(form.formState.errors).length > 0 && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 space-y-2">
+                  <h4 className="text-red-800 font-semibold text-sm mb-2">
+                    يرجى تصحيح الأخطاء التالية:
+                  </h4>
+                  <ul className="space-y-1">
+                    {Object.entries(form.formState.errors).map(
+                      ([field, error]) => {
+                        if (
+                          error &&
+                          typeof error === "object" &&
+                          "message" in error
+                        ) {
+                          return (
+                            <li
+                              key={field}
+                              className="text-red-600 text-sm flex items-start gap-1">
+                              <span>{error.message as string}</span>
+                            </li>
+                          );
+                        }
+                        return null;
+                      }
+                    )}
+                  </ul>
+                </div>
+              )}
+            </div>
             <div className="bg-gray-50 px-8 py-6 border-t">
               <div className="flex justify-between items-center">
                 <Button

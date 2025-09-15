@@ -29,15 +29,24 @@ export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const token = await verifyToken(request.cookies.get("token")?.value);
 
-
   if (isProtectedRoute(pathname) && !token) {
     response = NextResponse.redirect(new URL("/login", request.url));
   }
 
   if (isAuthorizedRoute(pathname) && token) {
-    response = NextResponse.redirect(
-      new URL("/suppliers-dashboard/orders", request.url)
-    );
+    if (
+      token.payload[
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+      ] === "Clients"
+    ) {
+      response = NextResponse.redirect(
+        new URL("/clients-dashboard/overview", request.url)
+      );
+    } else {
+      response = NextResponse.redirect(
+        new URL("/suppliers-dashboard/orders", request.url)
+      );
+    }
   }
 
   return response;

@@ -35,7 +35,7 @@ export default function SupplierSubscribeButton({
       />
     ) : null
   ) : isFree ? (
-    <Link href="/register">
+    <Link href="/register?role=suppliers">
       <Button
         variant="gradient-indigo"
         className="w-full py-3 rounded-xl font-semibold">
@@ -44,7 +44,7 @@ export default function SupplierSubscribeButton({
       </Button>
     </Link>
   ) : (
-    <Link href="/register">
+    <Link href="/register?role=suppliers">
       <Button
         variant="gradient-indigo"
         className="w-full py-3 rounded-xl font-semibold">

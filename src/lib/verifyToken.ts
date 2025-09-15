@@ -16,9 +16,8 @@ export async function verifyToken(token?: string) {
     );
     return decoded;
   } catch (err: unknown) {
-    console.log("debug here");
     if (err instanceof JWTExpired) {
-      return token;
+      console.error("Token expired:", err);
     } else if (err instanceof JWSSignatureVerificationFailed) {
       console.error("Invalid signature:", err);
     } else if (err instanceof Error) {

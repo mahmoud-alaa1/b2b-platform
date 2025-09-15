@@ -38,8 +38,8 @@ export default function ProductDescription() {
             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full">
               <FormInput
                 name={`items.${index}.name`}
-                placeholder="مثلا: ورق A4، حبر طابعة، لابتوب..."
-                label="اسم الصنف/المنتج"
+                placeholder="كاسات ورق او معدات مطابخ"
+                label="اسم المنتج/الصنف"
                 control={control}
               />
               <FormInput

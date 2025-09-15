@@ -8,7 +8,7 @@ interface ICustomAxiosInternalConfig extends InternalAxiosRequestConfig {
 }
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://b2bapp.runasp.net/api",
   withCredentials: true,
 });
 

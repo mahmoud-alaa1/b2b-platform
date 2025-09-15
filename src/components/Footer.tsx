@@ -36,7 +36,7 @@ export default function Footer() {
               <Twitter className="w-5 h-5" />
             </Link>
             <Link
-              href="https://instagram.com"
+              href="https://www.instagram.com/supplifyhub/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="انستجرام"

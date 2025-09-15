@@ -83,9 +83,10 @@ export const step2Schema = z.object({
 
 export const step3Schema = z.object({
   location: z.string(),
-  documents: z.array(z.any()).min(1, {
-    message: "من فضلك قم بتحميل مستند واحد على الأقل",
-  }),
+  documents: z
+    .instanceof(File, { message: "يجب رفع ملف صالح" })
+    .or(z.array(z.instanceof(File, { message: "كل عنصر يجب أن يكون ملف" }))),
+
   categories: z.array(z.string()).min(1, {
     message: "من فضلك اختر فئة واحدة على الأقل",
   }),
@@ -108,7 +109,7 @@ export const conditionalRegisterSchema = step1Schema
       });
     }
 
-    if (!data.documents || data.documents.length < 1) {
+    if (!data.documents) {
       ctx.addIssue({
         path: ["documents"],
         code: "too_small",

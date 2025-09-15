@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { HelpCircle, MessageCircle, Phone } from "lucide-react";
+import { HelpCircle, MessageCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -94,17 +94,7 @@ export default function FAQSection() {
                     size="lg"
                     className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-3 rounded-full font-semibold">
                     <MessageCircle className="w-5 h-5 mr-2" />
-                    دردشة واتساب  
-                  </Button>
-                </Link>
-
-                <Link href="tel:+20 101 456 3940">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-slate-300 hover:border-indigo-300 hover:bg-indigo-50 px-6 py-3 rounded-full font-semibold">
-                    <Phone className="w-5 h-5 mr-2" />
-                    اتصال هاتفي
+                    دردشة واتساب
                   </Button>
                 </Link>
               </div>

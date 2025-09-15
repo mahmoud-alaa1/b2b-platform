@@ -1,6 +1,7 @@
 import { handleApiError } from "@/utils/handleApiError";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || "https://b2bapp.runasp.net/api";
 
 export async function fetchData<T>(
   url: string,
