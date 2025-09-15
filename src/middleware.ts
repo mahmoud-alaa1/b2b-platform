@@ -29,6 +29,7 @@ export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const token = await verifyToken(request.cookies.get("token")?.value);
 
+
   if (isProtectedRoute(pathname) && !token) {
     response = NextResponse.redirect(new URL("/login", request.url));
   }
@@ -45,6 +46,3 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   matcher: ["/((?!api|trpc|_next|_vercel|.*\\..*).*)"],
 };
-
-
-
