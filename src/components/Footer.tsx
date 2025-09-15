@@ -12,19 +12,19 @@ export default function Footer() {
               SupplifyHub
             </span>
             <p className="text-sm text-slate-300 max-w-sm text-center md:text-right leading-relaxed">
-              منصة رقمية تربط الموردين بأصحاب الأعمال وتدعم نمو قطاع الأعمال B2B بكفاءة واحترافية
+              منصة رقمية تربط الموردين بأصحاب الأعمال وتدعم نمو قطاع الأعمال B2B
+              بكفاءة واحترافية
             </p>
           </div>
 
           {/* Social Icons */}
           <div className="flex gap-3">
             <Link
-              href="https://facebook.com"
+              href="https://www.facebook.com/profile.php?id=61579797784804"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="فيسبوك"
-              className="p-3 rounded-xl bg-slate-800 hover:bg-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            >
+              className="p-3 rounded-xl bg-slate-800 hover:bg-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <Facebook className="w-5 h-5" />
             </Link>
             <Link
@@ -32,8 +32,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="تويتر"
-              className="p-3 rounded-xl bg-slate-800 hover:bg-sky-500 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            >
+              className="p-3 rounded-xl bg-slate-800 hover:bg-sky-500 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <Twitter className="w-5 h-5" />
             </Link>
             <Link
@@ -41,8 +40,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="انستجرام"
-              className="p-3 rounded-xl bg-slate-800 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            >
+              className="p-3 rounded-xl bg-slate-800 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <Instagram className="w-5 h-5" />
             </Link>
             <Link
@@ -50,8 +48,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="لينكدإن"
-              className="p-3 rounded-xl bg-slate-800 hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            >
+              className="p-3 rounded-xl bg-slate-800 hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg">
               <Linkedin className="w-5 h-5" />
             </Link>
           </div>

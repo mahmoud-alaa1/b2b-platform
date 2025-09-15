@@ -39,7 +39,7 @@ export default function ProductDescription() {
               <FormInput
                 name={`items.${index}.name`}
                 placeholder="مثلا: ورق A4، حبر طابعة، لابتوب..."
-                label="اسم الصنف"
+                label="اسم الصنف/المنتج"
                 control={control}
               />
               <FormInput
