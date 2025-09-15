@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 import Cookies from "js-cookie";
 import { toast } from "sonner";
 import { queryClient } from "@/providers/ReactQueryProvider";
+import { navigateTo } from "@/utils/navigationHelper";
 
 interface AuthState {
   user: IUser | null;
@@ -29,6 +30,8 @@ const useAuth = create<AuthState & AuthActions>()(
         toast.success("تم تسجيل الخروج بنجاح");
         Cookies.remove("token");
         queryClient.clear();
+        navigateTo("/login");
+
         set({ user: null });
       },
     }),
