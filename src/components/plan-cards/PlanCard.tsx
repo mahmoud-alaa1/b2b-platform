@@ -63,7 +63,7 @@ export default function PlanCard({
               <span className="text-4xl font-bold text-slate-900">
                 {plan.price === 0
                   ? "مجاني"
-                  : `${plan.price.toLocaleString("ar-SA")} ج`}
+                  : `${plan.price.toLocaleString("ar-SA")} ريال`}
               </span>
               {plan.price > 0 && (
                 <span className="text-slate-600">
@@ -76,8 +76,8 @@ export default function PlanCard({
             {plan.price > 0 && plan.duration > 1 && (
               <p className="text-sm text-slate-500 mt-1">
                 (
-                {Math.round(plan.price / plan.duration).toLocaleString("ar-SA")}{" "}
-                ج/شهر)
+                {Math.round(plan.price / plan.duration).toLocaleString("ar-SA")}
+                ريال/شهر)
               </p>
             )}
           </div>
